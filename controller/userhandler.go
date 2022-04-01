@@ -149,7 +149,7 @@ func Regist(w http.ResponseWriter, r *http.Request) {
 		t.Execute(w, "用户名已存在！")
 	} else {
 		strVcode := fmt.Sprintf("%v", Vcode)
-		Evcode := utils.SendVcode()
+		Evcode := utils.SendVcode(email)
 		//如果邮箱验证码正确，将用户信息保存到数据库中
 		if strVcode == Evcode {
 			dao.SaveUser(username, password, email)
