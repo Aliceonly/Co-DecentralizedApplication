@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"fmt"
 	"test/dao"
 	"test/model"
 	"test/utils"
@@ -137,6 +138,8 @@ func Regist(w http.ResponseWriter, r *http.Request) {
 	username := r.PostFormValue("username")
 	password := r.PostFormValue("password")
 	email := r.PostFormValue("email")
+	//获取邮箱验证码
+	Vcode := r.PostFormValue("vcode")
 	//调用userdao中验证用户名和密码的方法
 	user, _ := dao.CheckUserName(username)
 	if user.ID > 0 {
@@ -145,12 +148,19 @@ func Regist(w http.ResponseWriter, r *http.Request) {
 		t := template.Must(template.ParseFiles(""))
 		t.Execute(w, "用户名已存在！")
 	} else {
-		//用户名可用，将用户信息保存到数据库中
-		dao.SaveUser(username, password, email)
-		//用户名和密码正确
-		//注册成功接口
-		t := template.Must(template.ParseFiles(""))
-		t.Execute(w, "")
+		strVcode := fmt.Sprintf("%v", Vcode)
+		Evcode := utils.SendVcode()
+		//如果邮箱验证码正确，将用户信息保存到数据库中
+		if strVcode == Evcode {
+			dao.SaveUser(username, password, email)
+			//注册成功接口
+			t := template.Must(template.ParseFiles(""))
+			t.Execute(w, "")
+		} else {
+			//注册失败接口
+			t := template.Must(template.ParseFiles(""))
+			t.Execute(w, "邮箱验证码错误！")
+		}
 	}
 }
 

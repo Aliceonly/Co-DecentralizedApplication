@@ -14,13 +14,16 @@ func main() {
 	http.Handle("/pages/", http.StripPrefix("/pages/", http.FileServer(http.Dir("views/pages"))))
 	//去首页
 	http.HandleFunc("/main", controller.GetHome)
-	//去登录
+	//登录接口
 	http.HandleFunc("/login", controller.Login)
-	//去注销
+	//邮箱登录接口
+	http.HandleFunc("/Elogin", controller.ELogin)
+	//注销接口
 	http.HandleFunc("/logout", controller.Logout)
-	//去注册
+	//注册接口
 	http.HandleFunc("/regist", controller.Regist)
-
+	//超级管理员注册接口
+	http.HandleFunc("/Adregist", controller.RegistAsAdministrator)
 	/*
 	http.HandleFunc("/checkUserName", controller.CheckUserName)
 	http.HandleFunc("/getUserInfo", controller.GetUserInfo)
