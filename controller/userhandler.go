@@ -10,10 +10,12 @@ import (
 	_ "strconv"
 )
 
+var Evcode string
+
 //解析首页
 func GetHome(w http.ResponseWriter, r *http.Request) {
 	//解析首页接口
-	t := template.Must(template.ParseFiles(""))
+	t := template.Must(template.ParseFiles("views/index.html"))
 	t.Execute(w, "")
 }
 
@@ -32,8 +34,16 @@ func Logout(w http.ResponseWriter, r *http.Request) {
 		http.SetCookie(w, cookie)
 	}
 	//返回首页
-	t := template.Must(template.ParseFiles(""))
+	t := template.Must(template.ParseFiles("views/index.html"))
 	t.Execute(w, "")
+}
+
+func SendCode(w http.ResponseWriter, r *http.Request) {
+	email := r.PostFormValue("email")
+	user, _ := dao.CheckEmail(email)
+	if user.ID > 0 {
+		Evcode = utils.SendVcode(email)
+	}
 }
 
 //Login 处理用户登录的函数
@@ -43,43 +53,54 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	if flag {
 		//已经登录
 		//去首页
-		t := template.Must(template.ParseFiles(""))
+		t := template.Must(template.ParseFiles("views/index.html"))
 		t.Execute(w, "")
 	} else {
-		//获取用户名和密码
-		username := r.PostFormValue("username")
-		password := r.PostFormValue("password")
+		//获取邮箱和验证码
+		email := r.PostFormValue("email")
+		Vcode := r.PostFormValue("code")
 		//调用userdao中验证用户名和密码的方法
-		user, _ := dao.CheckUserNameAndPassword(username, password)
+		user, _ := dao.CheckEmail(email)
 		if user.ID > 0 {
-			//用户名和密码正确
-			//生成UUID作为Session的id
-			uuid := utils.CreateUUID()
-			//创建一个Session
-			sess := &model.Session_chenjunjie{
-				SessionID: uuid,
-				UserName:  user.Username,
-				UserID:    user.ID,
-				GroupID:   user.GroupID,
+			if Vcode == "" {
+				Evcode = utils.SendVcode(email)
+			} else {
+				//获取邮箱验证码
+				strVcode := fmt.Sprintf("%v", Vcode)
+				if strVcode == Evcode {
+					//验证码匹配正确
+					//生成UUID作为Session的id
+					uuid := utils.CreateUUID()
+					//创建一个Session
+					sess := &model.Session_chenjunjie{
+						SessionID: uuid,
+						UserName:  user.Username,
+						UserID:    user.ID,
+						GroupID:   user.GroupID,
+					}
+					//将Session保存到数据库中
+					dao.AddSession(sess)
+					//创建一个Cookie，让它与Session相关联
+					cookie := http.Cookie{
+						Name:     "user",
+						Value:    uuid,
+						HttpOnly: true,
+					}
+					//将cookie发送给浏览器
+					http.SetCookie(w, &cookie)
+					//清楚Evcode
+					Evcode = ""
+					//登陆成功接口
+					t := template.Must(template.ParseFiles("views/index.html"))
+					t.Execute(w, user)
+				} else {
+					t := template.Must(template.ParseFiles("views/pages/sign-in.html"))
+					t.Execute(w, "登录失败")
+				}
 			}
-			//将Session保存到数据库中
-			dao.AddSession(sess)
-			//创建一个Cookie，让它与Session相关联
-			cookie := http.Cookie{
-				Name:     "user",
-				Value:    uuid,
-				HttpOnly: true,
-			}
-			//将cookie发送给浏览器
-			http.SetCookie(w, &cookie)
-			//登陆成功接口
-			t := template.Must(template.ParseFiles(""))
-			t.Execute(w, user)
 		} else {
-			//用户名或密码不正确
-			//登陆失败接口
-			t := template.Must(template.ParseFiles(""))
-			t.Execute(w, "用户名或密码不正确！")
+			t := template.Must(template.ParseFiles("views/pages/sign-up.html"))
+			t.Execute(w, "用户不存在")
 		}
 	}
 }
@@ -91,7 +112,7 @@ func ELogin(w http.ResponseWriter, r *http.Request) {
 	if flag {
 		//已经登录
 		//去首页
-		t := template.Must(template.ParseFiles(""))
+		t := template.Must(template.ParseFiles("views/index.html"))
 		t.Execute(w, "")
 	} else {
 		//获取用户名和密码
@@ -121,12 +142,12 @@ func ELogin(w http.ResponseWriter, r *http.Request) {
 			//将cookie发送给浏览器
 			http.SetCookie(w, &cookie)
 			//登陆成功接口
-			t := template.Must(template.ParseFiles(""))
+			t := template.Must(template.ParseFiles("views/index.html"))
 			t.Execute(w, user)
 		} else {
 			//用户名或密码不正确
 			//登陆失败接口
-			t := template.Must(template.ParseFiles(""))
+			t := template.Must(template.ParseFiles("views/pages/sign-in.html"))
 			t.Execute(w, "用户名或密码不正确！")
 		}
 	}
@@ -138,29 +159,30 @@ func Regist(w http.ResponseWriter, r *http.Request) {
 	username := r.PostFormValue("username")
 	password := r.PostFormValue("password")
 	email := r.PostFormValue("email")
-	//获取邮箱验证码
-	Vcode := r.PostFormValue("vcode")
+	// //获取邮箱验证码
+	// Vcode := r.PostFormValue("vcode")
 	//调用userdao中验证用户名和密码的方法
 	user, _ := dao.CheckUserName(username)
 	if user.ID > 0 {
 		//用户名已存在
 		//注册失败接口
-		t := template.Must(template.ParseFiles(""))
+		t := template.Must(template.ParseFiles("views/pages/sign-up.html"))
 		t.Execute(w, "用户名已存在！")
 	} else {
-		strVcode := fmt.Sprintf("%v", Vcode)
-		Evcode := utils.SendVcode(email)
+		// strVcode := fmt.Sprintf("%v", Vcode)
+		// Evcode := utils.SendVcode(email)
 		//如果邮箱验证码正确，将用户信息保存到数据库中
-		if strVcode == Evcode {
-			dao.SaveUser(username, password, email)
-			//注册成功接口
-			t := template.Must(template.ParseFiles(""))
-			t.Execute(w, "")
-		} else {
-			//注册失败接口
-			t := template.Must(template.ParseFiles(""))
-			t.Execute(w, "邮箱验证码错误！")
-		}
+		// if strVcode == Evcode {
+		dao.SaveUser(username, password, email)
+		//注册成功接口
+		t := template.Must(template.ParseFiles("views/pages/sign-in.html"))
+		t.Execute(w, "")
+	// 	// } else {
+	// 		//注册失败接口
+	// 		t := template.Must(template.ParseFiles("views/pages/sign-up.html"))
+	// 		t.Execute(w, "邮箱验证码错误！")
+	// 	}
+	// }
 	}
 }
 
@@ -175,14 +197,14 @@ func RegistAsAdministrator(w http.ResponseWriter, r *http.Request) {
 	if user.ID > 0 {
 		//用户名已存在
 		//注册失败接口
-		t := template.Must(template.ParseFiles(""))
+		t := template.Must(template.ParseFiles("views/pages/sign-up.html"))
 		t.Execute(w, "用户名已存在！")
 	} else {
 		//用户名可用，将用户信息保存到数据库中
 		dao.SaveAsAdministrator(username, password, email)
 		//用户名和密码正确
 		//注册成功接口
-		t := template.Must(template.ParseFiles(""))
+		t := template.Must(template.ParseFiles("views/pages/sign-in.html"))
 		t.Execute(w, "")
 	}
 }
