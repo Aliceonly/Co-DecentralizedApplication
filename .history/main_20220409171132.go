@@ -2,9 +2,8 @@ package main
 
 import (
 	"net/http"
-	c"dapp/Connect"
+
 	"github.com/gin-gonic/gin"
-	"fmt"
 )
 
 func index_Handler(c *gin.Context) {
@@ -73,9 +72,5 @@ func main() {
 	r.GET("/detail_shared", detail_shared_Handler)
 	r.GET("/redact_candidate", redact_candidate_Handler)
 	// 启动HTTP服务，默认在0.0.0.0:8080启动服务
-	ins:=c.Getsmartcontract()
-	head,_:=c.GetBlockNumber()
-	_,adress:=c.Getaccout()
-	fmt.Println("contractBalance",c.GetcontractBanlance(ins,adress,head))
 	r.Run()
 }
