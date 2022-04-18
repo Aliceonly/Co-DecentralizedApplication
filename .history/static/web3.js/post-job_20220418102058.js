@@ -36,7 +36,7 @@ function CreatTask(){
  data:{taskname:taskname,tasktime:tasktime+":"+tasktime2,account:account,taskmoney:taskmoney,taskplace1:taskplace1+taskplace2,taskplace3:taskplace3,taskcontent:taskcontent},
  success:function(data){
      console.log(data);
-     alert(data.data)
+     alert("本次任务的时间戳为"，data)
      console.log("完成");
  },
  error: function(data){
