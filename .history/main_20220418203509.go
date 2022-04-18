@@ -25,7 +25,6 @@ func main() {
 	// 	panic(err)
 	// }
 	// fmt.Println(mysql.Select("0xxx"))
-	fmt.Print(mysql.Selectaccept("0xxx000"))
 
 }
 

@@ -5,7 +5,7 @@ import (
 	"math/big"
 	"strconv"
 
-	"github.com/ethereum/go-ethereum/common"
+	// "github.com/ethereum/go-ethereum/common"
 	mysql "dapp/utils"
 	"fmt"
 
@@ -27,14 +27,17 @@ func Creat(c *gin.Context) {
 		fmt.Println("SetString: error")
 		return
 	}
+	// fmt.Println(n)
+	// taskplace :=c.PostForm("taskplace1")
 	taskplace2 := c.PostForm("taskplace3")//工作类型
 	taskplace1 := c.PostForm("taskplace1")//地区
 	taskcontent := c.PostForm("taskcontent")
 	fmt.Println(taskname, tasktime, taskmoney, taskplace2, taskcontent,taskplace1)
-	contract.CreatNewEvent(ins, Txopts, taskname+taskcontent+taskplace1, taskplace2, tasktime, n,common.HexToAddress(add))
+	contract.CreatNewEvent(ins, Txopts, taskname+taskcontent+taskplace1, taskplace2, tasktime, n,commadd)
 	times := contract.Querytime(ins, adress, head)
 	fmt.Println("时间戳----->", times)
 	tohtml(c, times)
+	Getbalance()
 	task_money, _ := strconv.Atoi(taskmoney)
 	err:=mysql.Insert(taskname,add,taskplace2,task_money,times,"availablev",tasktime)
 	if err!=nil {
@@ -43,9 +46,9 @@ func Creat(c *gin.Context) {
 	fmt.Println(contract.GetTasklist(ins, times, adress, head))
 }
 
-// func Getbalance(){
-// 	ins:=contract.Getsmartcontract()
-// 	head,_:=contract.GetBlockNumber()
-// 	_,adress:=contract.Getaccout()
-// 	fmt.Println("contractBalance",contract.GetcontractBanlance(ins,adress,head))
-// }
+func Getbalance(){
+	ins:=contract.Getsmartcontract()
+	head,_:=contract.GetBlockNumber()
+	_,adress:=contract.Getaccout()
+	fmt.Println("contractBalance",contract.GetcontractBanlance(ins,adress,head))
+}

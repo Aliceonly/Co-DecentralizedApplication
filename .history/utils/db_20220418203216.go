@@ -81,40 +81,10 @@ func Select(add string) []tasklist {
 			 panic(err)
 		}
 		Tlist=append(Tlist, list)
-		fmt.Println("自身发布的任务列表为",Tlist)
+		fmt.Println("任务列表为",Tlist)
 	}
 	 return Tlist
 }
-//自身接受任务的结构体
-type accepttasklist struct { 
-	taskid int ;// 结果集，参数名需大写
-	taskname string;
-	add string;
-	beneficiary string;
-	category string;
-	amount int;
-	timestamp string;
-	state string;
-	launchTime string;
-}
-func Selectaccept(add string)[]accepttasklist{
-	Tlist := make([]accepttasklist, 0)
-	var sqlStr="SELECT * FROM tasklist where Beneficiary=?"
-	rows,err :=Db.Query(sqlStr,add)
-	var list accepttasklist 
-	fmt.Println("rows=====>",rows)
-	if err!=nil {
-		panic(err)
-	}
-	for rows.Next() {
-		err :=rows.Scan(&list.taskid,&list.taskname,&list.beneficiary,&list.add,&list.category,&list.amount,&list.timestamp,&list.state,&list.launchTime)
-		if err!=nil {
-			 panic(err)
-		}
-		Tlist=append(Tlist, list)
-		fmt.Println("自身接受任务列表为",Tlist)
-	}
-	 return Tlist
-}
+func Selectaccept
 
 

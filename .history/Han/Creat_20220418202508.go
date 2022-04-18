@@ -35,6 +35,7 @@ func Creat(c *gin.Context) {
 	times := contract.Querytime(ins, adress, head)
 	fmt.Println("时间戳----->", times)
 	tohtml(c, times)
+	Getbalance()
 	task_money, _ := strconv.Atoi(taskmoney)
 	err:=mysql.Insert(taskname,add,taskplace2,task_money,times,"availablev",tasktime)
 	if err!=nil {

@@ -79,9 +79,9 @@ func Start()error  {
 	   dapp.POST("/querytasklist",Query)//调用合约直接查任务mapping方法
 	   dapp.POST("/queryuselist",Queryuser)//调用合约直接查用户mapping方法
 	   dapp.POST("/canceltask",Cancel)//发布者取消任务接口
-	   dapp.POST("/queryselftask",Selftask)//发布者查询个人发布的任务的数据
+	   dapp.POST("/queryselftask",Selftask)//发布者查询个人发布的任务
 	   dapp.POST("/confirmtask",Confirmtask)//接受任务接口
-	   dapp.POST("/quertselfaccept",Selfaccept)//发布者查询个人接收的任务的数据
+	   dapp.POST("/")
 	  }
 
 	err :=r.Run()

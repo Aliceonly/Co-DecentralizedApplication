@@ -186,10 +186,8 @@ func CreatNewEvent(
 	Taskname string,
 	Taskcatagory string,
 	launchTime string,
-	amount *big.Int,
-	address common.Address) *types.Transaction{
+	amount *big.Int) *types.Transaction{
 	ops.Value= amount
-	ops.From=address
 	timestap,err:=ins.CreateNewEvent(ops,launchTime,Taskcatagory,Taskname,amount)
 	if err!=nil {
 		panic(err)
@@ -224,9 +222,7 @@ func Querytime(ins *contract.TaskDeployerContract,
 func CancelEvent(
 	ins *contract.TaskDeployerContract,
 	ops *bind.TransactOpts,
-	timestamp *big.Int,
-	address common.Address){
-	ops.From=address
+	timestamp *big.Int){
 	_,err:=ins.CancelEvent(ops,timestamp)
 	if err!=nil {
 		panic(err)
@@ -239,8 +235,8 @@ func Confirmtask(
 	ins *contract.TaskDeployerContract,
 	timestamp *big.Int,
     ops *bind.TransactOpts,
-	address common.Address){
-	ops.From=address
+	){
+		ops.From(add)
 	_,err:=ins.Confirmtask(ops,timestamp)
 	if err!=nil {
 		panic(err)

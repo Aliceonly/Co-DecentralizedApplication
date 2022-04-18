@@ -186,10 +186,8 @@ func CreatNewEvent(
 	Taskname string,
 	Taskcatagory string,
 	launchTime string,
-	amount *big.Int,
-	address common.Address) *types.Transaction{
+	amount *big.Int) *types.Transaction{
 	ops.Value= amount
-	ops.From=address
 	timestap,err:=ins.CreateNewEvent(ops,launchTime,Taskcatagory,Taskname,amount)
 	if err!=nil {
 		panic(err)
@@ -225,8 +223,7 @@ func CancelEvent(
 	ins *contract.TaskDeployerContract,
 	ops *bind.TransactOpts,
 	timestamp *big.Int,
-	address common.Address){
-	ops.From=address
+	add){
 	_,err:=ins.CancelEvent(ops,timestamp)
 	if err!=nil {
 		panic(err)

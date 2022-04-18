@@ -99,7 +99,7 @@ type accepttasklist struct {
 }
 func Selectaccept(add string)[]accepttasklist{
 	Tlist := make([]accepttasklist, 0)
-	var sqlStr="SELECT * FROM tasklist where Beneficiary=?"
+	var sqlStr="SELECT * FROM tasklist where B=?"
 	rows,err :=Db.Query(sqlStr,add)
 	var list accepttasklist 
 	fmt.Println("rows=====>",rows)

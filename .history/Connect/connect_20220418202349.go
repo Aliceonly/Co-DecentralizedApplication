@@ -189,7 +189,6 @@ func CreatNewEvent(
 	amount *big.Int,
 	address common.Address) *types.Transaction{
 	ops.Value= amount
-	ops.From=address
 	timestap,err:=ins.CreateNewEvent(ops,launchTime,Taskcatagory,Taskname,amount)
 	if err!=nil {
 		panic(err)
