@@ -64,8 +64,6 @@
     </a>
     <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
     <ul    class="navbar-nav m-auto">
-        <!-- style="position: relative;left: -430px;"  -->
-        <!-- 标记！！！！！！！！！！！！！！！！！！！！！！！！！！！ -->
     
     <li class="nav-item">
     <!-- <a href="#" class="nav-link dropdown-toggle active">Home</a> -->
@@ -139,98 +137,12 @@
     </div>
     
     
-    <div style="padding-top: 30px;padding-bottom: 5px;" class="banner-style-two">
-    <div class="d-table">
-    <div class="d-table-cell">
-    <div class="container">
-    <div class="banner-text">
-    <span>短期兼职、校园兼职和共享服务    </span>
-    <h1> 让大学生活更丰富！ </h1>
-    <p>我们在我们的平台上提供许多短期兼职工作，与校园企业合作，为学生提供更多的校园工作，并提供共享服务，让校园生活更方便、更温馨  </p>
-    <div class="theme-btn">
-    <a href="/" class="default-btn">工作详情</a>
-    <a href="post_job" class="default-btn">发布订单</a>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    <div class="banner-img">
-    <img src="../static/picture/32.jpg" alt="banner image">
-    </div>
-    </div>
-    
-<div class="find-section pb-100">
-    <div class="container">
-    <form action="/QueryByTime" method="POST" class="find-form">
-    <div class="row">
-    <div class="col-lg-3">
-    <div class="form-group">
-    <input type="text" class="form-control" id="exampleInputEmail1" name="timestamp" placeholder="时间戳">
-    <i class="bx bx-search-alt"></i>
-    </div>
-    </div>
-        <div class="col-lg-3">
-    <button type="submit" class="find-btn">
-    搜索
-    <i class='bx bx-search'></i>
-    </button>
-    </div>
-    </div>
-    </form>
-    </div>
-    </div>
-    
-
-
-    <section class="why-choose-two pb-70">
-    <div class="container">
-    <div class="section-title text-center">
-    <h2>快来试试吧!</h2>
-    <p>这个应用可以提供三种服务</p>
-    </div>
-    <div class="row">
-    <div class="col-lg-4 col-sm-6">
-    <a href="detail_qukuilySend"> 
-    <div class="choose-card">
-    <i class="flaticon-resume"></i>
-     <h3>校园跑腿</h3>
-    <p>这是该应用程序提供的校园跑腿。每个人都是雇主和雇员，通过发布/接收订单获得/提供学生服务</p>
-    </div>
-        </a>
-    </div>
-    <div class="col-lg-4 col-sm-6">
-        <a href="detail_campus"> 
-    <div class="choose-card">
-    <i class="flaticon-recruitment"></i>
-    <h3>校园兼职</h3>
-    <p>在这里，校园餐厅为学生提供长期和短期任务供他们选择，每个人都有一份工作，你会得到更多的佣金  </p>
-    </div>
-        </a>
-    </div>
-    <div class="col-lg-4 col-sm-6 offset-sm-3 offset-lg-0">
-        <a href="detail_shared"> 
-    <div class="choose-card">
-    <i class="flaticon-employee"></i>
-    <h3>共享服务</h3>
-    <p>每个人都可以发出共享的需求/接受共享的命令，这将极大地促进我们的校园生活，让校园更加充满爱  </p>
-    </div>
-        </a>
-    </div>
-    </div>
-    </div>
-    </section>
-    
-    
-    
     <section class="job-style-two pt-100 pb-70">
     <div class="container">
     <div class="section-title text-center">
-    <h2>你可能感兴趣的工作</h2>
-    <p>快来找你可能感兴趣的兼职吧</p>
+    <h2>查询结果</h2>
     </div>
     <div class="row">
-    {{range $value := .data}}
     <div class="col-lg-12">
     <div class="job-card-two">
     <div class="row align-items-center">
@@ -242,39 +154,31 @@
     </div>
     <div class="col-md-8">
     <div class="job-info">       
-    <h3>{{$value.Taskname}}</h3>
+    <h3>{{.Taskname}}</h3>
     <ul>
     <li>
     <i class='bx bx-briefcase'></i>
-    {{$value.Timestamp}}
+    {{.Timestamp}}
     </li>
     <li>
     <i class='bx bx-briefcase'></i>
-    {{$value.Amount}}
+    {{.Amount}}
     </li>
     <li>
     <i class='bx bx-location-plus'></i>
-    {{$value.State}}
+    {{.State}}
     </li>
     <li>
     <i class='bx bx-stopwatch'></i>
-    {{$value.LaunchTime}}
+    {{.LaunchTime}}
      </li>
     </ul>
-    <span>{{$value.Category}}</span>
-    </div>
-    </div>
-    <div class="col-md-3">
-    <div class="theme-btn text-end">
-    <a href="#" class="default-btn">
-        接受订单
-    </a>
+    <span>{{.Category}}</span>
     </div>
     </div>
     </div>
     </div>
     </div>
-    {{end}}
     </div>
     </div>
     </div>
