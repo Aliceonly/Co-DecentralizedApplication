@@ -35,12 +35,13 @@ function CreatTask(){
  url:"http://localhost:8080/dapp/creatTask",
  data:{taskname:taskname,tasktime:tasktime+":"+tasktime2,account:account,taskmoney:taskmoney,taskplace1:taskplace1+taskplace2,taskplace3:taskplace3,taskcontent:taskcontent},
  success:function(data){
-     console.log(data);
+     console.log("success data",data);
      alert(data.data)
-     console.log("完成");
+     console.log("成功");
  },
  error: function(data){
-     console.log(data)
+     console.log("error====>",error)
+     console.log("error data===>",data)
  }
 }) 
 }

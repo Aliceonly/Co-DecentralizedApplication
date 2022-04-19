@@ -262,40 +262,38 @@
     <p>快来找你可能感兴趣的兼职吧</p>
     </div>
     <div class="row">
+    {{range $value := .data}}
     <div class="col-lg-12">
     <div class="job-card-two">
     <div class="row align-items-center">
     <div class="col-md-1">
     <div class="company-logo">
-    <a href="job-details.html">
     <img src="../static/picture/6.png" alt="logo">
     </a>
     </div>
     </div>
     <div class="col-md-8">
-    <div class="job-info">
-    <h3>
-    <a href="job-details.html">送奶茶</a>
-    </h3>
+    <div class="job-info">       
+    <h3>{{$value.Taskname}}</h3>
     <ul>
     <li>
     <i class='bx bx-briefcase'></i>
-    从古茗送到男寝D3601
+    {{$value.Timestamp}}
     </li>
     <li>
     <i class='bx bx-briefcase'></i>
-    2 - 4 元
+    {{$value.Amount}}
     </li>
     <li>
     <i class='bx bx-location-plus'></i>
-    古茗
+    {{$value.State}}
     </li>
     <li>
     <i class='bx bx-stopwatch'></i>
-    2 分钟前
+    {{$value.LaunchTime}}
      </li>
     </ul>
-    <span>校园跑腿</span>
+    <span>{{$value.Category}}</span>
     </div>
     </div>
     <div class="col-md-3">
@@ -308,187 +306,7 @@
     </div>
     </div>
     </div>
-    <div class="col-lg-12">
-    <div class="job-card-two">
-    <div class="row align-items-center">
-    <div class="col-md-1">
-    <div class="company-logo">
-    <a href="job-details.html">
-    <img src="../static/picture/6.png" alt="logo">
-    </a>
-    </div>
-    </div>
-    <div class="col-md-8">
-    <div class="job-info">
-    <h3>
-    <a href="job-details.html">带快递</a>
-    </h3>
-    <ul>
-    <li>
-    <i class='bx bx-briefcase'></i>
-    从寝室送到女寝E2607
-    </li>
-    <li>
-    <i class='bx bx-briefcase'></i>
-    1 - 2 元
-    </li>
-    <li>
-    <i class='bx bx-location-plus'></i>
-    菜鸟驿站
-    </li>
-    <li>
-    <i class='bx bx-stopwatch'></i>
-    10 分钟前
-    </li>
-    </ul>
-    <span>校园跑腿</span>
-    </div>
-    </div>
-    <div class="col-md-3">
-    <div class="theme-btn text-end">
-    <a href="#" class="default-btn">
-    接受订单
-    </a>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    <div class="col-lg-12">
-    <div class="job-card-two">
-    <div class="row align-items-center">
-    <div class="col-md-1">
-    <div class="company-logo">
-    <a href="job-details.html">
-    <img src="../static/picture/2.png" alt="logo">
-    </a>
-    </div>
-    </div>
-    <div class="col-md-8">
-    <div class="job-info">
-     <h3>
-    <a href="job-details.html">水果店兼职</a>
-    </h3>
-    <ul>
-    <li>
-    <i class='bx bx-briefcase'></i>
-    晚上5点工作至晚九点半
-    </li>
-    <li>
-    <i class='bx bx-briefcase'></i>
-    30元 / 1小时
-    </li>
-    <li>
-    <i class='bx bx-location-plus'></i>
-    果果鲜水果店
-    </li>
-    <li>
-    <i class='bx bx-stopwatch'></i>
-    1 天前
-    </li>
-    </ul>
-    <span>校园兼职</span>
-    </div>
-    </div>
-    <div class="col-md-3">
-    <div class="theme-btn text-end">
-    <a href="#" class="default-btn">
-    接受订单
-    </a>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    <div class="col-lg-12">
-    <div class="job-card-two">
-    <div class="row align-items-center">
-    <div class="col-md-1">
-    <div class="company-logo">
-    <a href="job-details.html">
-    <img src="../static/picture/1.png" alt="logo">
-    </a>
-    </div>
-    </div>
-    <div class="col-md-8">
-    <div class="job-info">
-    <h3>
-    <a href="job-details.html">借伞</a>
-    </h3>
-    <ul>
-    <li>
-    <i class='bx bx-briefcase'></i>
-    使用时间是今日下午3点到4点半
-    </li>
-    <li>
-    <i class='bx bx-briefcase'></i>
-    1元
-    </li>
-    <li>
-    <i class='bx bx-location-plus'></i>
-    区块链学院图书馆
-    </li>
-    <li>
-    <i class='bx bx-stopwatch'></i>
-    20 秒前
-    </li>
-    </ul>
-    <span>共享服务</span>
-    </div>
-     </div>
-    <div class="col-md-3">
-    <div class="theme-btn text-end">
-    <a href="#" class="default-btn">
-    接受订单
-    </a>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    <div class="col-lg-12">
-    <div class="job-card-two">
-    <div class="row align-items-center">
-    <div class="col-md-1">
-    <div class="company-logo">
-    <a href="job-details.html">
-    <img src="../static/picture/2.png" alt="logo">
-    </a>
-    </div>
-    </div>
-    <div class="col-md-8">
-    <div class="job-info">
-    <h3>
-    <a href="job-details.html">食堂打扫</a>
-    </h3>
-    <ul>
-    <li>
-    <i class='bx bx-briefcase'></i>
-    工作时间是中午11.30 ~ 1.30
-    </li>
-    <li>
-    <i class='bx bx-briefcase'></i>
-    25元 / 1小时
-    </li>
-    <li>
-    <i class='bx bx-location-plus'></i>
-    一食堂一楼
-    </li>
-    <li>
-    <i class='bx bx-stopwatch'></i>
-    3 天前
-    </li>
-    </ul>
-    <span>校园兼职</span>
-    </div>
-    </div>
-    <div class="col-md-3">
-    <div class="theme-btn text-end">
-    <a href="#" class="default-btn">
-     接受订单
-    </a>
-    </div>
-    </div>
+    {{end}}
     </div>
     </div>
     </div>

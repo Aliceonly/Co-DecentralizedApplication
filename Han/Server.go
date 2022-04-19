@@ -1,12 +1,20 @@
 package Han
 
 import (
-	"net/http"
+	mysql "dapp/utils"
+	"fmt"
 	"github.com/gin-gonic/gin"
+	"net/http"
 )
 
 func index_Handler(c *gin.Context) {
-	c.HTML(200, "index.html", nil) //首页
+	// c.HTML(200, "index.html", nil) //首页
+	taskdata := mysql.Showdata()
+	fmt.Println("get____taskdata=======>>>>>>>>>>>>>>", taskdata)
+	c.HTML(http.StatusOK, "index.html", gin.H{
+		"data": taskdata,
+	}) // -------------------------第三步---------------------
+
 }
 
 func sign_in_Handler(c *gin.Context) {
@@ -49,7 +57,7 @@ func redact_candidate_Handler(c *gin.Context) {
 	c.HTML(200, "redact-canditate.html", nil) //编辑资料
 }
 
-func Start()error  {
+func Start() error {
 	// 创建一个默认的路由引擎
 	r := gin.Default()
 	// 配置模板
@@ -75,16 +83,16 @@ func Start()error  {
 	//设置路由组
 	dapp := r.Group("dapp")
 	{
-       dapp.POST("/creatTask",Creat)//创建任务接口
-	   dapp.POST("/querytasklist",Query)//调用合约直接查任务mapping方法
-	   dapp.POST("/queryuselist",Queryuser)//调用合约直接查用户mapping方法
-	   dapp.POST("/canceltask",Cancel)//发布者取消任务接口
-	   dapp.POST("/queryselftask",Selftask)//发布者查询个人发布的任务的数据
-	   dapp.POST("/confirmtask",Confirmtask)//接受任务接口
-	   dapp.POST("/quertselfaccept",Selfaccept)//发布者查询个人接收的任务的数据
-	  }
+		dapp.POST("/creatTask", Creat)            //创建任务接口
+		dapp.POST("/querytasklist", Query)        //调用合约直接查任务mapping方法
+		dapp.POST("/queryuselist", Queryuser)     //调用合约直接查用户mapping方法
+		dapp.POST("/canceltask", Cancel)          //发布者取消任务接口
+		dapp.POST("/queryselftask", Selftask)     //发布者查询个人发布的任务的数据
+		dapp.POST("/confirmtask", Confirmtask)    //接受任务接口
+		dapp.POST("/quertselfaccept", Selfaccept) //发布者查询个人接收的任务的数据
+	}
 
-	err :=r.Run()
+	err := r.Run()
 	return err
 }
 
