@@ -1,11 +1,21 @@
 package Han
 
 import (
+	mysql "dapp/utils"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
 
+func index_Handler(c *gin.Context) {
+	// c.HTML(200, "index.html", nil) //首页
+	taskdata := mysql.Showdata()
+	fmt.Println("get____taskdata=======>>>>>>>>>>>>>>", taskdata)
+	c.HTML(http.StatusOK, "index.html", gin.H{
+		"data": taskdata,
+	}) // -------------------------第三步---------------------
 
+}
 
 func sign_in_Handler(c *gin.Context) {
 	c.HTML(200, "sign-in.html", nil) //登录
@@ -57,7 +67,7 @@ func Start() error {
 	// GET：请求方式；/hello：请求的路径
 	// 当客户端以GET方法请求/hello路径时，会执行后面的匿名函数
 
-	r.GET("/", Index_Handler)
+	r.GET("/", index_Handler)
 	r.GET("/sign_in", sign_in_Handler)
 	r.GET("/sign_up", sign_up_Handler)
 	r.GET("/post_job", post_job_Handler)
@@ -73,7 +83,7 @@ func Start() error {
 	//设置路由组
 	dapp := r.Group("dapp")
 	{    
-		dapp.POST("/",)
+		dapp.POST("/")
 		dapp.POST("/creatTask", Creat)            //创建任务接口
 		dapp.POST("/querytasklist", Query)        //调用合约直接查任务mapping方法
 		dapp.POST("/queryuselist", Queryuser)     //调用合约直接查用户mapping方法

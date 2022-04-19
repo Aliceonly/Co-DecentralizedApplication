@@ -1,6 +1,8 @@
 package Han
 
 import (
+	mysql "dapp/utils"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -57,7 +59,7 @@ func Start() error {
 	// GET：请求方式；/hello：请求的路径
 	// 当客户端以GET方法请求/hello路径时，会执行后面的匿名函数
 
-	r.GET("/", Index_Handler)
+	r.GET("/", index_Handler)
 	r.GET("/sign_in", sign_in_Handler)
 	r.GET("/sign_up", sign_up_Handler)
 	r.GET("/post_job", post_job_Handler)
