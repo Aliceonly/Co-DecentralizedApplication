@@ -1,13 +1,9 @@
 package Han
 
 import (
-	"net/http"
 	"github.com/gin-gonic/gin"
+	"net/http"
 )
-
-func index_Handler(c *gin.Context) {
-	c.HTML(200, "index.html", nil) //首页
-}
 
 func sign_in_Handler(c *gin.Context) {
 	c.HTML(200, "sign-in.html", nil) //登录
@@ -49,7 +45,7 @@ func redact_candidate_Handler(c *gin.Context) {
 	c.HTML(200, "redact-canditate.html", nil) //编辑资料
 }
 
-func Start()error  {
+func Start() error {
 	// 创建一个默认的路由引擎
 	r := gin.Default()
 	// 配置模板
@@ -59,7 +55,7 @@ func Start()error  {
 	// GET：请求方式；/hello：请求的路径
 	// 当客户端以GET方法请求/hello路径时，会执行后面的匿名函数
 
-	r.GET("/", index_Handler)
+	r.GET("/", Showdata)
 	r.GET("/sign_in", sign_in_Handler)
 	r.GET("/sign_up", sign_up_Handler)
 	r.GET("/post_job", post_job_Handler)
@@ -70,21 +66,22 @@ func Start()error  {
 	r.GET("/detail_qukuilySend", detail_qukuilySend_Handler)
 	r.GET("/detail_shared", detail_shared_Handler)
 	r.GET("/redact_candidate", redact_candidate_Handler)
+	r.POST("/QueryByTime", QueryByTime)
 	// 启动HTTP服务，默认在0.0.0.0:8080启动服务
 
 	//设置路由组
 	dapp := r.Group("dapp")
 	{
-       dapp.POST("/creatTask",Creat)//创建任务接口
-	   dapp.POST("/querytasklist",Query)//调用合约直接查任务mapping方法
-	   dapp.POST("/queryuselist",Queryuser)//调用合约直接查用户mapping方法
-	   dapp.POST("/canceltask",Cancel)//发布者取消任务接口
-	   dapp.POST("/queryselftask",Selftask)//发布者查询个人发布的任务的数据
-	   dapp.POST("/confirmtask",Confirmtask)//接受任务接口
-	   dapp.POST("/quertselfaccept",Selfaccept)//发布者查询个人接收的任务的数据
-	  }
+		dapp.POST("/creatTask", Creat)            //创建任务接口
+		dapp.POST("/querytasklist", Query)        //调用合约直接查任务mapping方法
+		dapp.POST("/queryuselist", Queryuser)     //调用合约直接查用户mapping方法
+		dapp.POST("/canceltask", Cancel)          //发布者取消任务接口
+		dapp.POST("/queryselftask", Selftask)     //发布者查询个人发布的任务的数据
+		dapp.POST("/confirmtask", Confirmtask)    //接受任务接口
+		dapp.POST("/quertselfaccept", Selfaccept) //发布者查询个人接收的任务的数据
+	}
 
-	err :=r.Run()
+	err := r.Run()
 	return err
 }
 

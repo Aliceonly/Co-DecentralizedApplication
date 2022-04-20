@@ -4,8 +4,10 @@ import (
 	"context"
 	"crypto/ecdsa"
 	contract "dapp/Smartgo"
+	"fmt"
 	"io/ioutil"
 	"math/big"
+
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/accounts/keystore"
 	"github.com/ethereum/go-ethereum/common"
@@ -15,31 +17,36 @@ import (
 	// "fmt"
 )
 
-var(
+var (
 	//本地geth地址
-	adress ="http://localhost:8545"
+	adress = "http://localhost:8545"
 	//本地账户地址
-	privatekeyfile="D://y//geth//node1//nodedata//keystore//UTC--2021-09-12T17-06-06.881126000Z--00dc6e8b60fa02a5d83e525bbef3240e8ea54dc5"
+	privatekeyfile = "E:/dapp_chain/data/keystore/UTC--2022-04-19T02-24-03.805649100Z--1cc57987cbb87ca81e99d80f0e248709f0d03b6b"
 	//本地账户密码
-	password="1111"
+	password = "1"
 	//合约地址
-	contractadress="0x8aFb8dD498Fa5bE003fE380E1D2BeA764c09b9A0"
+	contractadress = "0xae0d12CD45435538FF50823085664b2874d5FfF3"
 )
 
 var client *ethclient.Client
+
 //连接geth
 func init() {
 	rpcDel, err := rpc.Dial(adress)
 	if err != nil {
+		fmt.Println("连接geth====>", err)
 		panic(err)
+	} else {
+		fmt.Println("geth连接成功*****============================***********")
 	}
 	client = ethclient.NewClient(rpcDel)
 	//fmt.Println(client)
 }
+
 /*
 实例化合约
- */
-func Getsmartcontract() *contract.TaskDeployerContract{
+*/
+func Getsmartcontract() *contract.TaskDeployerContract {
 	ins, err := contract.NewTaskDeployerContract(common.HexToAddress(contractadress), client)
 	if err != nil {
 		panic(err)
@@ -48,12 +55,12 @@ func Getsmartcontract() *contract.TaskDeployerContract{
 }
 
 func Getaccout() (*ecdsa.PrivateKey, common.Address) {
-	 file := privatekeyfile
+	file := privatekeyfile
 	account, err := ioutil.ReadFile(file)
 	if err != nil {
 		panic(err)
 	}
-	pwd :=password
+	pwd := password
 	key, err := keystore.DecryptKey(account, pwd)
 	if err != nil {
 		panic(err)
@@ -61,6 +68,7 @@ func Getaccout() (*ecdsa.PrivateKey, common.Address) {
 	//fmt.Println(key.PrivateKey, key.Address)
 	return key.PrivateKey, key.Address
 }
+
 //获取gasprice
 func GetgasPrice() (*big.Int, error) {
 	gasPrice, err := client.SuggestGasPrice(context.Background())
@@ -71,6 +79,7 @@ func GetgasPrice() (*big.Int, error) {
 	}
 
 }
+
 //获取nonce
 func Getnonce(address common.Address) (uint64, error) {
 	nonce, err := client.PendingNonceAt(context.Background(), address)
@@ -80,15 +89,17 @@ func Getnonce(address common.Address) (uint64, error) {
 		return nonce, nil
 	}
 }
+
 //获取区块数
-func GetBlockNumber() (*types.Header,error) {
-	header,err :=client.HeaderByNumber(context.Background(),nil)
-	if err!=nil {
+func GetBlockNumber() (*types.Header, error) {
+	header, err := client.HeaderByNumber(context.Background(), nil)
+	if err != nil {
 		panic(err)
 	}
 	//fmt.Println(header)
 	return header, err
 }
+
 //设置TransactOpts
 func setopts(privateKey *ecdsa.PrivateKey, address common.Address) *bind.TransactOpts {
 	auth, err := bind.NewKeyedTransactorWithChainID(privateKey, big.NewInt(10001))
@@ -109,15 +120,16 @@ func setopts(privateKey *ecdsa.PrivateKey, address common.Address) *bind.Transac
 	auth.GasPrice = gasPrice
 	return auth
 }
-func GetTxopts() *bind.TransactOpts{
+func GetTxopts() *bind.TransactOpts {
 	privateKey, publicKey := Getaccout()
 	opts := setopts(privateKey, publicKey)
 	return opts
 }
+
 /*
 获取合约余额
- */
-func GetcontractBanlance(ins *contract.TaskDeployerContract, address common.Address, header *types.Header) (*big.Int)  {
+*/
+func GetcontractBanlance(ins *contract.TaskDeployerContract, address common.Address, header *types.Header) *big.Int {
 	opts := bind.CallOpts{
 		Pending:     true,
 		From:        address,
@@ -125,11 +137,12 @@ func GetcontractBanlance(ins *contract.TaskDeployerContract, address common.Addr
 		Context:     context.Background(),
 	}
 	balance, err := ins.GetBalanceOfContract(&opts)
-	if err!=nil {
+	if err != nil {
 		panic(err)
 	}
 	return balance
 }
+
 /*
 获取任务列表函数
 */
@@ -149,12 +162,13 @@ func GetTasklist(ins *contract.TaskDeployerContract, timestap *big.Int, address 
 		BlockNumber: header.Number,
 		Context:     context.Background(),
 	}
-	Tasklist,err:=ins.Tasklist(&opts,timestap)
-	if err!=nil {
+	Tasklist, err := ins.Tasklist(&opts, timestap)
+	if err != nil {
 		panic(err)
 	}
 	return Tasklist
 }
+
 /*
 获取用户信息列表
 */
@@ -170,13 +184,14 @@ func Getuser(ins *contract.TaskDeployerContract, timestap *big.Int, address comm
 		BlockNumber: header.Number,
 		Context:     context.Background(),
 	}
-	UserList,err:=ins.Userlist(&opts,timestap)
-	if err!=nil {
+	UserList, err := ins.Userlist(&opts, timestap)
+	if err != nil {
 		panic(err)
 	}
 	return UserList
 
 }
+
 /*
 创建任务函数
 */
@@ -187,11 +202,11 @@ func CreatNewEvent(
 	Taskcatagory string,
 	launchTime string,
 	amount *big.Int,
-	address common.Address) *types.Transaction{
-	ops.Value= amount
-	ops.From=address
-	timestap,err:=ins.CreateNewEvent(ops,launchTime,Taskcatagory,Taskname,amount)
-	if err!=nil {
+) *types.Transaction {
+	ops.Value = amount
+	timestap, err := ins.CreateNewEvent(ops, launchTime, Taskcatagory, Taskname, amount)
+	if err != nil {
+		fmt.Println("CreatNewEvent error ===>", err)
 		panic(err)
 	}
 	// fmt.Println(timestap.AccessList())
@@ -199,24 +214,26 @@ func CreatNewEvent(
 	// fmt.Println(timestap.Type())
 	return timestap
 }
+
 /*
 获取任务时间戳
 */
 func Querytime(ins *contract.TaskDeployerContract,
-	address common.Address, 
-	header *types.Header) *big.Int{
+	address common.Address,
+	header *types.Header) *big.Int {
 	opts := bind.CallOpts{
 		Pending:     true,
 		From:        address,
 		BlockNumber: header.Number,
 		Context:     context.Background(),
 	}
-	timestamp,err:=ins.Query(&opts)
-	if err!=nil {
+	timestamp, err := ins.Query(&opts)
+	if err != nil {
 		panic(err)
 	}
 	return timestamp
 }
+
 /*
 取消任务函数
 */
@@ -225,27 +242,29 @@ func CancelEvent(
 	ins *contract.TaskDeployerContract,
 	ops *bind.TransactOpts,
 	timestamp *big.Int,
-	address common.Address){
-	ops.From=address
-	_,err:=ins.CancelEvent(ops,timestamp)
-	if err!=nil {
+	address common.Address) {
+	ops.From = address
+	_, err := ins.CancelEvent(ops, timestamp)
+	if err != nil {
 		panic(err)
 	}
 }
+
 /*
 接受任务函数
 */
 func Confirmtask(
 	ins *contract.TaskDeployerContract,
 	timestamp *big.Int,
-    ops *bind.TransactOpts,
-	address common.Address){
-	ops.From=address
-	_,err:=ins.Confirmtask(ops,timestamp)
-	if err!=nil {
+	ops *bind.TransactOpts,
+	address common.Address) {
+	ops.From = address
+	_, err := ins.Confirmtask(ops, timestamp)
+	if err != nil {
 		panic(err)
 	}
 }
+
 /*
 发布任务者确认接受任务者完成任务
 */
@@ -255,53 +274,55 @@ func ClaimTrust(
 	timestamp *big.Int,
 	sigs []byte,
 	PHash [32]byte,
-	taskname string){
-	_,err:=ins.ClaimTrust(ops,timestamp,sigs,PHash,taskname)
-	if err!=nil {
+	taskname string) {
+	_, err := ins.ClaimTrust(ops, timestamp, sigs, PHash, taskname)
+	if err != nil {
 		panic(err)
 	}
 }
+
 /*
 创建用户信息
 */
 func Creatuser(
 	ins *contract.TaskDeployerContract,
-    opts *bind.TransactOpts,
+	opts *bind.TransactOpts,
 	name string,
 	phonenumber string,
 	studentid *big.Int,
-	password string) bool{
-   _,err:=ins.Createuser(opts,name,phonenumber,studentid,password)
-	if err!=nil {
-		panic(err)
-	}
-	return true
-}
-/*
-用户修改信息
-*/
-   //修改密码
-func Userchangepsword(
-	ins *contract.TaskDeployerContract,
-	opts *bind.TransactOpts,
-	password string,
-	studentid *big.Int) bool {
-	_,err:=ins.Changepassword(opts,password,studentid)
-	if err!=nil {
-		panic(err)
-	}
-	return true
-}
-   //修改名称
-func Userchangename(ins *contract.TaskDeployerContract,
-	opts *bind.TransactOpts,
-	name string,
-	studentid *big.Int,
 	password string) bool {
-	_,err:=ins.Changename(opts,name,studentid,password)
-	if err!=nil {
+	_, err := ins.Createuser(opts, name, phonenumber, studentid, password)
+	if err != nil {
 		panic(err)
 	}
 	return true
 }
 
+/*
+用户修改信息
+*/
+//修改密码
+func Userchangepsword(
+	ins *contract.TaskDeployerContract,
+	opts *bind.TransactOpts,
+	password string,
+	studentid *big.Int) bool {
+	_, err := ins.Changepassword(opts, password, studentid)
+	if err != nil {
+		panic(err)
+	}
+	return true
+}
+
+//修改名称
+func Userchangename(ins *contract.TaskDeployerContract,
+	opts *bind.TransactOpts,
+	name string,
+	studentid *big.Int,
+	password string) bool {
+	_, err := ins.Changename(opts, name, studentid, password)
+	if err != nil {
+		panic(err)
+	}
+	return true
+}

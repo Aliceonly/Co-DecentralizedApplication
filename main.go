@@ -1,22 +1,19 @@
 package main
 
 import (
-
 	// c"dapp/Connect"
 	// "fmt"
-	// s "dapp/Han"
+	s "dapp/Han"
 	"dapp/controller"
-	"fmt"
+	// "fmt"
 	// "math/big"
 	"net/http"
-
 	// "github.com/go-sql-driver/mysql"
-	mysql "dapp/utils"
+	// mysql "dapp/utils"
 )
 
-
 func main() {
-    // s.Start()
+	s.Start()
 	// mysql.Select()
 	// s.Creat()
 	// big:=big.NewInt(2)
@@ -25,11 +22,11 @@ func main() {
 	// 	panic(err)
 	// }
 	// fmt.Println(mysql.Select("0xxx"))
-	fmt.Print(mysql.Selectaccept("0xxx000"))
+	// fmt.Print(mysql.Selectaccept("0xxx000"))
 
 }
 
-func test(){
+func test() {
 	//处理静态资源
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("views/static"))))
 	//解析html
@@ -47,14 +44,12 @@ func test(){
 	//超级管理员注册接口
 	http.HandleFunc("/Adregist", controller.RegistAsAdministrator)
 	/*
-	http.HandleFunc("/checkUserName", controller.CheckUserName)
-	http.HandleFunc("/getUserInfo", controller.GetUserInfo)
-	http.HandleFunc("/deleteUser", controller.DeleteUser)
-	http.HandleFunc("/toUpdateUser", controller.ToUpdateUser)
-	http.HandleFunc("/updateOraddUser", controller.UpdateOrAddUser)
+		http.HandleFunc("/checkUserName", controller.CheckUserName)
+		http.HandleFunc("/getUserInfo", controller.GetUserInfo)
+		http.HandleFunc("/deleteUser", controller.DeleteUser)
+		http.HandleFunc("/toUpdateUser", controller.ToUpdateUser)
+		http.HandleFunc("/updateOraddUser", controller.UpdateOrAddUser)
 	*/
-
-
 
 	http.ListenAndServe(":8080", nil)
 }

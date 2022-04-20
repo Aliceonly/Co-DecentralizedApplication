@@ -162,46 +162,14 @@
     
 <div class="find-section pb-100">
     <div class="container">
-    <form class="find-form">
+    <form action="/QueryByTime" method="POST" class="find-form">
     <div class="row">
     <div class="col-lg-3">
     <div class="form-group">
-    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="关键字">
+    <input type="text" class="form-control" id="exampleInputEmail1" name="timestamp" placeholder="时间戳">
     <i class="bx bx-search-alt"></i>
     </div>
     </div>
-    <!-- <div class="col-lg-3">
-    <select class="category" style="display:block">
-    <option data-display="类型">订单类型</option>
-    <option value="1">校园跑腿类型</option>
-    <option value="2">校园兼职类型</option>
-    <option value="4">共享服务类型</option>
-     </select>
-    </div> -->
-    
-    <!-- <div style="width:50%" class="col-lg-3"> 
-        <select  class="category"> -->
-        <!-- <option data-display="大概位置" >校园区域</option>
-        <option value="1">A区</option>
-        <option value="2">B区</option>
-        <option value="4">C区</option>
-        <option value="5">D区</option>
-        <option value="6">E区</option>
-        </select>
-     </div> -->
-    <!-- <div style="width:50%" class="col-lg-3">
-        <select  class="category">
-        <option data-display="附近建筑" >主要建筑</option>
-        <option value="1">宿舍楼</option>
-        <option value="2">教学楼</option>
-        <option value="4">行政楼</option>
-        <option value="6">运动场</option>
-        <option value="5">食堂</option>
-        <option value="6">超市</option>
-        <option value="6">水果店</option>
-        </select>
-    </div> -->
-    
         <div class="col-lg-3">
     <button type="submit" class="find-btn">
     搜索
@@ -262,40 +230,38 @@
     <p>快来找你可能感兴趣的兼职吧</p>
     </div>
     <div class="row">
+    {{range $value := .data}}
     <div class="col-lg-12">
     <div class="job-card-two">
     <div class="row align-items-center">
     <div class="col-md-1">
     <div class="company-logo">
-    <a href="job-details.html">
     <img src="../static/picture/6.png" alt="logo">
     </a>
     </div>
     </div>
     <div class="col-md-8">
-    <div class="job-info">
-    <h3>
-    <a href="job-details.html">送奶茶</a>
-    </h3>
+    <div class="job-info">       
+    <h3>{{$value.Taskname}}</h3>
     <ul>
     <li>
     <i class='bx bx-briefcase'></i>
-    从古茗送到男寝D3601
+    {{$value.Timestamp}}
     </li>
     <li>
     <i class='bx bx-briefcase'></i>
-    2 - 4 元
+    {{$value.Amount}}
     </li>
     <li>
     <i class='bx bx-location-plus'></i>
-    古茗
+    {{$value.State}}
     </li>
     <li>
     <i class='bx bx-stopwatch'></i>
-    2 分钟前
+    {{$value.LaunchTime}}
      </li>
     </ul>
-    <span>校园跑腿</span>
+    <span>{{$value.Category}}</span>
     </div>
     </div>
     <div class="col-md-3">
@@ -308,187 +274,7 @@
     </div>
     </div>
     </div>
-    <div class="col-lg-12">
-    <div class="job-card-two">
-    <div class="row align-items-center">
-    <div class="col-md-1">
-    <div class="company-logo">
-    <a href="job-details.html">
-    <img src="../static/picture/6.png" alt="logo">
-    </a>
-    </div>
-    </div>
-    <div class="col-md-8">
-    <div class="job-info">
-    <h3>
-    <a href="job-details.html">带快递</a>
-    </h3>
-    <ul>
-    <li>
-    <i class='bx bx-briefcase'></i>
-    从寝室送到女寝E2607
-    </li>
-    <li>
-    <i class='bx bx-briefcase'></i>
-    1 - 2 元
-    </li>
-    <li>
-    <i class='bx bx-location-plus'></i>
-    菜鸟驿站
-    </li>
-    <li>
-    <i class='bx bx-stopwatch'></i>
-    10 分钟前
-    </li>
-    </ul>
-    <span>校园跑腿</span>
-    </div>
-    </div>
-    <div class="col-md-3">
-    <div class="theme-btn text-end">
-    <a href="#" class="default-btn">
-    接受订单
-    </a>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    <div class="col-lg-12">
-    <div class="job-card-two">
-    <div class="row align-items-center">
-    <div class="col-md-1">
-    <div class="company-logo">
-    <a href="job-details.html">
-    <img src="../static/picture/2.png" alt="logo">
-    </a>
-    </div>
-    </div>
-    <div class="col-md-8">
-    <div class="job-info">
-     <h3>
-    <a href="job-details.html">水果店兼职</a>
-    </h3>
-    <ul>
-    <li>
-    <i class='bx bx-briefcase'></i>
-    晚上5点工作至晚九点半
-    </li>
-    <li>
-    <i class='bx bx-briefcase'></i>
-    30元 / 1小时
-    </li>
-    <li>
-    <i class='bx bx-location-plus'></i>
-    果果鲜水果店
-    </li>
-    <li>
-    <i class='bx bx-stopwatch'></i>
-    1 天前
-    </li>
-    </ul>
-    <span>校园兼职</span>
-    </div>
-    </div>
-    <div class="col-md-3">
-    <div class="theme-btn text-end">
-    <a href="#" class="default-btn">
-    接受订单
-    </a>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    <div class="col-lg-12">
-    <div class="job-card-two">
-    <div class="row align-items-center">
-    <div class="col-md-1">
-    <div class="company-logo">
-    <a href="job-details.html">
-    <img src="../static/picture/1.png" alt="logo">
-    </a>
-    </div>
-    </div>
-    <div class="col-md-8">
-    <div class="job-info">
-    <h3>
-    <a href="job-details.html">借伞</a>
-    </h3>
-    <ul>
-    <li>
-    <i class='bx bx-briefcase'></i>
-    使用时间是今日下午3点到4点半
-    </li>
-    <li>
-    <i class='bx bx-briefcase'></i>
-    1元
-    </li>
-    <li>
-    <i class='bx bx-location-plus'></i>
-    区块链学院图书馆
-    </li>
-    <li>
-    <i class='bx bx-stopwatch'></i>
-    20 秒前
-    </li>
-    </ul>
-    <span>共享服务</span>
-    </div>
-     </div>
-    <div class="col-md-3">
-    <div class="theme-btn text-end">
-    <a href="#" class="default-btn">
-    接受订单
-    </a>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    <div class="col-lg-12">
-    <div class="job-card-two">
-    <div class="row align-items-center">
-    <div class="col-md-1">
-    <div class="company-logo">
-    <a href="job-details.html">
-    <img src="../static/picture/2.png" alt="logo">
-    </a>
-    </div>
-    </div>
-    <div class="col-md-8">
-    <div class="job-info">
-    <h3>
-    <a href="job-details.html">食堂打扫</a>
-    </h3>
-    <ul>
-    <li>
-    <i class='bx bx-briefcase'></i>
-    工作时间是中午11.30 ~ 1.30
-    </li>
-    <li>
-    <i class='bx bx-briefcase'></i>
-    25元 / 1小时
-    </li>
-    <li>
-    <i class='bx bx-location-plus'></i>
-    一食堂一楼
-    </li>
-    <li>
-    <i class='bx bx-stopwatch'></i>
-    3 天前
-    </li>
-    </ul>
-    <span>校园兼职</span>
-    </div>
-    </div>
-    <div class="col-md-3">
-    <div class="theme-btn text-end">
-    <a href="#" class="default-btn">
-     接受订单
-    </a>
-    </div>
-    </div>
+    {{end}}
     </div>
     </div>
     </div>
