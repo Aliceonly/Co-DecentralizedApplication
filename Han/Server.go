@@ -44,6 +44,27 @@ func detail_qukuilySend_Handler(c *gin.Context) {
 func redact_candidate_Handler(c *gin.Context) {
 	c.HTML(200, "redact-canditate.html", nil) //编辑资料
 }
+func detail_order_Handler(c *gin.Context) {
+	c.HTML(200, "detail-order.html", nil) //订单详情
+}
+func accept_order_Handler(c *gin.Context) {
+	c.HTML(200, "accept-order.html", nil) //接单详情
+}
+func all_order_Handler(c *gin.Context) {
+	c.HTML(200, "all-order.html", nil) //个人订单
+}
+func under_order_Handler(c *gin.Context) {
+	c.HTML(200, "under-order.html", nil) //未完成订单
+}
+func complete_order_Handler(c *gin.Context) {
+	c.HTML(200, "complete-order.html", nil) //已完成
+}
+func undone_order_Handler(c *gin.Context) {
+	c.HTML(200, "undone-order.html", nil) //已失效
+}
+func publish_orser_Handler(c *gin.Context) {
+	c.HTML(200, "publish-order.html", nil) //成功发布
+}
 
 func Start() error {
 	// 创建一个默认的路由引擎
@@ -67,6 +88,13 @@ func Start() error {
 	r.GET("/detail_shared", detail_shared_Handler)
 	r.GET("/redact_candidate", redact_candidate_Handler)
 	r.POST("/QueryByTime", QueryByTime)
+	r.GET("/detail_order", detail_order_Handler)
+	r.GET("/accept_order", accept_order_Handler)
+	r.GET("/all_order", all_order_Handler)
+	r.GET("/under_order", under_order_Handler)
+	r.GET("/complete_order", complete_order_Handler)
+	r.GET("/undone_order", undone_order_Handler)
+	r.GET("/publish_order", publish_orser_Handler)
 	// 启动HTTP服务，默认在0.0.0.0:8080启动服务
 
 	//设置路由组
