@@ -165,7 +165,18 @@ func Query_bytime(timestamp int) Tasklist {
 		fmt.Println("根据时间戳查询出错了")
 		fmt.Println("查询错误是====>>>>>>>>>>>>>>", err)
 	}
-	fmt.Println("user=====================>>>>>>>>>>>>>>>>>>>>>>>>>>>>", task)
+	fmt.Println("task=====================>>>>>>>>>>>>>>>>>>>>>>>>>>>>", task)
 	return task
 
+}
+
+func DetailData(timestamp int) Tasklist {
+	var task Tasklist
+	err := Db.QueryRow("SELECT * FROM tasklist WHERE timestamp = ?", timestamp).Scan(&task.Taskid, &task.Taskname, &task.Add, &task.Beneficiary, &task.Category, &task.Amount, &task.Timestamp, &task.State, &task.LaunchTime)
+	if err != nil {
+		fmt.Println("信息详情展示出错了")
+		fmt.Println("展示错误是====>>>>>>>>>>>>>>", err)
+	}
+	fmt.Println("task=====================>>>>>>>>>>>>>>>>>>>>>>>>>>>>", task)
+	return task
 }

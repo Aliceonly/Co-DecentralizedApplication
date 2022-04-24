@@ -92,9 +92,6 @@
             <li class="nav-item">
             <a href="post_job" class="nav-link">发布订单</a>
             </li>
-            <li class="nav-item">
-                <a href="all_order" class="nav-link">个人订单</a>
-            </li>
             </ul>
             </li>
             <li class="nav-item">
@@ -174,11 +171,9 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="candidate-profile">
-                        <p>地址：D区115寝室</p>
+                        <!-- <p>User:{{.Add}}</p> -->
+                        <p>User:<span style="white-space:pre-wrap" id="Add"></span></p>
                         <div class="candidate-social">
-                            <!-- <a href="#" target="_blank"><i class="bx bxl-facebook"></i></a> -->
-                            <!-- <a href="#" target="_blank"><i class="bx bxl-twitter"></i></a> -->
-                            <!-- <a href="#" target="_blank"><i class="bx bxl-linkedin"></i></a> -->
                         </div>
                     </div>
                 </div>
@@ -186,62 +181,28 @@
                     <div class="candidate-info-text candidate-education">
                         <h3>订单详情</h3>
                         <div class="education-info">
-                            <h4>标题：</h4>
-                            <p>带快递</p>
-                            <!-- <span>2000-2010</span> -->
+                            <h4>标题：<span id="Taskname"></span></h4>
                         </div>
                         <div class="education-info">
-                            <h4>时间：</h4>
-                            <p>2022-4-13 14:41</p>
-                            <!-- <span>2000-2010</span> -->
+                            <h4>时间：<span id="LaunchTime"></span></h4>
                         </div>
                         <div class="education-info">
-                            <h4>薪资：</h4>
-                            <p>6元</p>
-                            <!-- <span>2000-2010</span> -->
+                            <h4>薪资：<span id="Amount"></span></h4>
                         </div>
                         <div class="education-info">
-                            <h4>地区：</h4>
-                            <p>菜鸟驿站</p>
-                            <!-- <span>2010-2012</span> -->
+                            <h4>类型：<span id="Category"></span></h4>
                         </div>
                         <div class="education-info">
-                            <h4>详情：</h4>
-                            <p>取件码49-2-3009</p>
-                            <!-- <span>2010-2012</span> -->
+                            <h4>订单状态：<span id="State"></span></h4>
+                            <p></p>
                         </div>
                         <div class="col-md-3">
                             <div class="theme-btn text-end">
-                            <a href="accept_order" class="default-btn">
+                            <a href="#" class="default-btn">
                              接受订单
                             </a>
                             </div>
                             </div>
-                    <!-- <div class="candidate-info-text candidate-experience"> -->
-                    <!-- <h3>Experience</h3> -->
-                    <!-- <ul> -->
-                    <!-- <li>Proficient in HTML, CSS, Server-Scripting, C/C++, and Oracle</li> -->
-                    <!-- <li>Experience with SEO</li> -->
-                    <!-- <li>Experience Teaching Web Development</li> -->
-                    <!-- <li>Knowledgeable in Online Advertising</li> -->
-                    <!-- <li>Expert in LAMP Web Service Stacks</li> -->
-                    <!-- </ul> -->
-                    <!-- </div> -->
-                    <!-- <div class="candidate-info-text candidate-skill"> -->
-                    <!-- <h3>Skills</h3> -->
-                    <!-- <ul> -->
-                    <!-- <li>HTMl</li> -->
-                    <!-- <li>CSS</li> -->
-                    <!-- <li>JS</li> -->
-                    <!-- <li>PHP</li> -->
-                    <!-- <li>Oracle</li> -->
-                    <!-- <li>C/C++</li> -->
-                    <!-- <li>SQL</li> -->
-                    <!-- <li>Ruby</li> -->
-                    <!-- </ul> -->
-                    <!-- </div> -->
-                    <!-- <div class="candidate-info-text text-center"> -->
-                    <!-- </div> -->
                 </div>
             </div>
         </div>
@@ -277,6 +238,8 @@
     <script src="../static/js/meanmenu.js"></script>
 
     <script src="../static/js/custom.js"></script>
+
+    <script src="../static/web3.js/detail-order.js"></script>
 </body>
 
 </html>

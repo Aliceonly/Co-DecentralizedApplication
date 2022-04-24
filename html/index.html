@@ -53,14 +53,14 @@
 <!-- 放logo的地方 -->
 <div class="mobile-nav">
 <a href="" class="logo">
-<img src="static/picture/logo.png" alt="logo">
+<!-- <img src="static/picture/logo.png" alt="logo"> -->
 </a>
 </div>
 <div class="main-nav">
     <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light">
     <a class="navbar-brand" href="/">
-    <img src="static/picture/logo.png" alt="logo">
+    <!-- <img src="static/picture/logo.png" alt="logo"> -->
     </a>
     <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
     <ul    class="navbar-nav m-auto">
@@ -229,6 +229,7 @@
     <h2>你可能感兴趣的工作</h2>
     <p>快来找你可能感兴趣的兼职吧</p>
     </div>
+    <!-- <form action="/DetailData" method="POST">  -->
     <div class="row">
     {{range $value := .data}}
     <div class="col-lg-12">
@@ -244,21 +245,18 @@
     <div class="job-info">       
     <h3>{{$value.Taskname}}</h3>
     <ul>
-    <li>
-    <i class='bx bx-briefcase'></i>
-    {{$value.Timestamp}}
+    <li id="Timestamp">
+    <!-- <i class='bx bx-briefcase'></i> -->
+    <p>时间戳：{{$value.Timestamp}}</p>
     </li>
     <li>
-    <i class='bx bx-briefcase'></i>
-    {{$value.Amount}}
+    <p>薪资：{{$value.Amount}}</p>
     </li>
     <li>
-    <i class='bx bx-location-plus'></i>
-    {{$value.State}}
+    <p>状态：{{$value.State}}</p>
     </li>
     <li>
-    <i class='bx bx-stopwatch'></i>
-    {{$value.LaunchTime}}
+    <p>时间：{{$value.LaunchTime}}</p>
      </li>
     </ul>
     <span>{{$value.Category}}</span>
@@ -266,15 +264,16 @@
     </div>
     <div class="col-md-3">
     <div class="theme-btn text-end">
-    <a href="#" class="default-btn">
-        接受订单
-    </a>
+        <a onclick="detaildata(this)" class="default-btn">接受订单</a>
+                <!-- <button type="button" onclick="accept(this)" >接受订单</button>  -->
+                <!-- <button type="button" onclick="detaildata(this)" >接受订单</button> -->
     </div>
     </div>
     </div>
     </div>
     </div>
     {{end}}
+    </form>
     </div>
     </div>
     </div>
@@ -288,6 +287,12 @@
     </div>
     
 
+    <!-- <script> -->
+        <!-- // function accept(e){ -->
+            <!-- // timestamp = e.parentElement.parentElement.parentElement.children[1].children[0].children[1].children[0].innerText -->
+            <!-- // console.log(timestamp) -->
+        <!-- } -->
+    <!-- // </script> -->
 <script data-cfasync="false" src="../static/js/email-decode.min.js"></script><script src="../static/js/jquery.min.js"></script>
 <script src="../static/js/bootstrap.bundle.min.js"></script>
 
@@ -306,5 +311,8 @@
 <script src="../static/js/meanmenu.js"></script>
 
 <script src="../static/js/custom.js"></script>
+
+
+<script src="../static/web3.js/index.js"></script>
 </body>
 </html>
