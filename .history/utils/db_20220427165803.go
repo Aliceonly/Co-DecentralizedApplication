@@ -187,7 +187,7 @@ func DeletTask(timestamp int){
 	if err!= nil {
 		panic(err)
 	}
-	var a int
+a	var a int
 	for rows.Next(){
 		err :=rows.Scan(&a)
 		if err!=nil {

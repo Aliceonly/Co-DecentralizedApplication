@@ -7,7 +7,6 @@ import (
 	"fmt"
 
 	_ "github.com/go-sql-driver/mysql"
-	// "github.com/golang/protobuf/ptypes/timestamp"
 )
 
 var (
@@ -181,25 +180,4 @@ func DetailData(timestamp int) Tasklist {
 	fmt.Println("task=====================>>>>>>>>>>>>>>>>>>>>>>>>>>>>", task)
 	return task
 }
-func DeletTask(timestamp int){
-	var sqlStr1 = "SELECT id FROM tasklist WHERE tasklist.`Timestamp`=?"
-	rows, err := Db.Query(sqlStr1,timestamp)
-	if err!= nil {
-		panic(err)
-	}
-	var a int
-	for rows.Next(){
-		err :=rows.Scan(&a)
-		if err!=nil {
-			panic(err)
-		}
-	}
-	var sqlStr = "DELETE FROM tasklist WHERE tasklist.`Timestamp`=?"
-	Db.Exec(sqlStr,timestamp)
-	Updateid(a)
-	fmt.Print("删除任务成功")
-}
-func Updateid(a int){
-	var sql= "update tasklist set id=id-1 where id >?"
-	Db.Exec(sql,a)
-}
+func D

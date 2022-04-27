@@ -34,11 +34,7 @@ func Creat(c *gin.Context) {
 	a:=contract.CreatNewEvent(ins, Txopts, taskname+taskcontent+taskplace1, taskplace2, tasktime, n)
 	a.ChainId()
 	a.Cost()
-	a.Data()
-	a.Gas()
-	a.GasPrice()
-	a.Hash()
-	a.Nonce()
+	a.
 	times := contract.Querytime(ins, adress, head)
 	fmt.Println("时间戳----->", times)
 	tohtml(c, times)

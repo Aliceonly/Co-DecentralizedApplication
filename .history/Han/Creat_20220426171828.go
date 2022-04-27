@@ -38,7 +38,7 @@ func Creat(c *gin.Context) {
 	a.Gas()
 	a.GasPrice()
 	a.Hash()
-	a.Nonce()
+	a.
 	times := contract.Querytime(ins, adress, head)
 	fmt.Println("时间戳----->", times)
 	tohtml(c, times)

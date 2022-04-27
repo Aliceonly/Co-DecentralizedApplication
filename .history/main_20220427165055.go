@@ -14,7 +14,7 @@ import (
 
 func main() {
 	// s.Start()
-	mysql.DeletTask(1650442606)
+	mysql.Select()
 	// s.Creat()
 	// big:=big.NewInt(2)
 	// err:=mysql.Insert("aa","0xxx","a",2,big,"availablev","200202")

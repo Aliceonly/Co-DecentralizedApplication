@@ -32,7 +32,7 @@ func Creat(c *gin.Context) {
 	taskcontent := c.PostForm("taskcontent")
 	fmt.Println(taskname, tasktime, taskmoney, taskplace2, taskcontent, taskplace1)
 	a:=contract.CreatNewEvent(ins, Txopts, taskname+taskcontent+taskplace1, taskplace2, tasktime, n)
-	a.ChainId()
+	ChainId:= a.ChainId()
 	a.Cost()
 	a.Data()
 	a.Gas()

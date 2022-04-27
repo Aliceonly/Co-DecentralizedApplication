@@ -25,7 +25,7 @@ privatekeyfile="D://y//geth//node1//nodedata//keystore//UTC--2021-09-12T17-06-06
 //本地账户密码
 password="1111"
 //合约地址
-contractadress="0x88Ecb2BebF50111D696e7Dd2Cac439B445A0B883"
+contractadress="0x88Ecb2BebF50111D696e7Dd2Cac439B445A0B883
 )
 
 var client *ethclient.Client
