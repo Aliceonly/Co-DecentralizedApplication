@@ -36,8 +36,10 @@ function CreatTask(){
  data:{taskname:taskname,tasktime:tasktime+":"+tasktime2,account:account,taskmoney:taskmoney,taskplace1:taskplace1+taskplace2,taskplace3:taskplace3,taskcontent:taskcontent},
  success:function(data){
      console.log("success data",data);
-     alert(data.data)
      console.log("成功");
+     alert(data.data)
+     window.location.href ="http://localhost:8080/create_succ"
+      
  },
  error: function(data){
      console.log("error====>",error)
