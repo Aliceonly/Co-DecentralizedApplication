@@ -3,23 +3,17 @@ package main
 import (
 	// c"dapp/Connect"
 	// "fmt"
-	s "dapp/Han"
+	// s "dapp/Han"
 	// "dapp/controller"
 	// "fmt"
 	// "math/big"
 	// "net/http"
 	// "github.com/go-sql-driver/mysql"
 	// mysql "dapp/utils"
-	// "io/ioutil"
-	// "os"
-	// "github.com/lithammer/fuzzysearch/fuzzy"
 )
 
 func main() {
-	s.Start()
-	// c.Changeuser("00dc6e8b60fa02a5d83e525bbef3240e8ea54dc5","1111")
-	// a,b:=c.Get()
-	// print(a,b)
+	// s.Start()
 	// a:=c.CreatnewActogeth("123")
 	// print("newaccount",a)
 	// mysql.DeletTask(1650442602)
@@ -32,9 +26,24 @@ func main() {
 	// fmt.Println(mysql.Select("0xxx"))
 	// fmt.Print(mysql.Selectaccept("0xxx000"))
 
-
 }
+func test2(){
+	var FileInfo []os.FileInfo
+	var err error
+	relativePath := "./img"
+	
+	if FileInfo,err = ioutil.ReadDir( relativePath ); err != nil{
+		fmt.Println("读取 img 文件夹出错")
+		return
+	}
 
+	for _,fileInfo := range FileInfo {
+		fmt.Println( fileInfo.Name())
+	}
+————————————————
+版权声明：本文为CSDN博主「weixin_41771260」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/weixin_41771260/article/details/105451081
+}
 
 // func test() {
 // 	//处理静态资源

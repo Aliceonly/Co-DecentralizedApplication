@@ -363,23 +363,19 @@ func Changeuser(ad string,pw string){
 		// fmt.Println(fileInfo.Name())
 	}
 	// ac:="5c595872e02b0613658036bdf5daa6d9f42954be"
-	matches2 := fuzzy.Find(ad, a)
+	matches1 := fuzzy.Find(ad, a)
 	fmt.Println("当前登入的用户为",ad)
-	// print(relativePath+"//"+matches1[0])
-	privatekeyfile=relativePath+"//"+matches2[0]
+	print(relativePath+"//"+matches1[0])
+	privatekeyfile=relativePath+"//"+matches1[0]
 	password=pw
-	matches2=nil
 }
 //用户退出状态 文件处于空状态
 func Userexit(){
 	privatekeyfile=""
 	password=""
 }
-func Get() (string,string){
-	return password,privatekeyfile
-}
 //注销用户
-func cancellation(){
-	
-}
+
+func Get
+func 
 

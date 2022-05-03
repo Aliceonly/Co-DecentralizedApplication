@@ -366,9 +366,9 @@ func Changeuser(ad string,pw string){
 	matches2 := fuzzy.Find(ad, a)
 	fmt.Println("当前登入的用户为",ad)
 	// print(relativePath+"//"+matches1[0])
-	privatekeyfile=relativePath+"//"+matches2[0]
+	privatekeyfile=relativePath+"//"+matches1[0]
 	password=pw
-	matches2=nil
+	matches1=nil
 }
 //用户退出状态 文件处于空状态
 func Userexit(){

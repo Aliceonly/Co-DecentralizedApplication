@@ -368,7 +368,7 @@ func Changeuser(ad string,pw string){
 	// print(relativePath+"//"+matches1[0])
 	privatekeyfile=relativePath+"//"+matches2[0]
 	password=pw
-	matches2=nil
+	matches1=nil
 }
 //用户退出状态 文件处于空状态
 func Userexit(){

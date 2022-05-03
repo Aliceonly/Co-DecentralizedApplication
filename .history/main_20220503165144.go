@@ -2,24 +2,21 @@ package main
 
 import (
 	// c"dapp/Connect"
-	// "fmt"
-	s "dapp/Han"
+	"fmt"
+	// s "dapp/Han"
 	// "dapp/controller"
 	// "fmt"
 	// "math/big"
 	// "net/http"
 	// "github.com/go-sql-driver/mysql"
 	// mysql "dapp/utils"
-	// "io/ioutil"
-	// "os"
-	// "github.com/lithammer/fuzzysearch/fuzzy"
+	"io/ioutil"
+	"os"
+	"github.com/lithammer/fuzzysearch/fuzzy"
 )
 
 func main() {
-	s.Start()
-	// c.Changeuser("00dc6e8b60fa02a5d83e525bbef3240e8ea54dc5","1111")
-	// a,b:=c.Get()
-	// print(a,b)
+	// s.Start()
 	// a:=c.CreatnewActogeth("123")
 	// print("newaccount",a)
 	// mysql.DeletTask(1650442602)
@@ -31,10 +28,29 @@ func main() {
 	// }
 	// fmt.Println(mysql.Select("0xxx"))
 	// fmt.Print(mysql.Selectaccept("0xxx000"))
-
+	test2()
 
 }
+func test2(){
+	var FileInfo []os.FileInfo
+	var err error
+	relativePath := "D:\\y\\geth\\node1\\nodedata\\keystore"
+	
+	if FileInfo,err = ioutil.ReadDir( relativePath ); err != nil{
+		fmt.Println("读取 img 文件夹出错")
+		return
+	}
+  a:=make([]string,0)
+	for _,fileInfo := range FileInfo {
+		a = append(a,fileInfo.Name())
+		// fmt.Println(fileInfo.Name())
+	}
+	var b = []string{"UTC--2021-09-12T17-06-06.881126000Z--00dc6e8b60fa02a5d83e525bbef3240e8ea54dc5", "UTC--2022-05-02T08-26-11.435276500Z--5c595872e02b0613658036bdf5daa6d9f42954be"}
+	ac:="5c595872e02b0613658036bdf5daa6d9f42954be"
+	matches1 := fuzzy.Find(ac, a)
+	print(matches1)
 
+}
 
 // func test() {
 // 	//处理静态资源

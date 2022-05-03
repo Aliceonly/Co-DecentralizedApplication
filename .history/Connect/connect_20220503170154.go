@@ -346,15 +346,13 @@ func CreatnewActogeth(pd string) string {
 	fmt.Print(accounts)
 	return newAccount
 }
-
-//针对不同用户登入获取不同用户的信息来对交易签名
 func Changeuser(ad string,pw string){
 	var FileInfo []os.FileInfo
 	var err error
 	relativePath := "D://y//geth//node1//nodedata//keystore"
 	
 	if FileInfo,err = ioutil.ReadDir( relativePath ); err != nil{
-		fmt.Println("读取 keystore 文件夹出错")
+		fmt.Println("读取 img 文件夹出错")
 		return
 	}
   a:=make([]string,0)
@@ -363,23 +361,9 @@ func Changeuser(ad string,pw string){
 		// fmt.Println(fileInfo.Name())
 	}
 	// ac:="5c595872e02b0613658036bdf5daa6d9f42954be"
-	matches2 := fuzzy.Find(ad, a)
+	matches1 := fuzzy.Find(ad, a)
 	fmt.Println("当前登入的用户为",ad)
-	// print(relativePath+"//"+matches1[0])
-	privatekeyfile=relativePath+"//"+matches2[0]
-	password=pw
-	matches2=nil
-}
-//用户退出状态 文件处于空状态
-func Userexit(){
-	privatekeyfile=""
-	password=""
-}
-func Get() (string,string){
-	return password,privatekeyfile
-}
-//注销用户
-func cancellation(){
-	
+	privatekeyfile=relativePath+"//"+matches1[0]
+	print(relativePath+"//"+matches1[0])
 }
 

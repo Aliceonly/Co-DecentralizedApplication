@@ -10,16 +10,13 @@ import (
 	// "net/http"
 	// "github.com/go-sql-driver/mysql"
 	// mysql "dapp/utils"
-	// "io/ioutil"
-	// "os"
-	// "github.com/lithammer/fuzzysearch/fuzzy"
+	"io/ioutil"
+	"os"
+	"github.com/lithammer/fuzzysearch/fuzzy"
 )
 
 func main() {
 	s.Start()
-	// c.Changeuser("00dc6e8b60fa02a5d83e525bbef3240e8ea54dc5","1111")
-	// a,b:=c.Get()
-	// print(a,b)
 	// a:=c.CreatnewActogeth("123")
 	// print("newaccount",a)
 	// mysql.DeletTask(1650442602)
