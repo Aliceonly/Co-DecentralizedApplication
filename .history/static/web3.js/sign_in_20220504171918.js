@@ -11,7 +11,7 @@ function Login(){
             if (data.data==1){
                 console.log("success login");
             }else{
-                console.log("faile login")
+                console.log("")
             }
         },
         error: function (data) {

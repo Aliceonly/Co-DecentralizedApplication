@@ -24,7 +24,7 @@ func Login(c *gin.Context) {
 		tohtml(c,1)
 	} else {
 	 fmt.Print("登陆失败，密码错误")
-	   tohtml(c,0)
+	 tohtml(c,2)
 	}
 	// c.HTML(http.StatusOK, "result.html", gin.H{
 	// "Passwd":   result.Passwd,

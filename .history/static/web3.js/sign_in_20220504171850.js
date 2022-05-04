@@ -9,9 +9,8 @@ function Login(){
         success: function (data) {
             console.log(data)
             if (data.data==1){
+
                 console.log("success login");
-            }else{
-                console.log("faile login")
             }
         },
         error: function (data) {
