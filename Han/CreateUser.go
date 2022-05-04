@@ -20,7 +20,7 @@ func CreateUser(c *gin.Context) {
 
 	//数据库操作
 	sid_1, _ := strconv.Atoi(sid) //转类型
-	tele_1, _ := strconv.Atoi(tele)
-	mysql.CreateUser(sid_1, tele_1, pd, account)
+
+	mysql.CreateUser(sid_1, tele, pd, account)
 
 }

@@ -8,7 +8,7 @@ import (
 
 func sign_in_Handler(c *gin.Context) {
 	// c.HTML(200, "sign-in.html", nil) //登录
-	c.HTML(200, "detail-order.html", nil)
+	c.HTML(200, "sign-in.html", nil)
 }
 
 func sign_up_Handler(c *gin.Context) {
@@ -127,6 +127,7 @@ func Start() error {
 		dapp.POST("/detailData", DetailData)
 		dapp.POST("/deleteData", DeleteData)
 		dapp.POST("/creatUser", CreateUser)
+		dapp.POST("/login", Login)
 	}
 
 	err := r.Run()

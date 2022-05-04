@@ -119,6 +119,13 @@ type Tasklist struct {
 	LaunchTime  string //任务时间
 }
 
+type User struct {
+	Sid       int
+	Telephone string
+	Passwd    string
+	Account   string
+}
+
 func Selectaccept(add string) []accepttasklist {
 	Tlist := make([]accepttasklist, 0)
 	var sqlStr = "SELECT * FROM tasklist where Beneficiary=?"
@@ -208,11 +215,23 @@ func Updateid(a int) {
 
 //注册
 
-func CreateUser(sid int, tele int, pd string, account string) {
+func CreateUser(sid int, tele string, pd string, account string) {
 	var sql = `INSERT INTO user VALUES(?,?,?,?)`
 	_, err = Db.Exec(sql, sid, tele, pd, account)
 	if err != nil {
 		// panic(err)
 		fmt.Print(err)
 	}
+}
+
+//登录
+func Login(sid int) User {
+	var sql = `select passwd from user where sid = ?`
+	var user User
+	err := Db.QueryRow(sql, sid).Scan(&user.Passwd)
+	if err != nil {
+		fmt.Println("登录出错了，错误是====>>>>>>>>>>>>>>", err)
+	}
+	fmt.Println("user============>>>>>>>>>>>>>>>>>>>>>>>>>>>>", user)
+	return user
 }
