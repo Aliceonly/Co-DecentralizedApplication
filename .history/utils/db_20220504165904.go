@@ -225,7 +225,7 @@ func CreateUser(sid int, tele string, pd string, account string) {
 }
 
 //登录
-func Login(sid int) string {
+func Login(sid int) User {
 	var sql = `select passwd from user where sid = ?`
 	var pd string
 	err := Db.QueryRow(sql, sid).Scan(&pd)

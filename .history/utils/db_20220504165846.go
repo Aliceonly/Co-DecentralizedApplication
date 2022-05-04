@@ -225,13 +225,13 @@ func CreateUser(sid int, tele string, pd string, account string) {
 }
 
 //登录
-func Login(sid int) string {
+func Login(sid int) User {
 	var sql = `select passwd from user where sid = ?`
-	var pd string
-	err := Db.QueryRow(sql, sid).Scan(&pd)
+	var  string
+	err := Db.QueryRow(sql, sid).Scan(&user.Passwd)
 	if err != nil {
 		fmt.Println("登录出错了，错误是====>>>>>>>>>>>>>>", err)
 	}
-	// fmt.Println("user============>>>>>>>>>>>>>>>>>>>>>>>>>>>>", user)
-	return pd
+	fmt.Println("user============>>>>>>>>>>>>>>>>>>>>>>>>>>>>", user)
+	return user
 }

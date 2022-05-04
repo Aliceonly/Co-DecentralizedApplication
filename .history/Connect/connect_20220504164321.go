@@ -34,7 +34,6 @@ var (
 var client *ethclient.Client
 var rDel *rpc.Client
 
-
 //连接geth
 func init() {
 	rpcDel, err := rpc.Dial(adress)

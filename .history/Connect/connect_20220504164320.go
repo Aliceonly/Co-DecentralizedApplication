@@ -14,7 +14,7 @@ import (
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/ethereum/go-ethereum/rpc"
-	// "log"
+	"log"
 	"github.com/lithammer/fuzzysearch/fuzzy"
 	"os"
 	// "fmt"
@@ -33,7 +33,6 @@ var (
 
 var client *ethclient.Client
 var rDel *rpc.Client
-
 
 //连接geth
 func init() {

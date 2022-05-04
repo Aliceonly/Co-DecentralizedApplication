@@ -18,7 +18,7 @@ func Login(c *gin.Context) {
 	fmt.Println("-------------------------data-------------------", a, Password)
 	result := mysql.Login(a)
 	fmt.Println("密码是=============>>>>>>>>>>", result)
-	user_pd := result
+	user_pd := result.Passwd
 	if Password == user_pd {
 	fmt.Println("登陆成功")
 	} else {
