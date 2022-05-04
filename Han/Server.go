@@ -108,7 +108,7 @@ func Start() error {
 	r.GET("/complete_order", complete_order_Handler)
 	r.GET("/undone_order", undone_order_Handler)
 	r.GET("/publish_order", publish_orser_Handler)
-	r.GET("/all_order", Self) 
+	r.GET("/all_order", Self)
 	r.GET("/delete_succ", delete_succ)
 	r.GET("/create_succ", create_succ)
 
@@ -126,6 +126,7 @@ func Start() error {
 		dapp.POST("/quertselfaccept", Selfaccept) //发布者查询个人接收的任务的数据
 		dapp.POST("/detailData", DetailData)
 		dapp.POST("/deleteData", DeleteData)
+		dapp.POST("/creatUser", CreateUser)
 	}
 
 	err := r.Run()

@@ -15,20 +15,20 @@ import (
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/ethereum/go-ethereum/rpc"
 
-	"os"
 	"github.com/lithammer/fuzzysearch/fuzzy"
+	"os"
 	// "fmt"
 )
 
 var (
-//本地geth地址
-adress ="http://localhost:8545"
-//本地账户地址
-privatekeyfile="D://y//geth//node1//nodedata//keystore//UTC--2021-09-12T17-06-06.881126000Z--00dc6e8b60fa02a5d83e525bbef3240e8ea54dc5"
-//本地账户密码
-password="1111"
-//合约地址
-contractadress="0xB5DF8e9fFB134c3950e969EEa1F518C387eE65c1"
+	//本地geth地址
+	adress = "http://localhost:8545"
+	//本地账户地址
+	privatekeyfile = "D://y//geth//node1//nodedata//keystore//UTC--2021-09-12T17-06-06.881126000Z--00dc6e8b60fa02a5d83e525bbef3240e8ea54dc5"
+	//本地账户密码
+	password = "1111"
+	//合约地址
+	contractadress = "0xB5DF8e9fFB134c3950e969EEa1F518C387eE65c1"
 )
 
 var client *ethclient.Client
@@ -43,7 +43,7 @@ func init() {
 	} else {
 		fmt.Println("geth连接成功*****============================***********")
 	}
-	rDel=rpcDel
+	rDel = rpcDel
 	client = ethclient.NewClient(rpcDel)
 	//fmt.Println(client)
 }
@@ -331,15 +331,17 @@ func Userchangename(ins *contract.TaskDeployerContract,
 	}
 	return true
 }
+
 var newAccount string
 var accounts []string
+
 func CreatnewActogeth(pd string) string {
-	fmt.Print("why----->",rDel)
-	err:=rDel.Call(&newAccount, "personal_newAccount", pd)
-	if err!=nil {
+	fmt.Print("why----->", rDel)
+	err := rDel.Call(&newAccount, "personal_newAccount", pd)
+	if err != nil {
 		panic(err)
 	}
-	rDel.Call(&accounts,"personal_listAccounts")
+	rDel.Call(&accounts, "personal_listAccounts")
 	// if err!=nil {
 	// 	panic(err)
 	// }
@@ -348,38 +350,39 @@ func CreatnewActogeth(pd string) string {
 }
 
 //针对不同用户登入获取不同用户的信息来对交易签名
-func Changeuser(ad string,pw string){
+func Changeuser(ad string, pw string) {
 	var FileInfo []os.FileInfo
 	var err error
 	relativePath := "D://y//geth//node1//nodedata//keystore"
-	
-	if FileInfo,err = ioutil.ReadDir( relativePath ); err != nil{
+
+	if FileInfo, err = ioutil.ReadDir(relativePath); err != nil {
 		fmt.Println("读取 keystore 文件夹出错")
 		return
 	}
-  a:=make([]string,0)
-	for _,fileInfo := range FileInfo {
-		a = append(a,fileInfo.Name())
+	a := make([]string, 0)
+	for _, fileInfo := range FileInfo {
+		a = append(a, fileInfo.Name())
 		// fmt.Println(fileInfo.Name())
 	}
 	// ac:="5c595872e02b0613658036bdf5daa6d9f42954be"
 	matches2 := fuzzy.Find(ad, a)
-	fmt.Println("当前登入的用户为",ad)
+	fmt.Println("当前登入的用户为", ad)
 	// print(relativePath+"//"+matches1[0])
-	privatekeyfile=relativePath+"//"+matches2[0]
-	password=pw
-	matches2=nil
-}
-//用户退出状态 文件处于空状态
-func Userexit(){
-	privatekeyfile=""
-	password=""
-}
-func Get() (string,string){
-	return password,privatekeyfile
-}
-//注销用户
-func cancellation(){
-	
+	privatekeyfile = relativePath + "//" + matches2[0]
+	password = pw
+	matches2 = nil
 }
 
+//用户退出状态 文件处于空状态
+func Userexit() {
+	privatekeyfile = ""
+	password = ""
+}
+func Get() (string, string) {
+	return password, privatekeyfile
+}
+
+//注销用户
+func cancellation() {
+
+}

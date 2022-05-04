@@ -16,7 +16,7 @@ var (
 )
 
 func init() {
-	Db, err = sql.Open("mysql", "root:121@tcp(localhost:3306)/test?parseTime=true&charset=utf8")
+	Db, err = sql.Open("mysql", "root:123456@tcp(localhost:3306)/test?parseTime=true&charset=utf8")
 	if err != nil {
 		panic(err.Error())
 	}
@@ -181,25 +181,38 @@ func DetailData(timestamp int) Tasklist {
 	fmt.Println("task=====================>>>>>>>>>>>>>>>>>>>>>>>>>>>>", task)
 	return task
 }
-func DeletTask(timestamp int){
+func DeletTask(timestamp int) {
 	var sqlStr1 = "SELECT id FROM tasklist WHERE tasklist.`Timestamp`=?"
-	rows, err := Db.Query(sqlStr1,timestamp)
-	if err!= nil {
-		panic(err)
+	rows, err := Db.Query(sqlStr1, timestamp)
+	if err != nil {
+		// print(err)
+		fmt.Print(err)
 	}
 	var a int
-	for rows.Next(){
-		err :=rows.Scan(&a)
-		if err!=nil {
-			panic(err)
+	for rows.Next() {
+		err := rows.Scan(&a)
+		if err != nil {
+			// panic(err)
+			fmt.Print(err)
 		}
 	}
 	var sqlStr = "DELETE FROM tasklist WHERE tasklist.`Timestamp`=?"
-	Db.Exec(sqlStr,timestamp)
+	Db.Exec(sqlStr, timestamp)
 	Updateid(a)
 	fmt.Print("删除任务成功")
 }
-func Updateid(a int){
-	var sql= "update tasklist set id=id-1 where id >?"
-	Db.Exec(sql,a)
+func Updateid(a int) {
+	var sql = "update tasklist set id=id-1 where id >?"
+	Db.Exec(sql, a)
+}
+
+//注册
+
+func CreateUser(sid int, tele int, pd string, account string) {
+	var sql = `INSERT INTO user VALUES(?,?,?,?)`
+	_, err = Db.Exec(sql, sid, tele, pd, account)
+	if err != nil {
+		// panic(err)
+		fmt.Print(err)
+	}
 }

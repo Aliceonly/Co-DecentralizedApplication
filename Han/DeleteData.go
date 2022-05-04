@@ -16,6 +16,4 @@ func DeleteData(c *gin.Context) {
 	}
 	fmt.Println("-------------------------timestamp-------------------", a)
 	mysql.DeletTask(a)
-	 
-	 
 }
