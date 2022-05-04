@@ -7,14 +7,14 @@ import (
 	"fmt"
 	"io/ioutil"
 	"math/big"
-    "github.com/ethereum/go-ethereum/crypto"
+
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/accounts/keystore"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/ethereum/go-ethereum/rpc"
-	"log"
+
 	"github.com/lithammer/fuzzysearch/fuzzy"
 	"os"
 	// "fmt"
@@ -274,18 +274,6 @@ func Confirmtask(
 发布任务者确认接受任务者完成任务
 */
 
-func ClaimTrust(
-	ins *contract.TaskDeployerContract,
-	ops *bind.TransactOpts,
-	timestamp *big.Int,
-	sigs []byte,
-	PHash [32]byte,
-	taskname string) {
-	_, err := ins.ClaimTrust(ops, timestamp, sigs, PHash, taskname)
-	if err != nil {
-		panic(err)
-	}
-}
 //获取交易的hash值
 func Gettaskhash(ins *contract.TaskDeployerContract,address common.Address,header *types.Header,taskname string,timestamp string)[32]byte{
 	opts := bind.CallOpts{
@@ -298,18 +286,21 @@ func Gettaskhash(ins *contract.TaskDeployerContract,address common.Address,heade
 	if err!=nil {
 		panic(hash)
 	}
-
 	return hash
-}
-// //获取发布任务的用户对当前任务的确认签名
-// func GetthistaskSign(PrivateKey *ecdsa.PrivateKey,hash [32]byte){
-// 	signature, err := crypto.Sign(hash, PrivateKey)
-// 			if err != nil {
-// 				log.Fatal(err)
-// 			}
 
-// fmt.Println(hexutil.Encode(signature))
-// }
+}
+func ClaimTrust(
+	ins *contract.TaskDeployerContract,
+	ops *bind.TransactOpts,
+	timestamp *big.Int,
+	sigs []byte,
+	PHash [32]byte,
+	taskname string) {
+	_, err := ins.ClaimTrust(ops, timestamp, sigs, PHash, taskname)
+	if err != nil {
+		panic(err)
+	}
+}
 
 /*
 创建用户信息

@@ -298,18 +298,17 @@ func Gettaskhash(ins *contract.TaskDeployerContract,address common.Address,heade
 	if err!=nil {
 		panic(hash)
 	}
-
 	return hash
 }
-// //获取发布任务的用户对当前任务的确认签名
-// func GetthistaskSign(PrivateKey *ecdsa.PrivateKey,hash [32]byte){
-// 	signature, err := crypto.Sign(hash, PrivateKey)
-// 			if err != nil {
-// 				log.Fatal(err)
-// 			}
+//获取发布任务的用户对当前任务的确认签名
+func GetthistaskSign(PrivateKey *ecdsa.PrivateKey ,hash [32]byte){
+	signature, err := crypto.Sign(hash, privateKey)
+			if err != nil {
+				log.Fatal(err)
+			}
 
-// fmt.Println(hexutil.Encode(signature))
-// }
+fmt.Println(hexutil.Encode(signature))
+}
 
 /*
 创建用户信息

@@ -21,4 +21,5 @@ func CreateUser(c *gin.Context) {
 	sid_1, _ := strconv.Atoi(sid) //转类型
 	tele_1, _ := strconv.Atoi(tele)
 	mysql.CreateUser(sid_1, tele_1, pd, account)
+
 }

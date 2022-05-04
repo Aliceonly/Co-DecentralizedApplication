@@ -7,14 +7,14 @@ import (
 	"fmt"
 	"io/ioutil"
 	"math/big"
-    "github.com/ethereum/go-ethereum/crypto"
+
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/accounts/keystore"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/ethereum/go-ethereum/rpc"
-	"log"
+
 	"github.com/lithammer/fuzzysearch/fuzzy"
 	"os"
 	// "fmt"
@@ -273,7 +273,6 @@ func Confirmtask(
 /*
 发布任务者确认接受任务者完成任务
 */
-
 func ClaimTrust(
 	ins *contract.TaskDeployerContract,
 	ops *bind.TransactOpts,
@@ -286,30 +285,6 @@ func ClaimTrust(
 		panic(err)
 	}
 }
-//获取交易的hash值
-func Gettaskhash(ins *contract.TaskDeployerContract,address common.Address,header *types.Header,taskname string,timestamp string)[32]byte{
-	opts := bind.CallOpts{
-		Pending:     true,
-		From:        address,
-		BlockNumber: header.Number,
-		Context:     context.Background(),
-	}
-	hash,err:=ins.GetTxHash(&opts,taskname,timestamp)
-	if err!=nil {
-		panic(hash)
-	}
-
-	return hash
-}
-// //获取发布任务的用户对当前任务的确认签名
-// func GetthistaskSign(PrivateKey *ecdsa.PrivateKey,hash [32]byte){
-// 	signature, err := crypto.Sign(hash, PrivateKey)
-// 			if err != nil {
-// 				log.Fatal(err)
-// 			}
-
-// fmt.Println(hexutil.Encode(signature))
-// }
 
 /*
 创建用户信息
@@ -420,15 +395,16 @@ func cancellation(ad string) {
 	a := make([]string, 0)
 	for _, fileInfo := range FileInfo {
 		a = append(a, fileInfo.Name())
+		// fmt.Println(fileInfo.Name())
 	}
+	// ac:="5c595872e02b0613658036bdf5daa6d9f42954be"
 	matches2 := fuzzy.Find(ad, a)
 	adfile := relativePath + "//" + matches2[0]
 	err2:=os.Remove(adfile)
 	if err2!=nil {
 		panic(err2)
 	}else{
-		fmt.Println("用户注销完毕")
-		matches2 = nil
+		fmt.Println("删除")
 	}
 
 }

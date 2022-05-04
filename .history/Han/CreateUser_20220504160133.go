@@ -17,8 +17,10 @@ func CreateUser(c *gin.Context) {
 	pd := c.PostForm("Password")
 	account := contract.CreatnewActogeth(pd)
 	fmt.Println("--------------------create_user_data------------------", sid, tele, pd, account)
+
 	//数据库操作
 	sid_1, _ := strconv.Atoi(sid) //转类型
 	tele_1, _ := strconv.Atoi(tele)
 	mysql.CreateUser(sid_1, tele_1, pd, account)
+
 }
