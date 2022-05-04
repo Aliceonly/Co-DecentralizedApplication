@@ -19,6 +19,7 @@ func CreateUser(c *gin.Context) {
 	fmt.Println("--------------------create_user_data------------------", sid, tele, pd, account)
 	//数据库操作
 	sid_1, _ := strconv.Atoi(sid) //转类型
+
 	mysql.CreateUser(sid_1, tele, pd, account)
 
 }

@@ -6,7 +6,7 @@ function Deletedata(e){
         method: "post",
         url: "http://localhost:8080/dapp/deleteData",
         data: {timestamp: Timestamp1},
-        success: function (data) {
+        success: function () {
             // alert("删除成功") 
             confirm("确定要删除订单嘛？删除了可就没了哦！")
             window.location.href ="/delete_succ"
