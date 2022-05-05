@@ -38,3 +38,10 @@ document.getElementById("State").innerHTML = decodeURI(State);
 const Add_1 = list.map(item => item.Add);
 const Add = decodeURI(Add_1)
 document.getElementById("Add").innerHTML = Add.slice(0,35);
+
+const Block = list.map(item => item.Block);
+document.getElementById("Block").innerHTML = decodeURI(Block);
+
+const Timestamp = list.map(item => item.Timestamp);
+document.getElementById("Timestamp").innerHTML = decodeURI(Timestamp);
+

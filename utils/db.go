@@ -16,7 +16,7 @@ var (
 )
 
 func init() {
-	Db, err = sql.Open("mysql", "root:121@tcp(localhost:3306)/test?parseTime=true&charset=utf8")
+	Db, err = sql.Open("mysql", "root:123456@tcp(localhost:3306)/test?parseTime=true&charset=utf8")
 	if err != nil {
 		panic(err.Error())
 	}
@@ -117,6 +117,7 @@ type Tasklist struct {
 	Timestamp   string
 	State       string
 	LaunchTime  string //任务时间
+	Block       string
 }
 
 type User struct {
@@ -156,7 +157,7 @@ func Showdata() []Tasklist {
 	fmt.Println("rows------------------------------------===", rows)
 	for rows.Next() {
 		var t Tasklist
-		err := rows.Scan(&t.Taskid, &t.Taskname, &t.Add, &t.Beneficiary, &t.Category, &t.Amount, &t.Timestamp, &t.State, &t.LaunchTime)
+		err := rows.Scan(&t.Taskid, &t.Taskname, &t.Add, &t.Beneficiary, &t.Category, &t.Amount, &t.Timestamp, &t.State, &t.LaunchTime, &t.Block)
 		if err != nil {
 			fmt.Println("tasklist error================================>>>>>>>>>", err)
 			return nil
@@ -168,7 +169,7 @@ func Showdata() []Tasklist {
 
 func Query_bytime(timestamp int) Tasklist {
 	var task Tasklist
-	err := Db.QueryRow("SELECT * FROM tasklist WHERE timestamp = ?", timestamp).Scan(&task.Taskid, &task.Taskname, &task.Add, &task.Beneficiary, &task.Category, &task.Amount, &task.Timestamp, &task.State, &task.LaunchTime)
+	err := Db.QueryRow("SELECT * FROM tasklist WHERE timestamp = ?", timestamp).Scan(&task.Taskid, &task.Taskname, &task.Add, &task.Beneficiary, &task.Category, &task.Amount, &task.Timestamp, &task.State, &task.LaunchTime, &task.Block)
 	if err != nil {
 		fmt.Println("根据时间戳查询出错了")
 		fmt.Println("查询错误是====>>>>>>>>>>>>>>", err)

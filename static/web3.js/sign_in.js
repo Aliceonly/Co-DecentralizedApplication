@@ -1,6 +1,12 @@
 function Login(){
     var Sid=$("#Sid").val();
     var Password=$("#password").val();
+    if(Sid == ""){
+        alert("请输入账号")
+    }
+    if(Password == ""){
+        alert("请输入密码")
+    }
     // console.log(Sid,Password)
     $.ajax({
         method:"post",

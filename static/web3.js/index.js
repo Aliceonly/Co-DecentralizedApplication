@@ -12,7 +12,7 @@ function detaildata(e) {
             result = data.data
             // alert(data.data.Add)
             console.log("result=====>", result);
-            window.location.href = "/Detail?Taskname=" + result.Taskname + '&LaunchTime=' + result.LaunchTime+ '&Amount=' + result.Amount+ '&Category=' + result.Category+ '&State=' + result.State+ '&Add=' + result.Add; //window.location.href跳转新页面
+            window.location.href = "/Detail?Taskname=" + result.Taskname + '&LaunchTime=' + result.LaunchTime+ '&Amount=' + result.Amount+ '&Category=' + result.Category+ '&State=' + result.State+ '&Add=' + result.Add+ '&Timestamp=' + result.Timestamp+ '&Block=' + result.Block; //window.location.href跳转新页面
 
         },
         error: function (data) {

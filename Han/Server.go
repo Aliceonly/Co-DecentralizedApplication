@@ -47,7 +47,7 @@ func redact_candidate_Handler(c *gin.Context) {
 	c.HTML(200, "redact-canditate.html", nil) //编辑资料
 }
 func detail_Handler(c *gin.Context) {
-	c.HTML(200, "detail-order.html", nil) //编辑资料
+	c.HTML(200, "job-details.html", nil) //编辑资料
 }
 func detail_order_Handler(c *gin.Context) {
 	c.HTML(200, "detail-order.html", nil) //订单详情
@@ -125,7 +125,7 @@ func Start() error {
 		dapp.POST("/confirmtask", Confirmtask)    //接受任务接口
 		dapp.POST("/quertselfaccept", Selfaccept) //发布者查询个人接收的任务的数据
 		dapp.POST("/detailData", DetailData)
-		dapp.POST("/deleteData", DeleteData)      //删除任务接口
+		dapp.POST("/deleteData", DeleteData) //删除任务接口
 		dapp.POST("/creatUser", CreateUser)
 		dapp.POST("/login", Login)
 	}
