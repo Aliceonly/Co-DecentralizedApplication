@@ -1,9 +1,9 @@
 package main
 
 import (
-	// c"dapp/Connect"
+	c"dapp/Connect"
 	// "fmt"
-	s "dapp/Han"
+	// s "dapp/Han"
 	// "dapp/controller"
 	// "fmt"
 	// "math/big"
@@ -16,8 +16,9 @@ import (
 )
 
 func main() {
-	s.Start()
-	// c.Changeuser("aebdbdb1455a7d56d56fe2cf967fbe7118845e66","abc")
+	// s.Start()
+	c.Changeuser()
+	// c.Changeuser("00dc6e8b60fa02a5d83e525bbef3240e8ea54dc5","1111")
 	// a,b:=c.Get()
 	// print(a,b)
 	// a:=c.CreatnewActogeth("123")

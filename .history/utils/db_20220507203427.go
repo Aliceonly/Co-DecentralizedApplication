@@ -40,7 +40,7 @@ func Insert(taskname string,
 	launchTime string,
 ) error {
 	var err error
-	var sqlstate = `SELECT MAX(Taskid) FROM tasklist`
+	var sqlstate = `SELECT MAX(id) FROM tasklist`
 	rows, err := Db.Query(sqlstate)
 	var maxid int
 	if err != nil {

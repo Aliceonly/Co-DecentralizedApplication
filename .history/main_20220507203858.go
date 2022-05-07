@@ -17,6 +17,7 @@ import (
 
 func main() {
 	s.Start()
+	s.CreateUser()
 	// c.Changeuser("aebdbdb1455a7d56d56fe2cf967fbe7118845e66","abc")
 	// a,b:=c.Get()
 	// print(a,b)

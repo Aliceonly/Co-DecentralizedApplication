@@ -1,7 +1,7 @@
 package main
 
 import (
-	// c"dapp/Connect"
+	c"dapp/Connect"
 	// "fmt"
 	s "dapp/Han"
 	// "dapp/controller"
@@ -17,6 +17,7 @@ import (
 
 func main() {
 	s.Start()
+	c.
 	// c.Changeuser("aebdbdb1455a7d56d56fe2cf967fbe7118845e66","abc")
 	// a,b:=c.Get()
 	// print(a,b)

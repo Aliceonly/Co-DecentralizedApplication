@@ -394,7 +394,7 @@ func Changeuser(ad string, pw string) {
 	matches2 := fuzzy.Find(ad, a)
 	fmt.Println("当前登入的用户为", ad)
 	// print(relativePath+"//"+matches1[0])
-	fmt.Println(".....",matches2)
+	fmt.p()
 	privatekeyfile = relativePath + "//" + matches2[0]
 	password = pw
 	// matches2 = nil

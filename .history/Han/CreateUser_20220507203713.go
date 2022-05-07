@@ -16,7 +16,7 @@ func CreateUser(c *gin.Context) {
 	tele := c.PostForm("Telephone")
 	pd := c.PostForm("Password")
 	account := contract.CreatnewActogeth(pd)
-	fmt.Println("新创建的用户为------>",account)
+	cons
 	fmt.Println("--------------------create_user_data------------------", sid, tele, pd, account)
 	//数据库操作
 	sid_1, _ := strconv.Atoi(sid) //转类型
