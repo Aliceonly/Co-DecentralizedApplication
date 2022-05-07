@@ -10,7 +10,15 @@ function Login(){
             console.log(data)
             if (data.data==1){
                 console.log("success login");
-                swal("Good!", "登陆成功", "success");
+                swal({
+                    title: "登录成功",
+                    text: '<span style="color:red">点击</span><a style="color:#3b3bf4" href="/account">我的</a><span style="color:red">去添加更多的信息吧！</span><br/>5秒后自动关闭。',
+                    imageUrl: "../static/image/check.png",
+                    html: true,
+                    timer: 10000,
+                    showConfirmButton: false
+                });
+                // swal("Good!", "登陆成功", "success");
             }
             if (data.data==2){
                 swal("Sorry!", "密码为空，请重试！", "error");

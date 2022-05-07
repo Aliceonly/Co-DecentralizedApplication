@@ -16,7 +16,7 @@ var (
 )
 
 func init() {
-	Db, err = sql.Open("mysql", "root:121@tcp(localhost:3306)/test?parseTime=true&charset=utf8")
+	Db, err = sql.Open("mysql", "root:123456@tcp(localhost:3306)/test?parseTime=true&charset=utf8")
 	if err != nil {
 		panic(err.Error())
 	}
