@@ -29,7 +29,6 @@ func Login(c *gin.Context) {
 		if Password == user_pd && user_pd != "" {
 			fmt.Println("登陆成功")
 			tohtml(c, 1)
-			contract.Changeuser(Account,Password);
 		} else {
 			fmt.Print("登陆失败，密码错误")
 			tohtml(c, 0)

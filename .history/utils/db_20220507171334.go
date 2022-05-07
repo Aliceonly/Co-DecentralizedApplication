@@ -71,7 +71,6 @@ type tasklist struct {
 	timestamp   string
 	state       string
 	launchTime  string
-	Block       string
 }
 
 //查询自身发布的任务
@@ -85,7 +84,7 @@ func Select(add string) []tasklist {
 		panic(err)
 	}
 	for rows.Next() {
-		err := rows.Scan(&list.taskid, &list.taskname, &list.beneficiary, &list.add, &list.category, &list.amount, &list.timestamp, &list.state, &list.launchTime,&list.Block)
+		err := rows.Scan(&list.taskid, &list.taskname, &list.beneficiary, &list.add, &list.category, &list.amount, &list.timestamp, &list.state, &list.launchTime)
 		if err != nil {
 			panic(err)
 		}
@@ -227,10 +226,10 @@ func CreateUser(sid int, tele string, pd string, account string) {
 }
 
 //登录
-func Login(Account string) string {
+func Login(sid int) string {
 	var sql = `select passwd from user where Account = ?`
 	var pd string
-	err := Db.QueryRow(sql, Account).Scan(&pd)
+	err := Db.QueryRow(sql, sid).Scan(&pd)
 	if err != nil {
 		fmt.Println("登录出错了，错误是====>>>>>>>>>>>>>>", err)
 	}

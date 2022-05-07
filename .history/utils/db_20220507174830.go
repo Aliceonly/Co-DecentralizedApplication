@@ -71,7 +71,7 @@ type tasklist struct {
 	timestamp   string
 	state       string
 	launchTime  string
-	Block       string
+	block 
 }
 
 //查询自身发布的任务

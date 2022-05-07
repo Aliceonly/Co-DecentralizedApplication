@@ -71,7 +71,6 @@ type tasklist struct {
 	timestamp   string
 	state       string
 	launchTime  string
-	Block       string
 }
 
 //查询自身发布的任务
@@ -85,7 +84,7 @@ func Select(add string) []tasklist {
 		panic(err)
 	}
 	for rows.Next() {
-		err := rows.Scan(&list.taskid, &list.taskname, &list.beneficiary, &list.add, &list.category, &list.amount, &list.timestamp, &list.state, &list.launchTime,&list.Block)
+		err := rows.Scan(&list.taskid, &list.taskname, &list.beneficiary, &list.add, &list.category, &list.amount, &list.timestamp, &list.state, &list.launchTime,&list.block)
 		if err != nil {
 			panic(err)
 		}

@@ -5,7 +5,7 @@ function Login(){
     $.ajax({
         method:"post",
         url: "http://localhost:8080/dapp/login",
-        data: { Account:Account, Password: Password },
+        data: { Sid:Sid, Password: Password },
         success: function (data) {
             console.log(data)
             if (data.data==1){

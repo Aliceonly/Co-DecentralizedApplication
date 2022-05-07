@@ -1,7 +1,6 @@
 package Han
 
 import (
-	contract "dapp/Connect"
 	mysql "dapp/utils"
 	"fmt"
 	"github.com/gin-gonic/gin"
@@ -22,14 +21,17 @@ func Login(c *gin.Context) {
 		tohtml(c, 4)
 	}
 	if Password != "" && Account != "" {
-		fmt.Println("-------------------------data-------------------", Account, Password)
+		// a, err := strconv.Atoi(Account) //转类型
+		// if err != nil {
+		// 	fmt.Println("出错了", err)
+		// }
+		fmt.Println("-------------------------data-------------------", a, Password)
 		result := mysql.Login(Account)
 		fmt.Println("密码是=============>>>>>>>>>>", result)
 		user_pd := result
 		if Password == user_pd && user_pd != "" {
 			fmt.Println("登陆成功")
 			tohtml(c, 1)
-			contract.Changeuser(Account,Password);
 		} else {
 			fmt.Print("登陆失败，密码错误")
 			tohtml(c, 0)
