@@ -28,7 +28,7 @@ func Creat(c *gin.Context) {
 		return
 	}
 
-	
+	1652015811
 	taskplace2 := c.PostForm("taskplace3") //工作类型
 	taskplace1 := c.PostForm("taskplace1") //地区
 	taskcontent := c.PostForm("taskcontent")

@@ -27,8 +27,6 @@ func Creat(c *gin.Context) {
 		fmt.Println("SetString: error")
 		return
 	}
-
-	
 	taskplace2 := c.PostForm("taskplace3") //工作类型
 	taskplace1 := c.PostForm("taskplace1") //地区
 	taskcontent := c.PostForm("taskcontent")

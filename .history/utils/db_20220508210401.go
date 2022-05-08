@@ -52,7 +52,7 @@ func Insert(taskname string,
 		err = rows.Scan(&maxid)
 	}
 	fmt.Println(maxid)
-	var sqlStr = `INSERT INTO tasklist (Taskid,Taskname,Beneficiary,Sponsor,Category,Amount,Timestamp,State,LaunchTime,block) VALUES (?,?,?,?,?,?,?,?,?,?)`
+	var sqlStr = `INSERT INTO tasklist (Taskid,Taskname,Beneficiary,Sponsor,Category,Amount,Timestamp,State,LaunchTime,block) VALUES (?,?,?,?,?,?,?,?,?)`
 	_, err = Db.Exec(sqlStr, maxid+1, taskname, "0xxx000", add, category, amount, timestamp.String(), state, launchTime,block)
 	if err != nil {
 		return err

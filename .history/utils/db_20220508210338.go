@@ -38,7 +38,7 @@ func Insert(taskname string,
 	timestamp *big.Int,
 	state string,
 	launchTime string,
-	block string,
+	block
 ) error {
 	var err error
 	var sqlstate = `SELECT MAX(Taskid) FROM tasklist`
@@ -52,8 +52,8 @@ func Insert(taskname string,
 		err = rows.Scan(&maxid)
 	}
 	fmt.Println(maxid)
-	var sqlStr = `INSERT INTO tasklist (Taskid,Taskname,Beneficiary,Sponsor,Category,Amount,Timestamp,State,LaunchTime,block) VALUES (?,?,?,?,?,?,?,?,?,?)`
-	_, err = Db.Exec(sqlStr, maxid+1, taskname, "0xxx000", add, category, amount, timestamp.String(), state, launchTime,block)
+	var sqlStr = `INSERT INTO tasklist (Taskid,Taskname,Beneficiary,Sponsor,Category,Amount,Timestamp,State,LaunchTime) VALUES (?,?,?,?,?,?,?,?,?)`
+	_, err = Db.Exec(sqlStr, maxid+1, taskname, "0xxx000", add, category, amount, timestamp.String(), state, launchTime)
 	if err != nil {
 		return err
 	}

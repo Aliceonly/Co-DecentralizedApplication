@@ -16,9 +16,8 @@ import (
 )
 
 func main() {
-	s.Start()
-	// a:="0x5e9ed07526dd85415af6a2f367a66efb02637ba0"
-	// fmt.Println(a[2:])
+	// s.Start()
+	
 	// c.Changeuser("aebdbdb1455a7d56d56fe2cf967fbe7118845e66","abc")
 	// a,b:=c.Get()
 	// print(a,b)

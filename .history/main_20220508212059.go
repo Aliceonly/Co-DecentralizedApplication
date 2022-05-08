@@ -3,7 +3,8 @@ package main
 import (
 	// c"dapp/Connect"
 	// "fmt"
-	s "dapp/Han"
+	// s "dapp/Han"
+	"fmt"
 	// "dapp/controller"
 	// "fmt"
 	// "math/big"

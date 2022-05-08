@@ -396,7 +396,7 @@ func Changeuser(ad string, pw string) {
 		// fmt.Println(fileInfo.Name())
 	}
 	// ac:="5c595872e02b0613658036bdf5daa6d9f42954be"
-	matches2 := fuzzy.Find(ad[2:], a)
+	matches2 := fuzzy.Find(ad[], a)
 	fmt.Println("当前登入的用户为", ad)
 	// print(relativePath+"//"+matches1[0])
 	fmt.Println(".....", matches2)
