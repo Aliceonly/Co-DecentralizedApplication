@@ -19,7 +19,7 @@ function change_user_info() {
     // account= $("Account").val()
     // if (account == undefined){
         account=document.getElementById("Account").innerHTML
-        // telephone = document.getElementById("Tele").value
+        telephone = document.getElementById("Tele").value
     // }
     sid= $("Sid").val()
     if (sid == undefined){
@@ -33,10 +33,10 @@ function change_user_info() {
     if (sage == undefined){
         sage=document.getElementById("Sage").value
     }
-    telephone=$("Tele").val()
-    if (telephone == undefined){
-        telephone=document.getElementById("Tele").value
-    }
+    // telephone=$("Tele").val()
+    // if (telephone == undefined){
+    //     telephone=document.getElementById("Tele").value
+    // }
 
     major=$("Major").val()
     if (major == undefined){

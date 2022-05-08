@@ -19,7 +19,6 @@ function change_user_info() {
     // account= $("Account").val()
     // if (account == undefined){
         account=document.getElementById("Account").innerHTML
-        // telephone = document.getElementById("Tele").value
     // }
     sid= $("Sid").val()
     if (sid == undefined){
@@ -50,13 +49,13 @@ function change_user_info() {
     $.ajax({
         method: "post",
         url: "http://localhost:8080/dapp/change_user_info",
-        data: { account:account, sid: sid,sname:sname, sage: sage, telephone: telephone, major: major, grade: grade},
+        data: { account:account, sid: sid,sname:sname, sage: sage, selephone: telephone, major: major, grade: grade},
         success: function (data) {
             if(data.data==1){
                 // swal("Good!", "修改成功", "success");
                 swal({
                     title: "修改成功",
-                    text: '<span style="color:red">点击</span><a style="color:#3b3bf4" href="/account">我的</a><span style="color:red">去查看个人信息吧！</span><br/>5秒后自动关闭。',
+                    text: '<span style="color:red">回到我的</span><a style="color:#3b3bf4" href="/account">我的</a><span style="color:red">去添加更多的信息吧！</span><br/>5秒后自动关闭。',
                     imageUrl: "../static/image/check.png",
                     html: true,
                     timer: 10000,

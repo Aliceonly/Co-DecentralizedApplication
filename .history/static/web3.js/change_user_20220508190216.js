@@ -19,7 +19,7 @@ function change_user_info() {
     // account= $("Account").val()
     // if (account == undefined){
         account=document.getElementById("Account").innerHTML
-        // telephone = document.getElementById("Tele").value
+        telephone = document.getElementById("Tele").value
     // }
     sid= $("Sid").val()
     if (sid == undefined){
@@ -50,7 +50,7 @@ function change_user_info() {
     $.ajax({
         method: "post",
         url: "http://localhost:8080/dapp/change_user_info",
-        data: { account:account, sid: sid,sname:sname, sage: sage, telephone: telephone, major: major, grade: grade},
+        data: { account:account, sid: sid,sname:sname, sage: sage, selephone: telephone, major: major, grade: grade},
         success: function (data) {
             if(data.data==1){
                 // swal("Good!", "修改成功", "success");

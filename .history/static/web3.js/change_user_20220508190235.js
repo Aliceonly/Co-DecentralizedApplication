@@ -19,7 +19,7 @@ function change_user_info() {
     // account= $("Account").val()
     // if (account == undefined){
         account=document.getElementById("Account").innerHTML
-        // telephone = document.getElementById("Tele").value
+        telephone = document.getElementById("Tele").value
     // }
     sid= $("Sid").val()
     if (sid == undefined){

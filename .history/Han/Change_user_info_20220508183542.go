@@ -8,15 +8,15 @@ import (
 )
 
 func Change_user_info(c *gin.Context) {
-	Account := c.PostForm("account")
-	Telephone := c.PostForm("telephone")
-	Sid := c.PostForm("sid")
-	Sname := c.PostForm("sname")
-	Sage := c.PostForm("sage")
-	Major := c.PostForm("major")
-	Grade := c.PostForm("grade")
+	Account := c.PostForm("Account")
+	Telephone := c.PostForm("Telephone")
+	Sid := c.PostForm("Sid")
+	Sname := c.PostForm("Sname")
+	Sage := c.PostForm("Sage")
+	Major := c.PostForm("Major")
+	Grade := c.PostForm("Grade")
 	a, err := strconv.Atoi(Sid) //转类型
-	fmt.Println("bbbb--->",Account, a, Sname, Sage, Telephone, Major, Grade)
+	fmt.Println(Account,Telephone,a,Sname,s)
 	if err != nil {
 		fmt.Println("出错了", err)
 	}

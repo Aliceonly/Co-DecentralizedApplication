@@ -222,7 +222,7 @@ func Updateid(a int) {
 //注册
 
 func CreateUser(sid int, tele string, pd string, account string) {
-	var sql = `INSERT INTO user(Sid,Telephone,Passwd,Account) VALUES(?,?,?,?)`
+	var sql = `INSERT INTO user() VALUES(?,?,?,?)`
 	_, err = Db.Exec(sql, sid, tele, pd, account)
 	if err != nil {
 		panic(err)

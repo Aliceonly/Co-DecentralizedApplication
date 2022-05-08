@@ -16,7 +16,7 @@ func Change_user_info(c *gin.Context) {
 	Major := c.PostForm("major")
 	Grade := c.PostForm("grade")
 	a, err := strconv.Atoi(Sid) //转类型
-	fmt.Println("bbbb--->",Account, a, Sname, Sage, Telephone, Major, Grade)
+	fmt.Println("bbbb--->",ccount, a, Sname, Sage, Telephone, Major, Grade)
 	if err != nil {
 		fmt.Println("出错了", err)
 	}

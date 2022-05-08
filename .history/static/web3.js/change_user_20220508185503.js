@@ -19,7 +19,6 @@ function change_user_info() {
     // account= $("Account").val()
     // if (account == undefined){
         account=document.getElementById("Account").innerHTML
-        // telephone = document.getElementById("Tele").value
     // }
     sid= $("Sid").val()
     if (sid == undefined){
@@ -39,29 +38,16 @@ function change_user_info() {
     }
 
     major=$("Major").val()
-    if (major == undefined){
-        major=document.getElementById("Major").value
-    }
+c
     grade=$("Grade").val()
-    if (grade == undefined){
-        grade=document.getElementById("Grade").value
-    }
-    console.log(sid,sname)
+    console.log(sname)
     $.ajax({
         method: "post",
         url: "http://localhost:8080/dapp/change_user_info",
-        data: { account:account, sid: sid,sname:sname, sage: sage, telephone: telephone, major: major, grade: grade},
+        data: { account:account, sid: sid,sname:sname, sage: sage, selephone: telephone, major: major, grade: grade},
         success: function (data) {
             if(data.data==1){
-                // swal("Good!", "修改成功", "success");
-                swal({
-                    title: "修改成功",
-                    text: '<span style="color:red">点击</span><a style="color:#3b3bf4" href="/account">我的</a><span style="color:red">去查看个人信息吧！</span><br/>5秒后自动关闭。',
-                    imageUrl: "../static/image/check.png",
-                    html: true,
-                    timer: 10000,
-                    showConfirmButton: false
-                });
+                swal("Good!", "修改成功", "success");
             }
         },
         error: function (data) {

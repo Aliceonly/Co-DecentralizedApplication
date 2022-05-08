@@ -12,9 +12,9 @@ func Change_user_info(c *gin.Context) {
 	Telephone := c.PostForm("telephone")
 	Sid := c.PostForm("sid")
 	Sname := c.PostForm("sname")
-	Sage := c.PostForm("sage")
-	Major := c.PostForm("major")
-	Grade := c.PostForm("grade")
+	Sage := c.PostForm("Sage")
+	Major := c.PostForm("Major")
+	Grade := c.PostForm("Grade")
 	a, err := strconv.Atoi(Sid) //转类型
 	fmt.Println("bbbb--->",Account, a, Sname, Sage, Telephone, Major, Grade)
 	if err != nil {

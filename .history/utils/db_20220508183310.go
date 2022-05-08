@@ -222,7 +222,7 @@ func Updateid(a int) {
 //注册
 
 func CreateUser(sid int, tele string, pd string, account string) {
-	var sql = `INSERT INTO user(Sid,Telephone,Passwd,Account) VALUES(?,?,?,?)`
+	var sql = `INSERT INTO user VALUES(?,?,?,?)`
 	_, err = Db.Exec(sql, sid, tele, pd, account)
 	if err != nil {
 		panic(err)
@@ -257,8 +257,5 @@ func Query_User(Account string) User {
 func Update_User(Account string, Sid int, Sname string, Sage string, Telephone string, Major string, Grade string) {
 	var sql = "UPDATE User SET Sid = ?,Sname = ?,Sage = ?,Telephone = ?,Major = ?,Grade = ? WHERE Account = ?"
 	_,err:=Db.Exec(sql, Sid, Sname, Sage, Telephone, Major, Grade, Account)
-	if err!=nil {
-		panic(err)
-	}
-	// fmt.Println(err)
+	fmt.Print()
 }
