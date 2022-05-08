@@ -7,16 +7,19 @@ import (
 	"fmt"
 	"io/ioutil"
 	"math/big"
-    // "github.com/ethereum/go-ethereum/crypto"
+
+	// "github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/accounts/keystore"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/ethereum/go-ethereum/rpc"
+
 	// "log"
-	"github.com/lithammer/fuzzysearch/fuzzy"
 	"os"
+
+	"github.com/lithammer/fuzzysearch/fuzzy"
 	// "fmt"
 )
 
@@ -24,16 +27,17 @@ var (
 	//本地geth地址
 	adress = "http://localhost:8545"
 	//本地账户地址
-	privatekeyfile = "D://y//geth//node1//nodedata//keystore//UTC--2021-09-12T17-06-06.881126000Z--00dc6e8b60fa02a5d83e525bbef3240e8ea54dc5"
+	privatekeyfile = "D://GethPOA//node1//data//keystore//UTC--2022-02-28T09-15-29.861160700Z--726e4ae0995ee325c752194d36babc9e75a5d56d"
 	//本地账户密码
-	password = "1111"
+	password = "123456"
 	//合约地址
-	contractadress = "0xB5DF8e9fFB134c3950e969EEa1F518C387eE65c1"
+	contractadress = "0x88Ecb2BebF50111D696e7Dd2Cac439B445A0B883"
+	//读取用户keystore文件地址
+	relativePath = "D:\\GethPOA\\node1\\data\\keystore"
 )
 
 var client *ethclient.Client
 var rDel *rpc.Client
-
 
 //连接geth
 func init() {
@@ -287,21 +291,23 @@ func ClaimTrust(
 		panic(err)
 	}
 }
+
 //获取交易的hash值
-func Gettaskhash(ins *contract.TaskDeployerContract,address common.Address,header *types.Header,taskname string,timestamp string)[32]byte{
+func Gettaskhash(ins *contract.TaskDeployerContract, address common.Address, header *types.Header, taskname string, timestamp string) [32]byte {
 	opts := bind.CallOpts{
 		Pending:     true,
 		From:        address,
 		BlockNumber: header.Number,
 		Context:     context.Background(),
 	}
-	hash,err:=ins.GetTxHash(&opts,taskname,timestamp)
-	if err!=nil {
+	hash, err := ins.GetTxHash(&opts, taskname, timestamp)
+	if err != nil {
 		panic(hash)
 	}
 
 	return hash
 }
+
 // //获取发布任务的用户对当前任务的确认签名
 // func GetthistaskSign(PrivateKey *ecdsa.PrivateKey,hash [32]byte){
 // 	signature, err := crypto.Sign(hash, PrivateKey)
@@ -379,7 +385,6 @@ func CreatnewActogeth(pd string) string {
 func Changeuser(ad string, pw string) {
 	var FileInfo []os.FileInfo
 	var err error
-	relativePath := "D://y//geth//node1//nodedata//keystore"
 
 	if FileInfo, err = ioutil.ReadDir(relativePath); err != nil {
 		fmt.Println("读取 keystore 文件夹出错")
@@ -394,7 +399,7 @@ func Changeuser(ad string, pw string) {
 	matches2 := fuzzy.Find(ad, a)
 	fmt.Println("当前登入的用户为", ad)
 	// print(relativePath+"//"+matches1[0])
-	fmt.Println(".....",matches2)
+	fmt.Println(".....", matches2)
 	privatekeyfile = relativePath + "//" + matches2[0]
 	password = pw
 	// matches2 = nil
@@ -425,10 +430,10 @@ func cancellation(ad string) {
 	}
 	matches2 := fuzzy.Find(ad, a)
 	adfile := relativePath + "//" + matches2[0]
-	err2:=os.Remove(adfile)
-	if err2!=nil {
+	err2 := os.Remove(adfile)
+	if err2 != nil {
 		panic(err2)
-	}else{
+	} else {
 		fmt.Println("用户注销完毕")
 		matches2 = nil
 	}
