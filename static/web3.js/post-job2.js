@@ -41,7 +41,7 @@ function CreatTask() {
       //  window.location.href ="http://localhost:8080/create_succ"
       swal({
         title: "发布成功",
-        text: '<span style="color:red">您已发布成功，</span><a style="color:#3b3bf4" href="/">点击返回首页查看</a>。<br/>5秒后自动关闭。',
+        text:'您的订单时间戳是：<span style="color:red">'+ data.data +'（时间戳可用于订单查询）</span><br/><a style="color:#3b3bf4" href="/"> 点击返回首页查看</a><br/>10秒后自动关闭。',
         imageUrl: "check.png",
         html: true,
         timer: 5000,

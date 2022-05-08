@@ -51,20 +51,27 @@
 </div>
 </div>
 
+
 <div class="navbar-area">
+
     <div class="mobile-nav">
         <a href="/" class="logo">
-        
+            <img src="static/picture/logo.png" alt="logo">
         </a>
     </div>
+
+
     <div class="main-nav">
         <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand" href="/">
+        <img src="static/picture/logo.png" alt="logo">
         </a>
         <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
-        <ul    class="navbar-nav m-auto">
+        <ul    class="navbar-nav m-auto"> 
+        
         <li class="nav-item">
+        <!-- <a href="#" class="nav-link dropdown-toggle active">Home</a> -->
         <li class="nav-item">
             <a href="/" class="nav-link">首页</a>
         </li>
@@ -81,9 +88,6 @@
         </li>
         <li class="nav-item">
         <a href="post_job" class="nav-link">发布订单</a>
-        </li>
-        <li class="nav-item">
-            <a href="all_order" class="nav-link">个人订单</a>
         </li>
         </ul>
         </li>
@@ -102,7 +106,7 @@
         </ul>
         </li>
         
-        <li class="nav-item">
+        <li id="in_up" class="nav-item">
         <a href="#" class="nav-link dropdown-toggle">登录注册</a>
         <ul class="dropdown-menu">
         <li class="nav-item">
@@ -137,65 +141,74 @@
         </div>
         </div>
 
-
-<section style="padding-top: 100px;" class="account-section ptb-100">
+<section class="account-section ptb-100">
 <div class="container">
 <div class="row">
 <div class="col-md-4">
 <div class="account-information">
-<div class="profile-thumb">
+<div style="position: relative;top: 15px;" class="profile-thumb">
 <img src="static/picture/account.jpg" alt="account holder image">
-<h3>John Smith</h3>
-<p>Web Developer</p>
+<h3>0x00</h3>
+<!-- <p>Web Developer</p> -->
 </div>
-<ul>
-<li>
-<a href="resume">
-<i class='bx bx-heart'></i>
-查看个人信息
-</a>
-</li>
-<li>
-<a href="change_user">
-<i class='bx bx-briefcase'></i>
-修改个人信息
-</a>
-</li>
-<li>
-<a href="#">
-<i class='bx bx-envelope'></i>
-收件箱
-</a>
-</li>
-<li>
-<a href="#">
-<i class='bx bx-lock-alt'></i>
-切换账户
-</a>
-</li>
-<li>
-<a href="#">
-<i class='bx bx-coffee-togo'></i>
-注销账户
-</a>
-</li>
-<li>
-<a href="#">
-<i class='bx bx-log-out'></i>
-退出账户
-</a>
-</li>
-</ul>
+</div>
+</div>
+<div class="col-md-8">
+<div class="account-details">
+<h3>基本信息</h3>
+<form class="basic-info">
+<div class="row">
+<div class="col-md-6">
+<div class="form-group">
+ <label>学号</label>
+<input type="text" class="form-control" id="name" placeholder="Your Name">
+</div>
+</div>
+<div class="col-md-6">
+<div class="form-group">
+<label>昵称</label>
+<input type="email" class="form-control" placeholder="Your Email">
+</div>
+</div>
+<div class="col-md-6">
+<div class="form-group">
+<label>年龄</label>
+<input type="number" class="form-control" placeholder="Your Phone">
+</div>
+</div>
+<div class="col-md-6">
+<div class="form-group">
+<label>电话号码</label>
+<input type="text" class="form-control" placeholder="Job Title">
+</div>
+</div>
+<div class="col-md-6">
+<div class="form-group">
+<label>专业</label>
+<input type="text" class="form-control" placeholder="Job Title">
+</div>
+</div>
+<div class="col-md-6">
+<div class="form-group">
+<label>年级</label>
+<input type="text" class="form-control" placeholder="Job Title">
+</div>
+</div>
+<div class="col-md-12">
+<button type="submit" class="account-btn">Edit</button>
+<button type="submit" class="account-btn">Save</button>
+</div>
+</div>
+</form>
 </div>
 </div>
 </div>
 </div>
 </section>
-
-
-
+ 
+ 
 <div class="copyright-text text-center">
-<p><a target="_blank" href="https://sc.chinaz.com/moban/"></a></p>
+<p> <a target="_blank" href="https://sc.chinaz.com/moban/"> </a></p>
 </div>
 
 

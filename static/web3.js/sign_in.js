@@ -1,6 +1,7 @@
 function Login(){
     var Account=$("#Account").val();
     var Password=$("#password").val();
+    var in_up = document.querySelector("#in_up");
     // console.log(Sid,Password)
     $.ajax({
         method:"post",
@@ -18,6 +19,7 @@ function Login(){
                     timer: 10000,
                     showConfirmButton: false
                 });
+                in_up.style.display = none
                 // swal("Good!", "登陆成功", "success");
             }
             if (data.data==2){

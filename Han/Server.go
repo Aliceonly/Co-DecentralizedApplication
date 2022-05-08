@@ -82,6 +82,14 @@ func user_Handler(c *gin.Context) {
 	c.HTML(200, "account.html", nil) //成功发布
 }
 
+func resume_Handler(c *gin.Context) {
+	c.HTML(200, "resume.html", nil) //成功发布
+}
+
+func change_user_Handler(c *gin.Context) {
+	c.HTML(200, "change_user.html", nil) //成功发布
+}
+
 func Start() error {
 	// 创建一个默认的路由引擎
 	r := gin.Default()
@@ -116,6 +124,8 @@ func Start() error {
 	r.GET("/delete_succ", delete_succ)
 	r.GET("/create_succ", create_succ)
 	r.GET("/account", user_Handler)
+	r.GET("/resume", resume_Handler)
+	r.GET("/change_user", change_user_Handler)
 
 	// 启动HTTP服务，默认在0.0.0.0:8080启动服务
 
