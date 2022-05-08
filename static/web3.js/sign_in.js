@@ -1,3 +1,4 @@
+var Global_Account;
 function Login(){
     var Account=$("#Account").val();
     var Password=$("#password").val();
@@ -10,6 +11,8 @@ function Login(){
         success: function (data) {
             console.log(data)
             if (data.data==1){
+                window.sessionStorage.setItem("Global_Account",Account);
+                // Global_Account = Account
                 console.log("success login");
                 swal({
                     title: "登录成功",

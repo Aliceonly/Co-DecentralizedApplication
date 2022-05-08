@@ -126,6 +126,10 @@ type User struct {
 	Telephone string
 	Passwd    string
 	Account   string
+	Sname     string
+	Sage      string
+	Major     string
+	Grade     string
 }
 
 func Selectaccept(add string) []accepttasklist {
@@ -236,4 +240,21 @@ func Login(Account string) string {
 	}
 	// fmt.Println("user============>>>>>>>>>>>>>>>>>>>>>>>>>>>>", user)
 	return pd
+}
+
+//查询用户信息
+func Query_User(Account string) User {
+	var user User
+	err := Db.QueryRow("SELECT Sid,Telephone,Passwd,Account,IFNULL(Sname,'未填写'),IFNULL(Sage,'未填写'),IFNULL(Major,'未填写'),IFNULL(grade,'未填写')  FROM USER WHERE Account = ?", Account).Scan(&user.Sid, &user.Telephone, &user.Passwd, &user.Account, &user.Sname, &user.Sage, &user.Major, &user.Grade)
+
+	if err != nil {
+		fmt.Println("查询用户信息====>>>>>>>>>>>>>>", err)
+	}
+	fmt.Println("task=====================>>>>>>>>>>>>>>>>>>>>>>>>>>>>", user)
+	return user
+}
+
+func Update_User(Account string, Sid int, Sname string, Sage string, Telephone string, Major string, Grade string) {
+	var sql = "UPDATE User SET Sid = ?,Sname = ?,Sage = ?,Telephone = ?,Major = ?,Grade = ? WHERE Account = ?"
+	Db.Exec(sql, Sid, Sname, Sage, Telephone, Major, Grade, Account)
 }

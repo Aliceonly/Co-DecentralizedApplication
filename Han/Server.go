@@ -143,6 +143,8 @@ func Start() error {
 		dapp.POST("/deleteData", DeleteData) //删除任务接口
 		dapp.POST("/creatUser", CreateUser)
 		dapp.POST("/login", Login)
+		dapp.POST("/user_info", User_info)
+		dapp.POST("/change_user_info", Change_user_info)
 	}
 
 	err := r.Run()

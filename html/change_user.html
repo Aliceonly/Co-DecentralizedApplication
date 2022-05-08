@@ -25,6 +25,8 @@
 
 <link rel="stylesheet" href="static/css/responsive.css">
 
+<link rel="stylesheet" href="../static/css/sweetalert.css">
+
 <title>Jovie - Job Board & Portal HTML Template</title>
 
 </head>
@@ -141,6 +143,25 @@
         </div>
         </div>
 
+        <section style="padding-bottom: 30px;" class="page-title title-bg12">
+            <div style="position: relative;top: -50px;" class="d-table">
+                <div class="d-table-cell">
+                    <h2>修改信息</h2>
+                    <ul>
+                        <li>
+                            <a href="/">首页</a>
+                        </li>
+                        <li>修改信息</li>
+                    </ul>
+                </div>
+            </div>
+            <div   class="lines">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </section>
+
 <section class="account-section ptb-100">
 <div class="container">
 <div class="row">
@@ -148,58 +169,56 @@
 <div class="account-information">
 <div style="position: relative;top: 15px;" class="profile-thumb">
 <img src="static/picture/account.jpg" alt="account holder image">
-<h3>0x00</h3>
-<!-- <p>Web Developer</p> -->
+<h6 id="Account"></h6>
 </div>
 </div>
 </div>
 <div class="col-md-8">
 <div class="account-details">
 <h3>基本信息</h3>
-<form class="basic-info">
+<!-- <form class="basic-info"> -->
 <div class="row">
 <div class="col-md-6">
 <div class="form-group">
  <label>学号</label>
-<input type="text" class="form-control" id="name" placeholder="Your Name">
+<input type="number" class="form-control" id="Sid">
 </div>
 </div>
 <div class="col-md-6">
 <div class="form-group">
 <label>昵称</label>
-<input type="email" class="form-control" placeholder="Your Email">
+<input type="text" class="form-control"  id="Sname">
 </div>
 </div>
 <div class="col-md-6">
 <div class="form-group">
 <label>年龄</label>
-<input type="number" class="form-control" placeholder="Your Phone">
+<input type="text" class="form-control" id="Sage" >
 </div>
 </div>
 <div class="col-md-6">
 <div class="form-group">
 <label>电话号码</label>
-<input type="text" class="form-control" placeholder="Job Title">
+<input type="text" class="form-control" id="Tele">
 </div>
 </div>
 <div class="col-md-6">
 <div class="form-group">
 <label>专业</label>
-<input type="text" class="form-control" placeholder="Job Title">
+<input type="text" class="form-control" id="Major">
 </div>
 </div>
 <div class="col-md-6">
 <div class="form-group">
 <label>年级</label>
-<input type="text" class="form-control" placeholder="Job Title">
+<input type="text" class="form-control" id="Grade">
 </div>
 </div>
 <div class="col-md-12">
-<button type="submit" class="account-btn">Edit</button>
-<button type="submit" class="account-btn">Save</button>
+<button onclick="change_user_info()" class="account-btn">提交</button>
 </div>
 </div>
-</form>
+<!-- </form> -->
 </div>
 </div>
 </div>
@@ -217,23 +236,27 @@
 </div>
 
 
-<script data-cfasync="false" src="static/js/email-decode.min.js"></script><script src="static/js/jquery.min.js"></script>
-<script src="static/js/bootstrap.bundle.min.js"></script>
+<script data-cfasync="false" src="../static/js/email-decode.min.js"></script><script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/bootstrap.bundle.min.js"></script>
 
-<script src="static/js/owl.carousel.min.js"></script>
+<script src="../static/js/owl.carousel.min.js"></script>
 
-<script src="static/js/jquery.nice-select.min.js"></script>
+<script src="../static/js/jquery.nice-select.min.js"></script>
 
-<script src="static/js/jquery.magnific-popup.min.js"></script>
+<script src="../static/js/jquery.magnific-popup.min.js"></script>
 
-<script src="static/js/jquery.ajaxchimp.min.js"></script>
+<script src="../static/js/jquery.ajaxchimp.min.js"></script>
 
-<script src="static/js/form-validator.min.js"></script>
+<script src="../static/js/form-validator.min.js"></script>
 
-<script src="static/js/contact-form-script.js"></script>
+<script src="../static/js/contact-form-script.js"></script>
 
-<script src="static/js/meanmenu.js"></script>
+<script src="../static/js/meanmenu.js"></script>
 
-<script src="static/js/custom.js"></script>
+<script src="../static/js/custom.js"></script>
+
+<script src="../static/web3.js/change_user.js"></script>
+
+<script src="../static/js/sweetalert.min.js"></script>
 </body>
 </html>
