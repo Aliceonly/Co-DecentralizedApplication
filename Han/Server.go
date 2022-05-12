@@ -94,6 +94,10 @@ func Self_Order_Handler(c *gin.Context) {
 	c.HTML(200, "Self_Order.html", nil) //成功发布
 }
 
+func self_order_accept_Handler(c *gin.Context) {
+	c.HTML(200, "self_order_accept.html", nil) //成功发布
+}
+
 func Start() error {
 	// 创建一个默认的路由引擎
 	r := gin.Default()
@@ -131,6 +135,7 @@ func Start() error {
 	r.GET("/resume", resume_Handler)
 	r.GET("/change_user", change_user_Handler)
 	r.GET("/self_order", Self_Order_Handler)
+	r.GET("/self_order_accept", self_order_accept_Handler)
 
 	// 启动HTTP服务，默认在0.0.0.0:8080启动服务
 
@@ -150,6 +155,7 @@ func Start() error {
 		dapp.POST("/login", Login)
 		dapp.POST("/user_info", User_info)
 		dapp.POST("/change_user_info", Change_user_info)
+		dapp.POST("/Self_Order_show", Self_Order_show)
 	}
 
 	err := r.Run()

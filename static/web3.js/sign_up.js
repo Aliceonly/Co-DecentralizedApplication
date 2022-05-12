@@ -2,15 +2,30 @@ function create_user(){
     var Sid=$("#Sid").val();
     var Telephone=$("#Telephone").val();
     var Password=$("#password").val();
-    var phonelength = $("#Telephone").val().length;
+    // var phonelength = $("#Telephone").val().length;
     reg = /^1(3\d|4\d|5\d|6\d|7\d|8\d|9\d)\d{8}$/g 
     var result = reg.test(Telephone);
     if(result == false){
-        alert("请输入正确的手机号码！")
+        swal("Sorry!", "请输入正确的手机号码！", "error");
+        // alert("请输入正确的手机号码！")
     }
     if (Telephone == "") {
-        alert("请输入手机号码！");
-        return false;
+        swal("Sorry!", "手机号码为空，请重试！", "error");
+        // alert("请输入手机号码！");
+        // return false;
+    } 
+    if (Sid == "") {
+        swal("Sorry!", "学号为空，请重试！", "error");
+        // alert("请输入学号！");
+        // return false;
+    } 
+    if (Password == "") {
+        swal("Sorry!", "密码为空，请重试！", "error");
+        // alert("请输入密码！");
+        // return false;
+    } 
+    if (Password == ""&&Sid == ""&&Telephone == "") {
+        swal("Sorry!", "输入为空，请重试！", "error");
     }
     console.log(Sid,Telephone,Password)
     $.ajax({

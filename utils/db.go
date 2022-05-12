@@ -267,3 +267,15 @@ func Update_User(Account string, Sid int, Sname string, Sage string, Telephone s
 	}
 	// fmt.Println(err)
 }
+
+func Self_Order_show(Account string) Tasklist {
+	var serach_task Tasklist
+	err := Db.QueryRow("SELECT * FROM tasklist WHERE Sponsor = ?", Account).Scan(&serach_task.Taskid, &serach_task.Taskname, &serach_task.Add, &serach_task.Beneficiary, &serach_task.Category, &serach_task.Amount, &serach_task.Timestamp, &serach_task.State, &serach_task.LaunchTime, &serach_task.Block)
+	if err != nil {
+		fmt.Println("信息详情展示出错了")
+		fmt.Println("展示错误是====>>>>>>>>>>>>>>", err)
+	}
+	fmt.Println("task=====================>>>>>>>>>>>>>>>>>>>>>>>>>>>>", serach_task)
+	return serach_task
+
+}
