@@ -1,5 +1,5 @@
 data = JSON.parse(sessionStorage.getItem('QueryUser'));
-console.log(data.data);
+console.log(data);
 console.log(data.Grade);
 console.log(data.Account);
 document.getElementById("Account").innerHTML = data.Account;

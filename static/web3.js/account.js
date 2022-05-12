@@ -7,7 +7,8 @@ function resume() {
         data: { Account: Account},
         success: function (data) {
             sessionStorage.setItem('QueryUser',JSON.stringify(data.data))
-            console.log(data.data.Sid)
+            console.log(data.data)
+            window.location.href="/resume"
         },
         error: function (data) {
             console.log("error====>", error)

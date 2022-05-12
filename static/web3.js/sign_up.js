@@ -4,16 +4,12 @@ function create_user(){
     var Password=$("#password").val();
     var phonelength = $("#Telephone").val().length;
     reg = /^1(3\d|4\d|5\d|6\d|7\d|8\d|9\d)\d{8}$/g 
-    var result = reg.test(phone);
+    var result = reg.test(Telephone);
     if(result == false){
         alert("请输入正确的手机号码！")
     }
     if (Telephone == "") {
         alert("请输入手机号码！");
-        return false;
-    }
-    if (phonelength != 11) {
-        alert("请输入正确的手机号码！");
         return false;
     }
     console.log(Sid,Telephone,Password)
