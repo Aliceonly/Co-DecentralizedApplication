@@ -91,7 +91,7 @@ func change_user_Handler(c *gin.Context) {
 }
 
 func Self_Order_Handler(c *gin.Context) {
-	c.HTML(200, "self_order.html", nil) //成功发布
+	c.HTML(200, "Self_Order.html", nil) //成功发布
 }
 
 func Start() error {
