@@ -2,7 +2,7 @@ var Global_Account;
 function Login(){
     var Account=$("#Account").val();
     var Password=$("#password").val();
-    var in_up = document.querySelector("#in_up");
+    var sign_in_up = document.querySelector("#sign_in_up");
     // console.log(Sid,Password)
     $.ajax({
         method:"post",

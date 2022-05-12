@@ -32,7 +32,7 @@ var (
 	//本地账户密码
 	password = "1"
 	//合约地址
-	contractadress = "0x4aF6039De71808D48CdAE99AA555f39710d0F918"
+	contractadress = "0x284f1919AD37287e272060C8Bac46DcD7C7Fa1F2"
 	//读取用户keystore文件地址
 	relativePath = "E://Test_block//data//keystore"
 	//本地链chainID交易:修改为本地的chainID
@@ -419,6 +419,7 @@ func Changeuser(ad string, pw string) {
 	fmt.Println(".....", matches2)
 	privatekeyfile = relativePath + "//" + matches2[0]
 	password = pw
+	fmt.Println("privatekeyfile and pw:", privatekeyfile, pw)
 	// matches2 = nil
 }
 
@@ -435,7 +436,7 @@ func Get() (string, string) {
 func cancellation(ad string) {
 	var FileInfo []os.FileInfo
 	var err error
-	relativePath := "D://y//geth//node1//nodedata//keystore"
+	relativePath := "E://Test_block//data//keystore"
 
 	if FileInfo, err = ioutil.ReadDir(relativePath); err != nil {
 		fmt.Println("读取 keystore 文件夹出错")
