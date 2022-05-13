@@ -6,6 +6,10 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+func sign_in_2_Handler(c *gin.Context) {
+	// c.HTML(200, "sign-in.html", nil) //登录
+	c.HTML(200, "sign-in_2.html", nil)
+}
 func sign_in_Handler(c *gin.Context) {
 	// c.HTML(200, "sign-in.html", nil) //登录
 	c.HTML(200, "sign-in.html", nil)
@@ -136,6 +140,8 @@ func Start() error {
 	r.GET("/change_user", change_user_Handler)
 	r.GET("/self_order", Self_Order_Handler)
 	r.GET("/self_order_accept", self_order_accept_Handler)
+	r.GET("/succ_login", Succ_Login)
+	r.GET("/sign_in_2_Handler", sign_in_2_Handler)
 
 	// 启动HTTP服务，默认在0.0.0.0:8080启动服务
 

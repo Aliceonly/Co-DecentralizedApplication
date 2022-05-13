@@ -28,9 +28,9 @@ var (
 	//本地geth地址
 	adress = "http://localhost:8545"
 	//本地账户地址
-	privatekeyfile = "E://Test_block//data//keystore//UTC--2022-05-10T02-53-06.229312100Z--cb687506a7f331bfcff5d780483f91f81c71f3ab"
+	privatekeyfile = ""
 	//本地账户密码
-	password = "1"
+	password = ""
 	//合约地址
 	contractadress = "0x284f1919AD37287e272060C8Bac46DcD7C7Fa1F2"
 	//读取用户keystore文件地址
