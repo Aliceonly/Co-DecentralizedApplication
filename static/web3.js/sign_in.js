@@ -15,7 +15,7 @@
                 console.log("success login");
                 swal({
                     title: "登录成功",
-                    text: '<span style="color:red">点击</span><a style="color:#3b3bf4" href="/account">此页面</a><span style="color:red">留在该页面！</span><br/>否则5秒后将自动关闭。',
+                    text: '<span style="color:red">点击</span><a style="color:#3b3bf4" href="/account">此页面</a><span style="color:red">留在该页面！</span><br/>否则5秒后将自动跳转。',
                     imageUrl: "../static/image/check.png",
                     html: true,
                     timer: 10000,
