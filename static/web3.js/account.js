@@ -16,3 +16,7 @@ function resume() {
         }
     })
 }
+
+function exit_login(){
+    console.log("exit");
+}

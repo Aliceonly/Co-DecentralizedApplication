@@ -1,3 +1,30 @@
+function info_login() {
+    var
+        closeInSeconds = 5,
+        displayText = ' #1 秒后将自动跳转登录页面',
+        timer;
+
+    swal({
+        title: "请进行登录!",
+        text: displayText.replace(/#1/, closeInSeconds),
+        imageUrl: "../static/image/info1.png",
+        timer: closeInSeconds * 1000,
+        showCancelButton: true,
+    }, function () {
+            window.location.href = "/account"
+        }
+    );
+
+    timer = setInterval(function () {
+        closeInSeconds--;
+        if (closeInSeconds < 0) {
+            clearInterval(timer);
+        }
+
+        $('.sweet-alert > p').text(displayText.replace(/#1/, closeInSeconds));
+
+    }, 1000);
+}
 var sign_in_up = document.querySelector("#sign_in_up");
 var self_info = document.querySelector("#self_info");
 $.ajax({
@@ -7,6 +34,7 @@ $.ajax({
         if(data.data == ""){
             console.log("未登录",data.data)
             self_info.style.display = "none";
+            info_login()
         }else{
             console.log("已登录",data.data)
             sign_in_up.style.display = "none";

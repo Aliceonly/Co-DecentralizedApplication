@@ -36,7 +36,7 @@ function create_user(){
             // swal("注册成功!", "您的账户是: " + data.data, "success");
             swal({
                 title: "注册成功",
-                text: '您的账户是：<span style="color:red">'+ data.data +'</span><br/><span style="color:red">请务必记住，一旦丢失无法找回<span><br/><a style="color:#3b3bf4" href="/sign_in">点击进行登录</a><br/>10秒后自动关闭。',
+                text: '<span>您的账户是：</span><br/><span style="color:red">'+ data.data +'</span><br/><span style="color:red">请务必记住，一旦丢失无法找回<span><br/><a style="color:#3b3bf4" href="/sign_in">点击进行登录</a><br/>10秒后自动关闭。',
                 imageUrl: "../static/image/check.png",
                 html: true,
                 timer: 10000,

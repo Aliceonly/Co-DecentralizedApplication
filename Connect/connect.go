@@ -34,9 +34,9 @@ var (
 	//合约地址
 	contractadress = "0x88Ecb2BebF50111D696e7Dd2Cac439B445A0B883"
 	//读取用户keystore文件地址
-	relativePath = "D://GethPOA//node1//data//keystore"
+	relativePath = "E://Test_block//data//keystore"
 	//本地链chainID交易:修改为本地的chainID
-	chainID = 99998888
+	chainID = 987667899876
 )
 
 var client *ethclient.Client
