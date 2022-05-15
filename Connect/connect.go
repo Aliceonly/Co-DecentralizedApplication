@@ -31,13 +31,15 @@ var (
 	//本地geth地址
 	adress = "http://localhost:8545"
 	//本地账户地址
-	privatekeyfile = "D://y//geth//node1//nodedata//keystore//UTC--2021-09-12T17-06-06.881126000Z--00dc6e8b60fa02a5d83e525bbef3240e8ea54dc5"
+	privatekeyfile = ""
 	//本地账户密码
-	password = "1111"
+	password = ""
 	//合约地址
-	contractadress = "0x0CeBd3adec0C45977DDD92d7a7Cd66B46f0b6DEA"
+	contractadress = "0x88Ecb2BebF50111D696e7Dd2Cac439B445A0B883"
 	//读取用户keystore文件地址
-	relativePath = "D://y//geth//node1//nodedata//keystore"
+	relativePath = "E://Test_block//data//keystore"
+	//本地链chainID交易:修改为本地的chainID
+	chainID = 987667899876
 )
 
 var client *ethclient.Client
@@ -113,18 +115,19 @@ func GetBlockNumber() (*types.Header, error) {
 	//fmt.Println(header)
 	return header, err
 }
+
 //获取区块的详细信息
-func Getblockmessage(){
+func Getblockmessage() {
 	blockNumber := big.NewInt(10001)
 	block, err := client.BlockByNumber(context.Background(), blockNumber)
 	if err != nil {
-	 log.Fatal(err)
+		log.Fatal(err)
 	}
 	fmt.Println(block.Number().Uint64()) // 5671744
 	// fmt.Println(block.Time().Uint64()) // 1527211625
 	fmt.Println(block.Difficulty().Uint64()) // 3217000136609065
-	fmt.Println(block.Hash().Hex()) // 0x9e8751ebb5069389b855bba72d94902cc38504266149
-	fmt.Println(len(block.Transactions())) // 144个交易记录
+	fmt.Println(block.Hash().Hex())          // 0x9e8751ebb5069389b855bba72d94902cc38504266149
+	fmt.Println(len(block.Transactions()))   // 144个交易记录
 }
 // func getBlockTransactionCountByNumber(client *rpc.Client,j string)() {
 // 	err:=client.Call(&BlockTransactionCountByNumber,"eth_getBlockTransactionCountByNumber",j)
@@ -139,7 +142,7 @@ func Getblockmessage(){
 
 //设置TransactOpts
 func setopts(privateKey *ecdsa.PrivateKey, address common.Address) *bind.TransactOpts {
-	auth, err := bind.NewKeyedTransactorWithChainID(privateKey, big.NewInt(10001))
+	auth, err := bind.NewKeyedTransactorWithChainID(privateKey, big.NewInt(int64(chainID)))
 	if err != nil {
 		panic(err)
 	}
@@ -431,6 +434,7 @@ func Changeuser(ad string, pw string) {
 	fmt.Println(".....", matches2)
 	privatekeyfile = relativePath + "//" + matches2[0]
 	password = pw
+	fmt.Println("privatekeyfile and pw:", privatekeyfile, pw)
 	// matches2 = nil
 }
 
@@ -447,7 +451,7 @@ func Get() (string, string) {
 func cancellation(ad string) {
 	var FileInfo []os.FileInfo
 	var err error
-	relativePath := "D://y//geth//node1//nodedata//keystore"
+	relativePath := "E://Test_block//data//keystore"
 
 	if FileInfo, err = ioutil.ReadDir(relativePath); err != nil {
 		fmt.Println("读取 keystore 文件夹出错")

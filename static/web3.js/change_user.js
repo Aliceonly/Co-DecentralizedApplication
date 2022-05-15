@@ -56,7 +56,7 @@ function change_user_info() {
                 // swal("Good!", "修改成功", "success");
                 swal({
                     title: "修改成功",
-                    text: '<span style="color:red">点击</span><a style="color:#3b3bf4" href="/account">我的</a><span style="color:red">去查看个人信息吧！</span><br/>5秒后自动关闭。',
+                    text: '<span style="color:red">点击</span><a style="color:#3b3bf4" href="/change_user">此页面</a><span style="color:red">留在该页面中！</span><br/>否则10秒后将自动跳转到我的页面。',
                     imageUrl: "../static/image/check.png",
                     html: true,
                     timer: 10000,

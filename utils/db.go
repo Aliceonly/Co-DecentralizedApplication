@@ -16,7 +16,7 @@ var (
 )
 
 func init() {
-	Db, err = sql.Open("mysql", "root:121@tcp(localhost:3306)/test?parseTime=true&charset=utf8")
+	Db, err = sql.Open("mysql", "root:123456@tcp(localhost:3306)/test?parseTime=true&charset=utf8")
 	if err != nil {
 		panic(err.Error())
 	}
@@ -53,7 +53,7 @@ func Insert(taskname string,
 	}
 	fmt.Println(maxid)
 	var sqlStr = `INSERT INTO tasklist (Taskid,Taskname,Beneficiary,Sponsor,Category,Amount,Timestamp,State,LaunchTime,block) VALUES (?,?,?,?,?,?,?,?,?,?)`
-	_, err = Db.Exec(sqlStr, maxid+1, taskname, "0xxx000", add, category, amount, timestamp.String(), state, launchTime,block)
+	_, err = Db.Exec(sqlStr, maxid+1, taskname, "0xxx000", add, category, amount, timestamp.String(), state, launchTime, block)
 	if err != nil {
 		return err
 	}
@@ -211,10 +211,10 @@ func DeletTask(timestamp int) {
 		}
 	}
 	var sqlStr = "DELETE FROM tasklist WHERE tasklist.`Timestamp`=?"
-	_,err =Db.Exec(sqlStr, timestamp)
+	_, err = Db.Exec(sqlStr, timestamp)
 	if err != nil {
 		// print(err)
-		fmt.Print("delete err---->",err)
+		fmt.Print("delete err---->", err)
 	}
 	Updateid(a)
 	fmt.Print("删除任务成功")
@@ -261,9 +261,30 @@ func Query_User(Account string) User {
 
 func Update_User(Account string, Sid int, Sname string, Sage string, Telephone string, Major string, Grade string) {
 	var sql = "UPDATE User SET Sid = ?,Sname = ?,Sage = ?,Telephone = ?,Major = ?,Grade = ? WHERE Account = ?"
-	_,err:=Db.Exec(sql, Sid, Sname, Sage, Telephone, Major, Grade, Account)
-	if err!=nil {
+	_, err := Db.Exec(sql, Sid, Sname, Sage, Telephone, Major, Grade, Account)
+	if err != nil {
 		panic(err)
 	}
 	// fmt.Println(err)
+}
+
+func Self_Order_show(Account string) []Tasklist {
+	var serach_task []Tasklist
+	sql_serach_task := "SELECT * FROM tasklist WHERE Sponsor = ?"
+	rows, err := Db.Query(sql_serach_task, Account)
+	if err != nil {
+		fmt.Println("查询个人订单出错了", err)
+	}
+	fmt.Println("rows------------------------------------===", rows)
+	for rows.Next() {
+		var t Tasklist
+		err := rows.Scan(&t.Taskid, &t.Taskname, &t.Add, &t.Beneficiary, &t.Category, &t.Amount, &t.Timestamp, &t.State, &t.LaunchTime, &t.Block)
+		if err != nil {
+			fmt.Println("tasklist error================================>>>>>>>>>", err)
+			return nil
+		}
+		serach_task = append(serach_task, t)
+	}
+	return serach_task
+
 }

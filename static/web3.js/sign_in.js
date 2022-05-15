@@ -1,8 +1,32 @@
-var Global_Account;
+function demo7() {
+    var
+        closeInSeconds = 5,
+        displayText = ' #1 秒后将自动跳转首页，点击取消即可留下',
+        timer;
+    swal({
+        title: "登陆成功!",
+        text: displayText.replace(/#1/, closeInSeconds),
+        imageUrl: "../static/image/check.png",
+        timer: closeInSeconds * 1000,
+        showCancelButton: true,
+    }, function () {
+            window.location.href = "/account"
+        }
+    );
+    timer = setInterval(function () {
+        closeInSeconds--;
+        if (closeInSeconds < 0) {
+            clearInterval(timer);
+        }
+                
+        $('.sweet-alert > p').text(displayText.replace(/#1/, closeInSeconds));
+                
+    }, 1000);
+}
 function Login(){
     var Account=$("#Account").val();
     var Password=$("#password").val();
-    var in_up = document.querySelector("#in_up");
+    var sign_in_up = document.querySelector("#sign_in_up");
     // console.log(Sid,Password)
     $.ajax({
         method:"post",
@@ -14,15 +38,16 @@ function Login(){
                 window.sessionStorage.setItem("Global_Account",Account);
                 // Global_Account = Account
                 console.log("success login");
-                swal({
-                    title: "登录成功",
-                    text: '<span style="color:red">点击</span><a style="color:#3b3bf4" href="/account">我的</a><span style="color:red">去添加更多的信息吧！</span><br/>5秒后自动关闭。',
-                    imageUrl: "../static/image/check.png",
-                    html: true,
-                    timer: 10000,
-                    showConfirmButton: false
-                });
-                // in_up.style.display = none
+                demo7()
+                // swal({
+                    // title: "登录成功",
+                    // text: '<span style="color:red">点击</span><a style="color:#3b3bf4" href="/account">此页面</a><span style="color:red">留在该页面！</span><br/>否则5秒后将自动跳转。',
+                    // imageUrl: "../static/image/check.png",
+                    // html: true,
+                    // timer: 10000,
+                    // showConfirmButton: false
+                // });
+                 
                 // swal("Good!", "登陆成功", "success");
             }
             if (data.data==2){
