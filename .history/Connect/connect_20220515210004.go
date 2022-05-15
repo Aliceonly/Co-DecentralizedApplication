@@ -8,15 +8,12 @@ import (
 	"io/ioutil"
 	"log"
 	"math/big"
-	"unsafe"
 
-	// "strconv"
+	// "github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/accounts/keystore"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/ethereum/go-ethereum/rpc"
 
@@ -126,16 +123,16 @@ func Getblockmessage(){
 	fmt.Println(block.Hash().Hex()) // 0x9e8751ebb5069389b855bba72d94902cc38504266149
 	fmt.Println(len(block.Transactions())) // 144个交易记录
 }
-// func getBlockTransactionCountByNumber(client *rpc.Client,j string)() {
-// 	err:=client.Call(&BlockTransactionCountByNumber,"eth_getBlockTransactionCountByNumber",j)
-// 	if err!=nil{
-// 		fmt.Println("错误:",err)
-// 	}
-// 	heights, _ := strconv.ParseUint(j[2:],16,32)
-// 	BlockTransactionCountByNumbers, _ := strconv.ParseUint(BlockTransactionCountByNumber[2:],16,32)
-// 	fmt.Println("当前块:",heights,"当前块交易数量:",BlockTransactionCountByNumbers)
-// 	GetBlockByNumber(client,j)
-// }
+func getBlockTransactionCountByNumber(client *rpc.Client,j string)() {
+	err:=client.Call(&BlockTransactionCountByNumber,"eth_getBlockTransactionCountByNumber",j)
+	if err!=nil{
+		fmt.Println("错误:",err)
+	}
+	heights, _ := strconv.ParseUint(j[2:],16,32)
+	BlockTransactionCountByNumbers, _ := strconv.ParseUint(BlockTransactionCountByNumber[2:],16,32)
+	fmt.Println("当前块:",heights,"当前块交易数量:",BlockTransactionCountByNumbers)
+	GetBlockByNumber(client,j)
+}
 
 //设置TransactOpts
 func setopts(privateKey *ecdsa.PrivateKey, address common.Address) *bind.TransactOpts {
@@ -335,17 +332,15 @@ func Gettaskhash(ins *contract.TaskDeployerContract, address common.Address, hea
 	return hash
 }
 
-//获取发布任务的用户对当前任务的确认签名
-func GetthistaskSign(PrivateKey *ecdsa.PrivateKey,hash [32]byte) string{
-    hash1:=*(*[]byte)(unsafe.Pointer(&hash))
-	signature, err := crypto.Sign(hash1, PrivateKey)
-			if err != nil {
-				log.Fatal(err)
-			}
-    a:=hexutil.Encode(signature)
-   fmt.Println(hexutil.Encode(signature))
-   return a
-}
+// //获取发布任务的用户对当前任务的确认签名
+// func GetthistaskSign(PrivateKey *ecdsa.PrivateKey,hash [32]byte){
+// 	signature, err := crypto.Sign(hash, PrivateKey)
+// 			if err != nil {
+// 				log.Fatal(err)
+// 			}
+
+// fmt.Println(hexutil.Encode(signature))
+// }
 
 /*
 创建用户信息

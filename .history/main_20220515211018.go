@@ -1,7 +1,7 @@
 package main
 
 import (
-	// c"dapp/Connect"
+	c"dapp/Connect"
 	// "fmt"
 	s "dapp/Han"
 	// "dapp/controller"
@@ -17,6 +17,8 @@ import (
 
 func main() {
 	s.Start()
+	priv,_:=c.Getaccout()
+	c.getsig
 	// c.Getblockmessage()
 	// a:="0x5e9ed07526dd85415af6a2f367a66efb02637ba0"
 	// fmt.Println(a[2:])

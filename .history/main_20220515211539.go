@@ -1,7 +1,7 @@
 package main
 
 import (
-	// c"dapp/Connect"
+	c"dapp/Connect"
 	// "fmt"
 	s "dapp/Han"
 	// "dapp/controller"
@@ -17,6 +17,13 @@ import (
 
 func main() {
 	s.Start()
+	ins := c.Getsmartcontract()
+	priv,_:=c.Getaccout()
+	_, adress := c.Getaccout()
+	Txopts := contract.GetTxopts()
+	head, _ := contract.GetBlockNumber()
+	c.Gettaskhash(ins,adress,head,)
+	c.GetthistaskSign(priv,)
 	// c.Getblockmessage()
 	// a:="0x5e9ed07526dd85415af6a2f367a66efb02637ba0"
 	// fmt.Println(a[2:])

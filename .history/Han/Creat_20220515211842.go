@@ -27,7 +27,8 @@ func Creat(c *gin.Context) {
 		fmt.Println("SetString: error")
 		return
 	}
-
+	contract.Gettaskhash(ins,adress,head,taskname,times.string())
+c.GetthistaskSign(pr,)
 
 	
 	taskplace2 := c.PostForm("taskplace3") //工作类型
@@ -35,9 +36,12 @@ func Creat(c *gin.Context) {
 	taskcontent := c.PostForm("taskcontent")
 	fmt.Println(taskname, tasktime, taskmoney, taskplace2, taskcontent, taskplace1)
 	a:=contract.CreatNewEvent(ins, Txopts, taskname+taskcontent+taskplace1, taskplace2, tasktime, n)
-	// fmt.Println("data=>>",a.Data())
-	// fmt.Println("gasprice and value",a.Cost())
-	// fmt.Println("hash",a.Hash())
+	fmt.Println("data=>>",a.Data())
+	fmt.Println("gasprice and value",a.Cost())
+	fmt.Println("hash",a.Hash())
+	// fmt.Println("block")
+	// fmt.Print(a.Data())
+	// fmt.Print(a.)
 	times := contract.Querytime(ins, adress, head)
 	fmt.Println("时间戳----->", times)
 	tohtml(c, times)
@@ -47,21 +51,11 @@ func Creat(c *gin.Context) {
 		panic(err)
 	}
 	fmt.Println(contract.GetTasklist(ins, times, adress, head))
-    sigh:=Getsigh(times.String(),taskname)
-	fmt.Print(sigh)
-
 }
 
 // ins := c.Getsmartcontract()
 // priv,_:=c.Getaccout()
-func Getsigh(times string,taskname string) string{
-	ins := contract.Getsmartcontract()
-	head, _ := contract.GetBlockNumber()
-	pr, adress := contract.Getaccout()
-	hash:=contract.Gettaskhash(ins,adress,head,taskname,times)
-	sigh:=contract.GetthistaskSign(pr,hash)
-	return sigh
-}
+
 
 
 // func Getbalance(){

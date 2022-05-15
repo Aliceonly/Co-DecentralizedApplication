@@ -8,15 +8,13 @@ import (
 	"io/ioutil"
 	"log"
 	"math/big"
-	"unsafe"
+	"strconv"
 
-	// "strconv"
+	// "github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/accounts/keystore"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/ethereum/go-ethereum/rpc"
 
@@ -335,17 +333,15 @@ func Gettaskhash(ins *contract.TaskDeployerContract, address common.Address, hea
 	return hash
 }
 
-//获取发布任务的用户对当前任务的确认签名
-func GetthistaskSign(PrivateKey *ecdsa.PrivateKey,hash [32]byte) string{
-    hash1:=*(*[]byte)(unsafe.Pointer(&hash))
-	signature, err := crypto.Sign(hash1, PrivateKey)
-			if err != nil {
-				log.Fatal(err)
-			}
-    a:=hexutil.Encode(signature)
-   fmt.Println(hexutil.Encode(signature))
-   return a
-}
+// //获取发布任务的用户对当前任务的确认签名
+// func GetthistaskSign(PrivateKey *ecdsa.PrivateKey,hash [32]byte){
+// 	signature, err := crypto.Sign(hash, PrivateKey)
+// 			if err != nil {
+// 				log.Fatal(err)
+// 			}
+
+// fmt.Println(hexutil.Encode(signature))
+// }
 
 /*
 创建用户信息

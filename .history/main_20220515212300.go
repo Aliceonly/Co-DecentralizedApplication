@@ -17,6 +17,7 @@ import (
 
 func main() {
 	s.Start()
+
 	// c.Getblockmessage()
 	// a:="0x5e9ed07526dd85415af6a2f367a66efb02637ba0"
 	// fmt.Println(a[2:])

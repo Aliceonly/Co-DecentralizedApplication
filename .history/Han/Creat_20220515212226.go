@@ -48,7 +48,7 @@ func Creat(c *gin.Context) {
 	}
 	fmt.Println(contract.GetTasklist(ins, times, adress, head))
     sigh:=Getsigh(times.String(),taskname)
-	fmt.Print(sigh)
+	print()
 
 }
 

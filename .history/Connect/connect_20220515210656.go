@@ -336,15 +336,14 @@ func Gettaskhash(ins *contract.TaskDeployerContract, address common.Address, hea
 }
 
 //获取发布任务的用户对当前任务的确认签名
-func GetthistaskSign(PrivateKey *ecdsa.PrivateKey,hash [32]byte) string{
+func GetthistaskSign(PrivateKey *ecdsa.PrivateKey,hash [32]byte) []bytetsign{
     hash1:=*(*[]byte)(unsafe.Pointer(&hash))
 	signature, err := crypto.Sign(hash1, PrivateKey)
 			if err != nil {
 				log.Fatal(err)
 			}
-    a:=hexutil.Encode(signature)
+  
    fmt.Println(hexutil.Encode(signature))
-   return a
 }
 
 /*

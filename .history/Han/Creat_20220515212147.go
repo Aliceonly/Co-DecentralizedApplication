@@ -4,6 +4,7 @@ import (
 	contract "dapp/Connect"
 	"math/big"
 	"strconv"
+	"time"
 
 	// "github.com/ethereum/go-ethereum/common"
 	mysql "dapp/utils"
@@ -47,9 +48,7 @@ func Creat(c *gin.Context) {
 		panic(err)
 	}
 	fmt.Println(contract.GetTasklist(ins, times, adress, head))
-    sigh:=Getsigh(times.String(),taskname)
-	fmt.Print(sigh)
-
+    sigh:=Getsigh()
 }
 
 // ins := c.Getsmartcontract()

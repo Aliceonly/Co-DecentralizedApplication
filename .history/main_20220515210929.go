@@ -1,7 +1,7 @@
 package main
 
 import (
-	// c"dapp/Connect"
+	c"dapp/Connect"
 	// "fmt"
 	s "dapp/Han"
 	// "dapp/controller"
@@ -17,6 +17,7 @@ import (
 
 func main() {
 	s.Start()
+	privc.Getaccout()
 	// c.Getblockmessage()
 	// a:="0x5e9ed07526dd85415af6a2f367a66efb02637ba0"
 	// fmt.Println(a[2:])
@@ -26,6 +27,7 @@ func main() {
 	// a:=c.CreatnewActogeth("123")
 	// print("newaccount",a)
 	// mysql.DeletTask(1650442602)
+	// s.Creat()
 	// big:=big.NewInt(2)
 	// err:=mysql.Insert("aa","0xxx","a",2,big,"availablev","200202")
 	// if err!=nil {
