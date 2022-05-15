@@ -98,6 +98,10 @@ func self_order_accept_Handler(c *gin.Context) {
 	c.HTML(200, "self_order_accept.html", nil) //成功发布
 }
 
+func Release_order_Handler(c *gin.Context) {
+	c.HTML(200, "release_order.html", nil)
+}
+
 func Start() error {
 	// 创建一个默认的路由引擎
 	r := gin.Default()
@@ -135,8 +139,10 @@ func Start() error {
 	r.GET("/resume", resume_Handler)
 	r.GET("/change_user", change_user_Handler)
 	r.GET("/self_order", Self_Order_Handler)
-	r.GET("/self_order_accept", self_order_accept_Handler)
-	r.GET("/succ_login", Succ_Login)
+	r.GET("/self_order_accept", self_order_accept_Handler) //个人订单
+	r.GET("/succ_login", Succ_Login)                       //成功登录
+	r.GET("/release_order", Release_order_Handler)         //查看个人发布订单
+	r.GET("/exit_account", Exit_account)                   //退出账户
 
 	// 启动HTTP服务，默认在0.0.0.0:8080启动服务
 
