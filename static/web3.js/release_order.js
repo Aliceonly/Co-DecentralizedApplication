@@ -105,14 +105,14 @@ console.log(Timestamp);
 function Read_more() {
     $.ajax({
         method: "post",
-        url: "http://localhost:8080/dapp/deleteData",
+        url: "http://localhost:8080/dapp/Read_more",
         data: { timestamp: Timestamp },
         success: function (data){
             console.log("success data", data);
             result = data.data
             // alert(data.data.Add)
             console.log("result=====>", result);
-            window.location.href = "/Detail?Taskname=" + result.Taskname + '&LaunchTime=' + result.LaunchTime+ '&Amount=' + result.Amount+ '&Category=' + result.Category+ '&State=' + result.State+ '&Add=' + result.Add+ '&Timestamp=' + result.Timestamp+ '&Block=' + result.Block; //window.location.href跳转新页面
+            window.location.href = "/Read_More_detail?Taskname=" + result.Taskname + '&LaunchTime=' + result.LaunchTime+ '&Amount=' + result.Amount+ '&Category=' + result.Category+ '&State=' + result.State+ '&Add=' + result.Add+ '&Timestamp=' + result.Timestamp+ '&Block=' + result.Block; //window.location.href跳转新页面
         },
         error: function (data) {
             swal("OMG", "删除操作失败了!", "error");

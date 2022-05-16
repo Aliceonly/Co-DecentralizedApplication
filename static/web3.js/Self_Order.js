@@ -1,6 +1,6 @@
 let Account = window.sessionStorage.getItem("Global_Account")
 let Account_status = window.sessionStorage.getItem("Account_status");
-console.log("Account_status",Account_status);
+console.log("Account_status===》",Account_status);
 console.log("Account",Account);
 if(Account_status!=""){
 document.getElementById("Self_account").innerHTML = Account;
