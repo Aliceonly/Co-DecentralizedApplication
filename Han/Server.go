@@ -102,6 +102,10 @@ func Release_order_Handler(c *gin.Context) {
 	c.HTML(200, "release_order.html", nil)
 }
 
+func Read_More_Handler(c *gin.Context) {
+	c.HTML(200, "job_more.html", nil) //编辑资料
+}
+
 func Start() error {
 	// 创建一个默认的路由引擎
 	r := gin.Default()
@@ -143,6 +147,7 @@ func Start() error {
 	r.GET("/succ_login", Succ_Login)                       //成功登录
 	r.GET("/release_order", Release_order_Handler)         //查看个人发布订单
 	r.GET("/exit_account", Exit_account)                   //退出账户
+	r.GET("/Read_More_detail", Read_More_Handler)          //读取更多信息
 
 	// 启动HTTP服务，默认在0.0.0.0:8080启动服务
 
@@ -163,6 +168,7 @@ func Start() error {
 		dapp.POST("/user_info", User_info)
 		dapp.POST("/change_user_info", Change_user_info)
 		dapp.POST("/Self_Order_show", Self_Order_show)
+		dapp.POST("/Read_more", Read_more)
 	}
 
 	err := r.Run()
