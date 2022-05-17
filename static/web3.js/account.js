@@ -1,14 +1,14 @@
 function demo7() {
     var
         closeInSeconds = 5,
-        displayText = ' #1 秒后将自动跳转首页，点击取消即可留下',
+        displayText = ' #1 秒后将自动跳转首页',
         timer;
     swal({
         title: "退出成功!",
         text: displayText.replace(/#1/, closeInSeconds),
         imageUrl: "../static/image/check.png",
         timer: closeInSeconds * 1000,
-        showCancelButton: true,
+        showconfirmButton: true,
     }, function () {
             window.location.href = "/"
         }

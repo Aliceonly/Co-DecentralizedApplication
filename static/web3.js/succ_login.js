@@ -5,7 +5,6 @@ $.ajax({
     url: "/succ_login",
     success: function (data) {
         window.sessionStorage.setItem("Account_status",data.data); //设置登录状态,私钥内容
-        // let Account_status = window.sessionStorage.setItem("Global_Account",data.data);
         if(data.data == ""){
             console.log("未登录",data.data)
             self_info.style.display = "none";

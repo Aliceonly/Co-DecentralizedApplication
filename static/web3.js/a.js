@@ -56,7 +56,7 @@ function demo_6() {
     });
 };
 
-function info_login() {
+function demo7() {
     var
         closeInSeconds = 5,
         displayText = ' #1 秒后将自动跳转登录页面',
@@ -67,7 +67,7 @@ function info_login() {
         text: displayText.replace(/#1/, closeInSeconds),
         imageUrl: "../static/image/info1.png",
         timer: closeInSeconds * 1000,
-        showCancelButton: true,
+        showconfirmButton: true,
     }, function () {
             window.location.href = "/account"
         }

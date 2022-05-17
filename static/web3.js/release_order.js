@@ -83,7 +83,7 @@ if (data == undefined) {
     </h3>
     <p>金额：${e.Amount}</p>
     <p>类型：${e.Category}</p>
-    <p id="Timestamp">时间戳：${e.Timestamp}</p>
+    <p id="Timestamp_new">时间戳：${e.Timestamp}</p>
     <a onclick="Read_more()" class="blog-btn">
     <button>Read More</button>
     <i class='bx bx-plus bx-spin'></i>
@@ -99,18 +99,22 @@ if (data == undefined) {
     document.getElementById("release_order").innerHTML = result;
 }
 
-var Timestamp = $("#Timestamp").val();
-console.log(Timestamp);
+ 
+ 
 
 function Read_more() {
+    // var Timestamp_new = $("#Timestamp").val();
+    var Timestamp = document.querySelector("#Timestamp_new").innerHTML;
+    Timestamp_new = Timestamp.slice(4,14)
+    console.log(Timestamp);
+    console.log(Timestamp_new);
     $.ajax({
         method: "post",
         url: "http://localhost:8080/dapp/Read_more",
-        data: { timestamp: Timestamp },
+        data: { timestamp: Timestamp_new },
         success: function (data){
             console.log("success data", data);
             result = data.data
-            // alert(data.data.Add)
             console.log("result=====>", result);
             window.location.href = "/Read_More_detail?Taskname=" + result.Taskname + '&LaunchTime=' + result.LaunchTime+ '&Amount=' + result.Amount+ '&Category=' + result.Category+ '&State=' + result.State+ '&Add=' + result.Add+ '&Timestamp=' + result.Timestamp+ '&Block=' + result.Block; //window.location.href跳转新页面
         },
