@@ -247,6 +247,15 @@ func Login(Account string) string {
 	return pd
 }
 
+//注销账户
+func CancleUser(Account string) {
+	var sql = `DELETE from user where Account = ?`
+	_, err := Db.Exec(sql, Account)
+	if err != nil {
+		fmt.Println("注销账户出错了，错误是====>>>>>>>>>>>>>>", err)
+	}
+}
+
 //查询用户信息
 func Query_User(Account string) User {
 	var user User
@@ -259,6 +268,7 @@ func Query_User(Account string) User {
 	return user
 }
 
+//修改个人信息
 func Update_User(Account string, Sid int, Sname string, Sage string, Telephone string, Major string, Grade string) {
 	var sql = "UPDATE User SET Sid = ?,Sname = ?,Sage = ?,Telephone = ?,Major = ?,Grade = ? WHERE Account = ?"
 	_, err := Db.Exec(sql, Sid, Sname, Sage, Telephone, Major, Grade, Account)
@@ -268,6 +278,7 @@ func Update_User(Account string, Sid int, Sname string, Sage string, Telephone s
 	// fmt.Println(err)
 }
 
+//查询个人发布订单的更多信息
 func Self_Order_show(Account string) []Tasklist {
 	var serach_task []Tasklist
 	sql_serach_task := "SELECT * FROM tasklist WHERE Sponsor = ?"

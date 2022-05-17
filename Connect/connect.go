@@ -129,6 +129,7 @@ func Getblockmessage() {
 	fmt.Println(block.Hash().Hex())          // 0x9e8751ebb5069389b855bba72d94902cc38504266149
 	fmt.Println(len(block.Transactions()))   // 144个交易记录
 }
+
 // func getBlockTransactionCountByNumber(client *rpc.Client,j string)() {
 // 	err:=client.Call(&BlockTransactionCountByNumber,"eth_getBlockTransactionCountByNumber",j)
 // 	if err!=nil{
@@ -339,15 +340,15 @@ func Gettaskhash(ins *contract.TaskDeployerContract, address common.Address, hea
 }
 
 //获取发布任务的用户对当前任务的确认签名
-func GetthistaskSign(PrivateKey *ecdsa.PrivateKey,hash [32]byte) string{
-    hash1:=*(*[]byte)(unsafe.Pointer(&hash))
+func GetthistaskSign(PrivateKey *ecdsa.PrivateKey, hash [32]byte) string {
+	hash1 := *(*[]byte)(unsafe.Pointer(&hash))
 	signature, err := crypto.Sign(hash1, PrivateKey)
-			if err != nil {
-				log.Fatal(err)
-			}
-    a:=hexutil.Encode(signature)
-   fmt.Println(hexutil.Encode(signature))
-   return a
+	if err != nil {
+		log.Fatal(err)
+	}
+	a := hexutil.Encode(signature)
+	fmt.Println(hexutil.Encode(signature))
+	return a
 }
 
 /*
@@ -448,20 +449,20 @@ func Get() (string, string) {
 }
 
 //注销用户
-func cancellation(ad string) {
+func Cancellation(ad string) string {
 	var FileInfo []os.FileInfo
 	var err error
 	relativePath := "E://Test_block//data//keystore"
 
 	if FileInfo, err = ioutil.ReadDir(relativePath); err != nil {
 		fmt.Println("读取 keystore 文件夹出错")
-		return
+		return err.Error()
 	}
 	a := make([]string, 0)
 	for _, fileInfo := range FileInfo {
 		a = append(a, fileInfo.Name())
 	}
-	matches2 := fuzzy.Find(ad, a)
+	matches2 := fuzzy.Find(ad[2:], a)
 	adfile := relativePath + "//" + matches2[0]
 	err2 := os.Remove(adfile)
 	if err2 != nil {
@@ -469,11 +470,8 @@ func cancellation(ad string) {
 	} else {
 		fmt.Println("用户注销完毕")
 		matches2 = nil
+		result := "成功注销"
+		return result
 	}
 
 }
-
-
-
-
-

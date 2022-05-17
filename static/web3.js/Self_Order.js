@@ -22,7 +22,7 @@ if (Account_status != "") {
     }
 }
 
-function Login_status() {
+function Login_priority() {
     var
         closeInSeconds = 5,
         displayText = ' #1 秒后将自动跳转登录页面',
@@ -50,5 +50,5 @@ function Login_status() {
 
 
 if (Account_status == "") {
-    Login_status()
+    Login_priority()
 }

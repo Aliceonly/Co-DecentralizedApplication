@@ -169,6 +169,7 @@ func Start() error {
 		dapp.POST("/change_user_info", Change_user_info)
 		dapp.POST("/Self_Order_show", Self_Order_show)
 		dapp.POST("/Read_more", Read_more)
+		dapp.POST("/CancelUser", CancelUser) //注销用户
 	}
 
 	err := r.Run()
