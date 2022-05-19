@@ -3,23 +3,26 @@ package Han
 import (
 	contract "dapp/Connect"
 
-	"math/big"
-	"github.com/ethereum/go-ethereum/common"
+	mysql "dapp/utils"
 	"fmt"
-
+	"github.com/ethereum/go-ethereum/common"
 	"github.com/gin-gonic/gin"
+	"math/big"
 )
-func Confirmtask(c *gin.Context){
-	add :=common.HexToAddress(c.PostForm("account"))
-	ins :=contract.Getsmartcontract()
-	Txopts :=contract.GetTxopts()
-	times:=c.PostForm("timestap")
+
+func Confirmtask(c *gin.Context) {
+	account := c.PostForm("account")
+	add := common.HexToAddress(account)
+	ins := contract.Getsmartcontract()
+	Txopts := contract.GetTxopts()
+	times := c.PostForm("timestap")
 	n := new(big.Int)
-    n, ok := n.SetString(times, 10)
-    if !ok {
-        fmt.Println("SetString: error")
-        return
-    }
-	contract.Confirmtask(ins,n,Txopts,add)
-    tohtml(c,"confirmtrue")
+	n, ok := n.SetString(times, 10)
+	if !ok {
+		fmt.Println("SetString: error")
+		return
+	}
+	contract.Confirmtask(ins, n, Txopts, add)
+	mysql.Update_beneficiary(times, account)
+	tohtml(c, "confirmtrue")
 }

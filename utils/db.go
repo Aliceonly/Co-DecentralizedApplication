@@ -299,3 +299,11 @@ func Self_Order_show(Account string) []Tasklist {
 	return serach_task
 
 }
+
+func Update_beneficiary(timestamp string, account string) {
+	var sql = "UPDATE tasklist SET beneficiary = ? WHERE timestamp = ?"
+	_, err := Db.Exec(sql, account, timestamp)
+	if err != nil {
+		panic(err)
+	}
+}
