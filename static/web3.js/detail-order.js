@@ -69,6 +69,8 @@ document.getElementById("Block").innerHTML = decodeURI(Block);
 const Timestamp = list.map(item => item.Timestamp);
 let Timestamp_new = decodeURI(Timestamp);
 document.getElementById("Timestamp").innerHTML = Timestamp_new;
+console.log(parseInt(Timestamp_new))
+var a=parseInt(Timestamp_new)
 
  
 
@@ -82,7 +84,7 @@ function Confirmtask() {
         $.ajax({
             method: "post",
             url: "http://localhost:8080/dapp/confirmtask",
-            data: { account: Account, timestap:Timestamp_new},
+            data: { account: Account, timestap:a},
             success: function (data) {
                 console.log(data.data)
             },

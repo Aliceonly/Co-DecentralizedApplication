@@ -104,14 +104,14 @@ if (data == undefined) {
 
 function Read_more() {
     // var Timestamp_new = $("#Timestamp").val();
-    var Timestamp = document.querySelector("#Timestamp_new").innerHTML;
-    Timestamp_new = Timestamp.slice(4,14)
-    console.log(Timestamp);
+    var Timestamp_new = e.parentElement.children[4].innerText
+    Timestamp = Timestamp_new.slice(4,14)
     console.log(Timestamp_new);
+    console.log(Timestamp);
     $.ajax({
         method: "post",
         url: "http://localhost:8080/dapp/Read_more",
-        data: { timestamp: Timestamp_new },
+        data: { timestamp: Timestamp },
         success: function (data){
             console.log("success data", data);
             result = data.data

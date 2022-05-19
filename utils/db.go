@@ -16,7 +16,7 @@ var (
 )
 
 func init() {
-	Db, err = sql.Open("mysql", "root:121@tcp(localhost:3306)/test?parseTime=true&charset=utf8")
+	Db, err = sql.Open("mysql", "root:123456@tcp(localhost:3306)/test?parseTime=true&charset=utf8")
 	if err != nil {
 		panic(err.Error())
 	}
@@ -300,9 +300,9 @@ func Self_Order_show(Account string) []Tasklist {
 
 }
 
-func Update_beneficiary(timestamp string, account string) {
-	var sql = "UPDATE tasklist SET beneficiary = ? WHERE timestamp = ?"
-	_, err := Db.Exec(sql, account, timestamp)
+func Update_beneficiary(timestamp string, state string, account string) {
+	var sql = "UPDATE tasklist SET beneficiary = ?,state=? WHERE timestamp = ?"
+	_, err := Db.Exec(sql, timestamp, state, account)
 	if err != nil {
 		panic(err)
 	}
