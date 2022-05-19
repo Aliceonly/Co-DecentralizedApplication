@@ -8,7 +8,7 @@ import (
 	"io/ioutil"
 	"log"
 	"math/big"
-	// "unsafe"
+	"unsafe"
 
 	// "strconv"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
@@ -35,7 +35,7 @@ var (
 	//本地账户密码
 	password = ""
 	//合约地址
-	contractadress = "0x9A9aC8f0E3A59fB9e71A700D263c50E03e085EF3"
+	contractadress = "0x49b9E6532DC761f5cf25473e8Fc9900f3936e575"
 	//读取用户keystore文件地址
 	relativePath = "D:\\y\\geth\\node1\\nodedata\\keystore"
 	//本地链chainID交易:修改为本地的chainID
@@ -336,19 +336,20 @@ func Gettaskhash(ins *contract.TaskDeployerContract, address common.Address, hea
 	if err != nil {
 		panic(hash)
 	}
+
 	return hash
 }
 
 //获取发布任务的用户对当前任务的确认签名
 func GetthistaskSign(PrivateKey *ecdsa.PrivateKey, hash [32]byte) string {
-	// hash1 := []byte(hash)
-	// var arr []byte
-	// copy(arr[:], hash[:])
-	// hash1 := *(*[]byte)(unsafe.Pointer(&hash))
-	// fmt.Println("hash1-----.",arr)
-	// fmt.Println("hash2----->",hash1)
+	hash1 := []byte(hash)
+	var arr []byte
+	copy(arr[:], hash[:])
+	hash1 := *(*[]byte)(unsafe.Pointer(&hash1))
+	fmt.Println("hash1-----.",arr)
+	fmt.Println("hash2----->",hash1)
 
-	signature, err := crypto.Sign(hash[:], PrivateKey)
+	signature, err := crypto.Sign(arr, PrivateKey)
 	if err != nil {
 		log.Fatal(err)
 	}

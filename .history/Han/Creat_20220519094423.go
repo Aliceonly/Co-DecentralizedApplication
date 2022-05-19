@@ -59,6 +59,7 @@ func Getsigh(times string,taskname string) string{
 	head, _ := contract.GetBlockNumber()
 	pr, adress := contract.Getaccout()
 	hash:=contract.Gettaskhash(ins,adress,head,taskname,times)
+	pass := int(hash[:])
 	fmt.Println("hash====>",hash)
 	// fmt.Println("hash2====>",pass)
 	sigh:=contract.GetthistaskSign(pr,hash)
