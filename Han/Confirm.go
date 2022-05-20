@@ -24,6 +24,6 @@ func Confirmtask(c *gin.Context) {
 		return
 	}
 	contract.Confirmtask(ins, n, Txopts, add)
-	mysql.Update_beneficiary(times, state, account)
+	mysql.Update_beneficiary(state, account, times)
 	tohtml(c, "confirmtrue")
 }

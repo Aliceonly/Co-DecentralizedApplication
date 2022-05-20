@@ -54,3 +54,27 @@ function detaildata(e) {
         })
     }
 }
+
+let a = document.getElementById("state").innerHTML
+console.log("aaaaa",a);
+
+
+function Campus_order(){
+    let entry="校园跑腿类型";
+    $.ajax({
+        method: "post",
+        url: "http://localhost:8080/dapp/Campus_order_detail",
+        data: { entry: entry },
+        success: function (data) {
+            console.log("success data", data);
+            result = data.data
+            console.log("result=====>", result);
+            sessionStorage.setItem('Query_campus_order_detail', JSON.stringify(result))
+            window.location.href="/Campus_order"
+        },
+        error: function (data) {
+            console.log("error====>", error)
+            console.log("error data===>", data)
+        }
+    })
+}

@@ -196,7 +196,7 @@
     </div>
     <div class="row">
     <div class="col-lg-4 col-sm-6">
-    <a href="detail_qukuilySend"> 
+    <a onclick="Campus_order()"> 
     <div class="choose-card">
     <i class="flaticon-resume"></i>
      <h3>校园跑腿</h3>
@@ -258,7 +258,7 @@
     <p>薪资：{{$value.Amount}}</p>
     </li>
     <li>
-    <p>状态：{{$value.State}}</p>
+    <p id="state">状态：{{$value.State}}</p>
     </li>
     <li>
     <p>时间：{{$value.LaunchTime}}</p>
