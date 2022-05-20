@@ -56,7 +56,7 @@ contract TaskDeployerContract {
        if(_tasklist[_timestamp].sponsor==msg.sender){
            found=true;
        }
-        require(found == false, "The beneficiary must be unique.");
+        require(found == true, "The beneficiary must be unique.");
         _;
     }
 

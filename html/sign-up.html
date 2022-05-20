@@ -26,6 +26,10 @@
 
     <link rel="stylesheet" href="../static/css/responsive.css">
 
+    <link rel="stylesheet" href="../static/css/sign_up.css">
+
+    <link rel="stylesheet" href="../static/css/sweetalert.css">
+
     <title>Jovie - Job Board & Portal HTML Template</title>
 
 </head>
@@ -78,8 +82,8 @@
             <li class="nav-item">
                 <a href="/" class="nav-link">首页</a>
             </li>
-            <li class="nav-item">
-                <a href="personal_detail" class="nav-link">我的</a>
+            <li id="self_info" class="nav-item">
+                <a href="account" class="nav-link">我的</a>
             </li>
             
             
@@ -91,6 +95,9 @@
             </li>
             <li class="nav-item">
             <a href="post_job" class="nav-link">发布订单</a>
+            </li>
+            <li class="nav-item">
+                <a href="self_order" class="nav-link">个人订单</a>
             </li>
             </ul>
             </li>
@@ -109,7 +116,7 @@
             </ul>
             </li>
             
-            <li class="nav-item">
+            <li id="sign_in_up"  class="nav-item">
             <a href="#" class="nav-link dropdown-toggle">登录注册</a>
             <ul class="dropdown-menu">
             <li class="nav-item">
@@ -169,25 +176,21 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-8 offset-md-2 offset-lg-3">
-                    <form action="#" method="POST" class="signup-form">
+                    <div  class="sigg">
                         <div class="form-group">
-                            <label>用户名</label>
-                            <input type="text" class="form-control" placeholder="请设置一个用户名" name="username" required="">
+                            <label>学号</label>
+                            <input type="number" class="form-control" placeholder="请输入您在软件大学的学号" name="Sid" id="Sid" required="">
                         </div>
                         <div class="form-group">
-                            <label>邮箱</label>
-                            <input type="email" class="form-control" placeholder="请输入你的邮箱" name="email" required="">
+                            <label>手机号</label>
+                            <input type="number" class="form-control" placeholder="请输入您的手机号" name="Telephone"  id="Telephone"  required="">
                         </div>
                         <div class="form-group">
                             <label>密码</label>
-                            <input type="password" class="form-control" placeholder="请设置你的密码" name="password" required="">
-                        </div>
-                        <div class="form-group">
-                            <label>确认密码</label>
-                            <input type="password" class="form-control" placeholder="与密码一致" name="Cpassword" required="">
+                            <input type="password" class="form-control" placeholder="请设置您的密码" name="password"  id="password" required="">
                         </div>
                         <div class="signup-btn text-center">
-                            <button type="submit">注册</button>
+                            <button onclick="create_user()">注册</button>
                         </div>
                         <div class="create-btn text-center">
                             <p>
@@ -198,7 +201,7 @@
                                 </a>
                             </p>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -237,6 +240,13 @@
     <script src="../static/js/meanmenu.js"></script>
 
     <script src="../static/js/custom.js"></script>
+    <script src="../static/js/sweetalert.min.js"></script>
+
+    <script src="../static/web3.js/sign_up.js"></script>
+
+ 
+
+    <script src="../static/web3.js/succ_login.js"></script>
 </body>
 
 </html>

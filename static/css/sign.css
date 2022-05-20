@@ -1,0 +1,112 @@
+.sigg {
+    padding: 20px
+}
+
+.sigg .create-btn p a {
+    display: block
+}
+
+.sigg {
+    -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, .07);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .07);
+    padding: 50px;
+    border-radius: 30px
+}
+
+.sigg .form-group {
+    margin-bottom: 20px
+}
+
+.sigg .form-group label {
+    font-size: 15px;
+    margin-bottom: 10px;
+    color: #000;
+    font-weight: 500
+}
+
+.sigg .form-group .form-control {
+    height: 50px;
+    border-radius: 50px;
+    padding: 5px 20px;
+    background: #f9f6f6
+}
+
+.sigg .signin-btn {
+    margin-top: 40px;
+    margin-bottom: 30px
+}
+
+.sigg .signin-btn button {
+    padding: 10px 30px;
+    border-radius: 30px;
+    background: #001935;
+    color: #fff;
+    -webkit-transition: .8s;
+    transition: .8s;
+    font-size: 16px
+}
+
+.sigg .signin-btn button:hover {
+    background: #fd1616
+}
+
+.sigg .other-signin span {
+    color: #001935;
+    margin-bottom: 15px;
+    display: inline-block
+}
+
+.sigg .other-signin ul {
+    padding-left: 0;
+    margin-bottom: 0
+}
+
+.sigg .other-signin ul li {
+    display: inline-block
+}
+
+.sigg .other-signin ul li a i {
+    width: 35px;
+    height: 35px;
+    -webkit-box-shadow: 0 10px 30px rgba(0, 0,
+            0, .07);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .07);
+    line-height: 35px;
+    border-radius: 30px;
+    -webkit-transition: 1s;
+    transition: 1s;
+    margin: 0 3px
+}
+
+.sigg .other-signin ul li a i:hover {
+    background: #001935;
+    color: #fff
+}
+
+.sigg .create-btn {
+    margin-top: 35px
+}
+
+.sigg .create-btn a {
+    color: #001935;
+    -webkit-transition: .8s;
+    transition: .8s
+}
+
+.sigg .create-btn a:hover {
+    color: #fd1616
+}
+
+.sigg .create-btn a i {
+    top: 3px;
+    position: relative
+}
+
+.sigg .create-btn a .bx-fade-right {
+    -webkit-animation: fade-right 3sinfinite linear;
+    animation: fade-right 3s infinite linear
+}
+
+.sigg .create-btn p {
+    margin-bottom: 0
+}

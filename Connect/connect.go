@@ -6,14 +6,24 @@ import (
 	contract "dapp/Smartgo"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"math/big"
+	// "unsafe"
 
+	// "strconv"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/accounts/keystore"
 	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/core/types"
+	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/ethereum/go-ethereum/rpc"
+
+	// "log"
+	"os"
+
+	"github.com/lithammer/fuzzysearch/fuzzy"
 	// "fmt"
 )
 
@@ -21,14 +31,19 @@ var (
 	//本地geth地址
 	adress = "http://localhost:8545"
 	//本地账户地址
-	privatekeyfile = "E:/dapp_chain/data/keystore/UTC--2022-04-19T02-24-03.805649100Z--1cc57987cbb87ca81e99d80f0e248709f0d03b6b"
+	privatekeyfile = ""
 	//本地账户密码
-	password = "1"
+	password = ""
 	//合约地址
-	contractadress = "0xae0d12CD45435538FF50823085664b2874d5FfF3"
+	contractadress = "0xF86d2234333900e70d44092c7d7a6c21E45F7ab9"
+	//读取用户keystore文件地址
+	relativePath = "D://Test_Block_chain//data//keystore"
+	//本地链chainID交易:修改为本地的chainID
+	chainID = 10001
 )
 
 var client *ethclient.Client
+var rDel *rpc.Client
 
 //连接geth
 func init() {
@@ -39,6 +54,7 @@ func init() {
 	} else {
 		fmt.Println("geth连接成功*****============================***********")
 	}
+	rDel = rpcDel
 	client = ethclient.NewClient(rpcDel)
 	//fmt.Println(client)
 }
@@ -100,9 +116,34 @@ func GetBlockNumber() (*types.Header, error) {
 	return header, err
 }
 
+//获取区块的详细信息
+func Getblockmessage() {
+	blockNumber := big.NewInt(10001)
+	block, err := client.BlockByNumber(context.Background(), blockNumber)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(block.Number().Uint64()) // 5671744
+	// fmt.Println(block.Time().Uint64()) // 1527211625
+	fmt.Println(block.Difficulty().Uint64()) // 3217000136609065
+	fmt.Println(block.Hash().Hex())          // 0x9e8751ebb5069389b855bba72d94902cc38504266149
+	fmt.Println(len(block.Transactions()))   // 144个交易记录
+}
+
+// func getBlockTransactionCountByNumber(client *rpc.Client,j string)() {
+// 	err:=client.Call(&BlockTransactionCountByNumber,"eth_getBlockTransactionCountByNumber",j)
+// 	if err!=nil{
+// 		fmt.Println("错误:",err)
+// 	}
+// 	heights, _ := strconv.ParseUint(j[2:],16,32)
+// 	BlockTransactionCountByNumbers, _ := strconv.ParseUint(BlockTransactionCountByNumber[2:],16,32)
+// 	fmt.Println("当前块:",heights,"当前块交易数量:",BlockTransactionCountByNumbers)
+// 	GetBlockByNumber(client,j)
+// }
+
 //设置TransactOpts
 func setopts(privateKey *ecdsa.PrivateKey, address common.Address) *bind.TransactOpts {
-	auth, err := bind.NewKeyedTransactorWithChainID(privateKey, big.NewInt(10001))
+	auth, err := bind.NewKeyedTransactorWithChainID(privateKey, big.NewInt(int64(chainID)))
 	if err != nil {
 		panic(err)
 	}
@@ -202,17 +243,18 @@ func CreatNewEvent(
 	Taskcatagory string,
 	launchTime string,
 	amount *big.Int,
-) *types.Transaction {
+) (*types.Transaction, *big.Int) {
 	ops.Value = amount
 	timestap, err := ins.CreateNewEvent(ops, launchTime, Taskcatagory, Taskname, amount)
 	if err != nil {
 		fmt.Println("CreatNewEvent error ===>", err)
 		panic(err)
 	}
+	blocknumber := ops.Nonce
 	// fmt.Println(timestap.AccessList())
 	// fmt.Println(timestap.Cost())
 	// fmt.Println(timestap.Type())
-	return timestap
+	return timestap, blocknumber
 }
 
 /*
@@ -268,6 +310,7 @@ func Confirmtask(
 /*
 发布任务者确认接受任务者完成任务
 */
+
 func ClaimTrust(
 	ins *contract.TaskDeployerContract,
 	ops *bind.TransactOpts,
@@ -279,6 +322,39 @@ func ClaimTrust(
 	if err != nil {
 		panic(err)
 	}
+}
+
+//获取交易的hash值
+func Gettaskhash(ins *contract.TaskDeployerContract, address common.Address, header *types.Header, taskname string, timestamp string) [32]byte {
+	opts := bind.CallOpts{
+		Pending:     true,
+		From:        address,
+		BlockNumber: header.Number,
+		Context:     context.Background(),
+	}
+	hash, err := ins.GetTxHash(&opts, taskname, timestamp)
+	if err != nil {
+		panic(hash)
+	}
+	return hash
+}
+
+//获取发布任务的用户对当前任务的确认签名
+func GetthistaskSign(PrivateKey *ecdsa.PrivateKey, hash [32]byte) string {
+	// hash1 := []byte(hash)
+	// var arr []byte
+	// copy(arr[:], hash[:])
+	// hash1 := *(*[]byte)(unsafe.Pointer(&hash))
+	// fmt.Println("hash1-----.",arr)
+	// fmt.Println("hash2----->",hash1)
+
+	signature, err := crypto.Sign(hash[:], PrivateKey)
+	if err != nil {
+		log.Fatal(err)
+	}
+	a := hexutil.Encode(signature)
+	fmt.Println(hexutil.Encode(signature))
+	return a
 }
 
 /*
@@ -325,4 +401,85 @@ func Userchangename(ins *contract.TaskDeployerContract,
 		panic(err)
 	}
 	return true
+}
+
+var newAccount string
+var accounts []string
+
+func CreatnewActogeth(pd string) string {
+	fmt.Print("why----->", rDel)
+	err := rDel.Call(&newAccount, "personal_newAccount", pd)
+	if err != nil {
+		panic(err)
+	}
+	rDel.Call(&accounts, "personal_listAccounts")
+	// if err!=nil {
+	// 	panic(err)
+	// }
+	fmt.Print(accounts)
+	return newAccount
+}
+
+//针对不同用户登入获取不同用户的信息来对交易签名
+func Changeuser(ad string, pw string) {
+	relativePath := "d://Test_Block_chain//data//keystore"
+	var FileInfo []os.FileInfo
+	var err error
+
+	if FileInfo, err = ioutil.ReadDir(relativePath); err != nil {
+		fmt.Println("读取 keystore 文件夹出错")
+		return
+	}
+	a := make([]string, 0)
+	for _, fileInfo := range FileInfo {
+		a = append(a, fileInfo.Name())
+		// fmt.Println(fileInfo.Name())
+	}
+	// ac:="5c595872e02b0613658036bdf5daa6d9f42954be"
+	fmt.Print("keystore", a)
+	matches2 := fuzzy.Find(ad[2:], a)
+	fmt.Println("当前登入的用户为", ad)
+	// print(relativePath+"//"+matches1[0])
+	fmt.Println(".....", matches2)
+	privatekeyfile = relativePath + "\\" + matches2[0]
+	password = pw
+	fmt.Println("privatekeyfile and pw:", privatekeyfile, pw)
+	// matches2 = nil
+}
+
+//用户退出状态 文件处于空状态
+func Userexit() {
+	privatekeyfile = ""
+	password = ""
+}
+func Get() (string, string) {
+	return password, privatekeyfile
+}
+
+//注销用户
+func Cancellation(ad string) string {
+	var FileInfo []os.FileInfo
+	var err error
+	relativePath := "D://Test_Block_chain//data//keystore"
+
+	if FileInfo, err = ioutil.ReadDir(relativePath); err != nil {
+		fmt.Println("读取 keystore 文件夹出错")
+		return err.Error()
+	}
+	a := make([]string, 0)
+	for _, fileInfo := range FileInfo {
+		a = append(a, fileInfo.Name())
+	}
+	matches2 := fuzzy.Find(ad[2:], a)
+	adfile := relativePath + "//" + matches2[0]
+	err2 := os.Remove(adfile)
+	if err2 != nil {
+		panic(err2)
+	} else {
+		fmt.Println("用户注销完毕")
+		matches2 = nil
+		result := "成功注销"
+		return result
+	}
+
 }
