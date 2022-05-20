@@ -27,7 +27,7 @@
 
 <link rel="stylesheet" href="../static/css/sweetalert.css">
 
-<title></title>
+<title>Jovie - Job Board & Portal HTML Template</title>
 
 </head>
 <body>
@@ -138,72 +138,62 @@
         </div>
         </div>
 
-        <section style="padding-bottom: 30px;" class="page-title title-bg12">
-            <div style="position: relative;top: -50px;" class="d-table">
-                <div class="d-table-cell">
-                    <h2>个人订单</h2>
-                    <ul>
-                        <li>
-                            <a href="/">首页</a>
-                        </li>
-                        <li>个人订单</li>
-                    </ul>
-                </div>
-            </div>
-            <div   class="lines">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-            </div>
-        </section>
-
-
-<section style="padding-top: 100px;" class="account-section ptb-100">
-<div class="container">
-<div class="row">
-<div class="col-md-4">
-<div class="account-information">
-<div class="profile-thumb">
-<img src="../static/picture/account.jpg" alt="account holder image">
-<span style="font-size: small;font-weight: bold;color: black;position: relative;" id="Self_account"></span>
-</div>
+<section class="page-title title-bg24">
+<div class="d-table">
+<div class="d-table-cell">
+<h2>个人订单(未接收)</h2>
 <ul>
-    <li>
-    <a>
-    <i class='bx bx-coffee-togo'></i>
-    <button onclick="release_order()">查看个人发布订单</button> 
-    </a>
-    </li>
-    <li>
-    <a href="change_user">
-    <i class='bx bx-briefcase'></i>
-    <button>修改个人发布订单</button> 
-    </a>
-    </li>
-    <li>
-    <a >
-    <i class='bx bx-heart'></i>
-    <button onclick="Cancle_order()">取消个人发布订单</button> 
-    </a>
-    </li>
-    <li>
-    <a href="#">
-    <i class='bx bx-coffee-togo'></i>
-     <button>查看个人接收订单</button> 
-    </a>
-    </li>
-    <li>
-    <a href="change_user">
-    <i class='bx bx-heart'></i>
-    <button>取消个人接收订单</button> 
-    </a>
-    </li>
+<li>
+<a href="/self_order">返回</a>
+</li>
+<li>个人订单(未接收)</li>
 </ul>
 </div>
 </div>
-</div>
+<div class="lines">
+<div class="line"></div>
+<div class="line"></div>
+<div class="line"></div>
 </div>
 </section>
+
+
+<div class="col-lg-4">
+<div class="blog-widget blog-search">
+<form>
+<div class="form-group">
+<input type="text" class="form-control" placeholder="Search">
+<button>
+<i class='bx bx-search-alt-2'></i>
+</button>
+</div>
+</form>
+</div>
+</div>
+
+<section class="blog-section blog-style-two pt-100 pb-70">
+<div id="release_order" class="container">
+</div>
+</section>
+
+<nav aria-label="Page navigation example">
+<ul class="pagination justify-content-center">
+<li class="page-item disabled">
+<a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+<i class='bx bx-chevrons-left bx-fade-left'></i>
+</a>
+</li>
+<li class="page-item"><a class="page-link" href="#">1</a></li>
+<li class="page-item"><a class="page-link active" href="#">2</a></li>
+<li class="page-item"><a class="page-link" href="#">3</a></li>
+<li class="page-item">
+<a class="page-link" href="#">
+<i class='bx bx-chevrons-right bx-fade-right'></i>
+</a>
+</li>
+</ul>
+</nav>
+
 
 
 
@@ -216,21 +206,30 @@
 <i class='bx bx-chevrons-up bx-fade-up'></i>
 </div>
 
-<script data-cfasync="false" src="../static/js/email-decode.min.js"></script>
-<script src="../static/js/jquery.min.js"></script>
-<script src="../static/js/bootstrap.bundle.min.js"></script>
-<script src="../static/js/owl.carousel.min.js"></script>
-<script src="../static/js/jquery.nice-select.min.js"></script>
-<script src="../static/js/jquery.magnific-popup.min.js"></script>
-<script src="../static/js/jquery.ajaxchimp.min.js"></script>
-<script src="../static/js/form-validator.min.js"></script>
-<script src="../static/js/contact-form-script.js"></script>
-<script src="../static/js/meanmenu.js"></script>
-<script src="../static/js/custom.js"></script>
-<script src="../static/js/sweetalert.min.js"></script>
-<script src="../static/web3.js/Self_Order.js"></script>
-<script src="../static/web3.js/succ_login.js"></script>
- 
 
+<script data-cfasync="false" src="../static/js/email-decode.min.js"></script><script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/bootstrap.bundle.min.js"></script>
+
+<script src="../static/js/owl.carousel.min.js"></script>
+
+<script src="../static/js/jquery.nice-select.min.js"></script>
+
+<script src="../static/js/jquery.magnific-popup.min.js"></script>
+
+<script src="../static/js/jquery.ajaxchimp.min.js"></script>
+
+<script src="../static/js/form-validator.min.js"></script>
+
+<script src="../static/js/contact-form-script.js"></script>
+
+<script src="../static/js/meanmenu.js"></script>
+
+<script src="../static/js/custom.js"></script>
+
+<script src="../static/js/sweetalert.min.js"></script>
+
+<script src="../static/web3.js/Unaccept_order_show.js"></script>
+
+<script src="../static/web3.js/succ_login.js"></script>
 </body>
 </html>

@@ -35,11 +35,11 @@ var (
 	//本地账户密码
 	password = ""
 	//合约地址
-	contractadress = "0xF86d2234333900e70d44092c7d7a6c21E45F7ab9"
+	contractadress = "0x8B222bb3dBB42E80EF6721b68F4B56A313b48bF2"
 	//读取用户keystore文件地址
 	relativePath = "D://Test_Block_chain//data//keystore"
 	//本地链chainID交易:修改为本地的chainID
-	chainID = 10001
+	chainID = 113011301130
 )
 
 var client *ethclient.Client

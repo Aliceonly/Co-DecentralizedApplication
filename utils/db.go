@@ -307,3 +307,23 @@ func Update_beneficiary(timestamp string, state string, account string) {
 		panic(err)
 	}
 }
+
+func Query_unget_order(amount string, state string) []Tasklist {
+	var serach_task []Tasklist
+	sql_serach_task := "select * from tasklist where state=?  and Sponsor=?"
+	rows, err := Db.Query(sql_serach_task, state, amount)
+	if err != nil {
+		fmt.Println("显示未接受订单出错", err)
+	}
+	fmt.Println("rows------------------------------------===", rows)
+	for rows.Next() {
+		var t Tasklist
+		err := rows.Scan(&t.Taskid, &t.Taskname, &t.Add, &t.Beneficiary, &t.Category, &t.Amount, &t.Timestamp, &t.State, &t.LaunchTime, &t.Block)
+		if err != nil {
+			fmt.Println("tasklist error================================>>>>>>>>>", err)
+			return nil
+		}
+		serach_task = append(serach_task, t)
+	}
+	return serach_task
+}

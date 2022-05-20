@@ -52,3 +52,20 @@ function Login_priority() {
 if (Account_status == "") {
     Login_priority()
 }
+
+function Cancle_order(){
+    $.ajax({
+        method: "post",
+        url: "http://localhost:8080/dapp/Unaccept_Order_show",
+        data: { Account: Account },
+        success: function (data) {
+            sessionStorage.setItem('Query_Unaccept_order', JSON.stringify(data.data))
+            console.log(data.data)
+            window.location.href = "/Unaccept_order_show"
+        },
+        error: function (data) {
+            console.log("error====>", error)
+            console.log("error data===>", data)
+        }
+    })
+}
