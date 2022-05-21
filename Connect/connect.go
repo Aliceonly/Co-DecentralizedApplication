@@ -16,6 +16,7 @@ import (
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/accounts/keystore"
 	"github.com/ethereum/go-ethereum/common"
+
 	// "github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/core/types"
 	// "github.com/ethereum/go-ethereum/crypto"
@@ -37,11 +38,11 @@ var (
 	//本地账户密码
 	password = ""
 	//合约地址
-	contractadress = "0x626a3d29964D5B9924dF1c77d80889193C15E395"
+	contractadress = "0x712F58c9D4cdcE1403D6E792E22210a9A18c2632"
 	//读取用户keystore文件地址
 	relativePath = "D://Test_Block_chain//data//keystore"
 	//本地链chainID交易:修改为本地的chainID
-	chainID = 113011301130
+	chainID = 2011011011
 )
 
 var client *ethclient.Client
