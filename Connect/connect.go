@@ -37,7 +37,7 @@ var (
 	//本地账户密码
 	password = ""
 	//合约地址
-	contractadress = "0x1c154b7A518876DF365b3d209650d2A2fBfFeA5B"
+	contractadress = "0x626a3d29964D5B9924dF1c77d80889193C15E395"
 	//读取用户keystore文件地址
 	relativePath = "D://Test_Block_chain//data//keystore"
 	//本地链chainID交易:修改为本地的chainID
@@ -344,11 +344,10 @@ func Gettaskhash(ins *contract.TaskDeployerContract, address common.Address, hea
 //获取发布任务的用户对当前任务的确认签名
 func GetthistaskSign(PrivateKey *ecdsa.PrivateKey, hash [32]byte) []byte {
 	signature, err := ecdsa.SignASN1(rand.Reader, PrivateKey, hash[:])
-	if err != nil{
-		panic(err)	
+	if err != nil {
+		panic(err)
 	}
 	fmt.Printf("signature: %x\n", signature)
-
 
 	// signature, err := crypto.Sign(hash[:], PrivateKey)
 
