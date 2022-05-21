@@ -1,3 +1,34 @@
+function demo7() {
+    var
+        closeInSeconds = 5,
+        displayText = ' #1 秒后将自动返回上一级',
+        timer;
+
+    swal({
+        title: "修改成功!",
+        text: displayText.replace(/#1/, closeInSeconds),
+        imageUrl: "../static/image/check.png",
+        timer: closeInSeconds * 1000,
+        showCancelButton: true, //有这个就有取消按钮
+        showconfirmButton: true,
+    }, function () {
+            window.location.href = "/account"
+        }
+    );
+
+    timer = setInterval(function () {
+        closeInSeconds--;
+        if (closeInSeconds < 0) {
+            clearInterval(timer);
+        }
+
+        $('.sweet-alert > p').text(displayText.replace(/#1/, closeInSeconds));
+
+    }, 1000);
+}
+
+
+
 data = JSON.parse(sessionStorage.getItem('QueryUser'));
 console.log(data);
 Account = data.Account
@@ -53,15 +84,7 @@ function change_user_info() {
         data: { account:account, sid: sid,sname:sname, sage: sage, telephone: telephone, major: major, grade: grade},
         success: function (data) {
             if(data.data==1){
-                // swal("Good!", "修改成功", "success");
-                swal({
-                    title: "修改成功",
-                    text: '<span style="color:red">点击</span><a style="color:#3b3bf4" href="/change_user">此页面</a><span style="color:red">留在该页面中！</span><br/>否则10秒后将自动跳转到我的页面。',
-                    imageUrl: "../static/image/check.png",
-                    html: true,
-                    timer: 10000,
-                    showConfirmButton: false
-                });
+                demo7()
             }
         },
         error: function (data) {

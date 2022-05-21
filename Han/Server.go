@@ -32,15 +32,15 @@ func personal_detail_Handler(c *gin.Context) {
 }
 
 func detail_campus_Handler(c *gin.Context) {
-	c.HTML(200, "details-of-CampusJob.html", nil) //校园兼职工作页面
+	c.HTML(200, "Campus_order.html", nil) //校园兼职工作页面
 }
 
 func detail_shared_Handler(c *gin.Context) {
-	c.HTML(200, "details-of-SharedService.html", nil) //共享服务工作页面
+	c.HTML(200, "Shared_order.html", nil) //共享服务工作页面
 }
 
 func detail_qukuilySend_Handler(c *gin.Context) {
-	c.HTML(200, "details-of-QukuilySend.html", nil) //快送页面
+	c.HTML(200, "CWork_order.html", nil) //快送页面
 }
 
 func redact_candidate_Handler(c *gin.Context) {
@@ -110,9 +110,9 @@ func Unaccept_order_show_handler(c *gin.Context) {
 	c.HTML(200, "Unaccept_order_show.html", nil) //编辑资料
 }
 
-func Campus_order_detail_handler(c *gin.Context) {
-	c.HTML(200, "Campus_order.html", nil) //编辑资料
-}
+// func Campus_order_detail_handler(c *gin.Context) {
+// c.HTML(200, "Campus_order.html", nil) //编辑资料
+// }
 
 func Start() error {
 	// 创建一个默认的路由引擎
@@ -151,8 +151,8 @@ func Start() error {
 	r.GET("/release_order", Release_order_Handler)             //查看个人发布订单
 	r.GET("/Read_More_detail", Read_More_Handler)              //读取更多信息
 	r.GET("/Unaccept_order_show", Unaccept_order_show_handler) //展示个人未被接收的订单
-	r.GET("/Campus_order", Campus_order_detail_handler)        //校园跑腿兼职订单
-	r.GET("/succ_login", Succ_Login)                           //成功登录
+	// r.GET("/Campus_order", Campus_order_detail_handler)        //校园跑腿兼职订单
+	r.GET("/succ_login", Succ_Login) //成功登录
 	r.GET("/all_order", Self)
 	r.POST("/QueryByTime", QueryByTime)
 	r.GET("/delete_succ", delete_succ)
@@ -182,6 +182,8 @@ func Start() error {
 		dapp.POST("/CancelUser", CancelUser)                   //注销用户
 		dapp.POST("/Unaccept_Order_show", Unaccept_Order_show) //展示未接单的订单
 		dapp.POST("/Campus_order_detail", Campus_order)        //展示校园兼职详情
+		dapp.POST("/CWork_order_detail", CWork_order)          //展示校园兼职详情
+		dapp.POST("/Shared_order_detail", Shared_order)        //展示校园兼职详情
 	}
 
 	err := r.Run()

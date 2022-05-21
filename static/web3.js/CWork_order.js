@@ -1,4 +1,4 @@
-data = JSON.parse(sessionStorage.getItem('Query_campus_order_detail'))
+data = JSON.parse(sessionStorage.getItem('Query_CWork_order_detail'))
 console.log(data);
 if (data == undefined) {
     var result = "";
@@ -44,7 +44,7 @@ if (data == undefined) {
     </div>
     </div>
     `
-    document.getElementById("Campus_order_detail").innerHTML = result;
+    document.getElementById("CWork_order_detail").innerHTML = result;
 }else {
     var result = "";
     data.forEach(e => {
@@ -60,11 +60,21 @@ if (data == undefined) {
         <a>${e.Taskname} </a>
         </h3>
         <ul>
-        <li>时间戳：${e.Timestamp}</li>
-        <li>金额：${e.Amount}</li>
-        <li>接单状态：${e.State}
+        <li>
+        <i class='bx bx-briefcase'></i>
+        ${e.Timestamp}
         </li>
-        <li>订单时间：${e.LaunchTime}
+        <li>
+        <i class='bx bx-briefcase'></i>
+        ${e.Amount}
+        </li>
+        <li>
+        <i class='bx bx-location-plus'></i>
+        ${e.State}
+        </li>
+        <li>
+        <i class='bx bx-stopwatch'></i>
+        ${e.LaunchTime}
         </li>
         </ul>
         <span>${e.Category}</span>
@@ -82,7 +92,7 @@ if (data == undefined) {
         </div>
         `
     })
-    document.getElementById("Campus_order_detail").innerHTML = result;
+    document.getElementById("CWork_order_detail").innerHTML = result;
 }
 
  
