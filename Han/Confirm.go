@@ -11,6 +11,7 @@ import (
 )
 
 func Confirmtask(c *gin.Context) {
+	state := "已接单"
 	account := c.PostForm("account")
 	add := common.HexToAddress(account)
 	ins := contract.Getsmartcontract()
@@ -23,6 +24,6 @@ func Confirmtask(c *gin.Context) {
 		return
 	}
 	contract.Confirmtask(ins, n, Txopts, add)
-	mysql.Update_beneficiary(times, account)
+	mysql.Update_beneficiary(state, account, times)
 	tohtml(c, "confirmtrue")
 }

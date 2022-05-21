@@ -69,7 +69,67 @@ document.getElementById("Block").innerHTML = decodeURI(Block);
 const Timestamp = list.map(item => item.Timestamp);
 let Timestamp_new = decodeURI(Timestamp);
 document.getElementById("Timestamp").innerHTML = Timestamp_new;
+console.log(parseInt(Timestamp_new))
+var a=parseInt(Timestamp_new)
 
+function succ_confirm() {
+    var
+        closeInSeconds = 5,
+        displayText = ' #1 秒后将自动跳转确认页面',
+        timer;
+
+    swal({
+        title: "恭喜您，接单成功!",
+        text: displayText.replace(/#1/, closeInSeconds),
+        imageUrl: "../static/image/check.png",
+        timer: closeInSeconds * 1000,
+        showconfirmButton: true,
+    }, function () {
+            window.location.href = "/"
+        }
+    );
+
+    timer = setInterval(function () {
+        closeInSeconds--;
+        if (closeInSeconds < 0) {
+            clearInterval(timer);
+        }
+
+        $('.sweet-alert > p').text(displayText.replace(/#1/, closeInSeconds));
+
+    }, 1000);
+} 
+
+state = decodeURI(State)
+console.log("状态",state)
+
+function fail_confirm() {
+    var
+        closeInSeconds = 5,
+        displayText = ' #1 秒后将自动跳转首页',
+        timer;
+
+    swal({
+        title: "抱歉，此订单已被接收！",
+        text: displayText.replace(/#1/, closeInSeconds),
+        imageUrl: "../static/image/info1.png",
+        timer: closeInSeconds * 1000,
+        showconfirmButton: true,
+    }, function () {
+            window.location.href = "/"
+        }
+    );
+
+    timer = setInterval(function () {
+        closeInSeconds--;
+        if (closeInSeconds < 0) {
+            clearInterval(timer);
+        }
+
+        $('.sweet-alert > p').text(displayText.replace(/#1/, closeInSeconds));
+
+    }, 1000);
+} 
  
 
 let Account = window.sessionStorage.getItem("Global_Account");
@@ -79,19 +139,62 @@ function Confirmtask() {
         console.log("Account=====>", Account)
         demo7()
     }else{
+        if(state =="已接单"){
+            fail_confirm()
+        }else{        
         $.ajax({
             method: "post",
             url: "http://localhost:8080/dapp/confirmtask",
-            data: { account: Account, timestap:Timestamp_new},
+            data: { account: Account, timestap:a},
             success: function (data) {
                 console.log(data.data)
+                if(data.data=="confirmtrue"){
+                    console.log("接单成功")
+                    succ_confirm()
+                }
             },
             error: function (data) {
                 console.log("error====>", error)
                 console.log("error data===>", data)
             }
         })
+    }
          
     }
 }
 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

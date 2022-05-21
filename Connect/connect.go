@@ -39,9 +39,9 @@ var (
 	//合约地址
 	contractadress = "0x1c154b7A518876DF365b3d209650d2A2fBfFeA5B"
 	//读取用户keystore文件地址
-	relativePath = "D:\\y\\geth\\node1\\nodedata\\keystore"
+	relativePath = "D://Test_Block_chain//data//keystore"
 	//本地链chainID交易:修改为本地的chainID
-	chainID = 10001
+	chainID = 113011301130
 )
 
 var client *ethclient.Client
@@ -245,18 +245,18 @@ func CreatNewEvent(
 	Taskcatagory string,
 	launchTime string,
 	amount *big.Int,
-) (*types.Transaction,*big.Int) {
+) (*types.Transaction, *big.Int) {
 	ops.Value = amount
 	timestap, err := ins.CreateNewEvent(ops, launchTime, Taskcatagory, Taskname, amount)
 	if err != nil {
 		fmt.Println("CreatNewEvent error ===>", err)
 		panic(err)
 	}
-	blocknumber:= ops.Nonce
+	blocknumber := ops.Nonce
 	// fmt.Println(timestap.AccessList())
 	// fmt.Println(timestap.Cost())
 	// fmt.Println(timestap.Type())
-	return timestap,blocknumber
+	return timestap, blocknumber
 }
 
 /*
@@ -355,7 +355,6 @@ func GetthistaskSign(PrivateKey *ecdsa.PrivateKey, hash [32]byte) []byte {
 	return signature
 }
 
-
 /*
 创建用户信息
 */
@@ -421,6 +420,7 @@ func CreatnewActogeth(pd string) string {
 
 //针对不同用户登入获取不同用户的信息来对交易签名
 func Changeuser(ad string, pw string) {
+	relativePath := "d://Test_Block_chain//data//keystore"
 	var FileInfo []os.FileInfo
 	var err error
 
@@ -434,7 +434,7 @@ func Changeuser(ad string, pw string) {
 		// fmt.Println(fileInfo.Name())
 	}
 	// ac:="5c595872e02b0613658036bdf5daa6d9f42954be"
-	fmt.Print("keystore",a)
+	fmt.Print("keystore", a)
 	matches2 := fuzzy.Find(ad[2:], a)
 	fmt.Println("当前登入的用户为", ad)
 	// print(relativePath+"//"+matches1[0])
@@ -458,7 +458,7 @@ func Get() (string, string) {
 func Cancellation(ad string) string {
 	var FileInfo []os.FileInfo
 	var err error
-	relativePath := "E://Test_block//data//keystore"
+	relativePath := "D://Test_Block_chain//data//keystore"
 
 	if FileInfo, err = ioutil.ReadDir(relativePath); err != nil {
 		fmt.Println("读取 keystore 文件夹出错")

@@ -67,6 +67,7 @@ function demo7() {
         text: displayText.replace(/#1/, closeInSeconds),
         imageUrl: "../static/image/info1.png",
         timer: closeInSeconds * 1000,
+        showCancelButton: true, //有这个就有取消按钮
         showconfirmButton: true,
     }, function () {
             window.location.href = "/account"

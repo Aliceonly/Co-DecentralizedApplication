@@ -54,18 +54,26 @@
 </div>
 
 <div class="navbar-area">
+
+    <!-- 放logo的地方 -->
     <div class="mobile-nav">
-        <a href="/" class="logo">
-        </a>
+    <a href="" class="logo">
+    <!-- <img src="static/picture/logo.png" alt="logo"> -->
+    </a>
     </div>
     <div class="main-nav">
         <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand" href="/">
+        <!-- <img src="static/picture/logo.png" alt="logo"> -->
         </a>
         <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
         <ul    class="navbar-nav m-auto">
+            <!-- style="position: relative;left: -430px;"  -->
+            <!-- 标记！！！！！！！！！！！！！！！！！！！！！！！！！！！ -->
+        
         <li class="nav-item">
+        <!-- <a href="#" class="nav-link dropdown-toggle active">Home</a> -->
         <li class="nav-item">
             <a href="/" class="nav-link">首页</a>
         </li>
@@ -137,78 +145,74 @@
         </div>
         </div>
         </div>
-
-        <section style="padding-bottom: 30px;" class="page-title title-bg12">
-            <div style="position: relative;top: -50px;" class="d-table">
-                <div class="d-table-cell">
-                    <h2>个人订单</h2>
-                    <ul>
-                        <li>
-                            <a href="/">首页</a>
-                        </li>
-                        <li>个人订单</li>
-                    </ul>
-                </div>
-            </div>
-            <div   class="lines">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-            </div>
-        </section>
+        
 
 
-<section style="padding-top: 100px;" class="account-section ptb-100">
+<div style="padding-top:110px;padding-bottom:70px" class="banner-style-three">
+<div class="d-table">
+<div class="d-table-cell">
 <div class="container">
+<div class="banner-text">
+<!-- <span>本页面展示所有的校园跑腿订单</span> -->
+<h1>共享服务订单</h1>
+<p>本应用致力于帮助学生节约碎片时间，让每位大学生的大学生活更为便捷，提供更多的工作机会</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="find-section pb-100">
+<div class="container">
+<form class="find-form">
 <div class="row">
-<div class="col-md-4">
-<div class="account-information">
-<div class="profile-thumb">
-<img src="../static/picture/account.jpg" alt="account holder image">
-<span style="font-size: small;font-weight: bold;color: black;position: relative;" id="Self_account"></span>
-</div>
-<ul>
-    <li>
-    <a>
-    <i class='bx bx-coffee-togo'></i>
-    <button onclick="release_order()">查看个人发布订单</button> 
-    </a>
-    </li>
-    <li>
-    <a href="change_user">
-    <i class='bx bx-briefcase'></i>
-    <button>修改个人发布订单</button> 
-    </a>
-    </li>
-    <li>
-    <a >
-    <i class='bx bx-heart'></i>
-    <button onclick="Cancle_order()">取消个人发布订单</button> 
-    </a>
-    </li>
-    <li>
-    <a href="#">
-    <i class='bx bx-coffee-togo'></i>
-     <button>查看个人接收订单</button> 
-    </a>
-    </li>
-    <li>
-    <a href="change_user">
-    <i class='bx bx-heart'></i>
-    <button>取消个人接收订单</button> 
-    </a>
-    </li>
-</ul>
+<div class="col-lg-3">
+<div class="form-group">
+<input type="text" class="form-control"  placeholder="关键词">
+<i class="bx bx-search-alt"></i>
 </div>
 </div>
 </div>
+<div class="col-lg-3">
+<button type="submit" class="find-btn">
+搜索
+<i class='bx bx-search'></i>
+</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+
+
+
+
+
+
+<section class="job-style-two pt-100 pb-70">
+<div class="container">
+<div class="section-title text-center">
+<h2>快来找找有没有你喜欢的工作吧！</h2>
+<p>您可以查看更多信息，或点击爱心添加至您的预计下单列表中</p>
+</div>
+
+<!-- ------------------------------------------------- -->
+
+<div id="Shared_order_detail" class="row">
+
+
+</div>
+
+<!-- ------------------------------------------------- -->
 </div>
 </section>
 
 
 
+
 <div class="copyright-text text-center">
-<p><a target="_blank" href="https://sc.chinaz.com/moban/"></a></p>
+<p><a target="_blank"></a></p>
 </div>
 
 
@@ -216,21 +220,30 @@
 <i class='bx bx-chevrons-up bx-fade-up'></i>
 </div>
 
-<script data-cfasync="false" src="../static/js/email-decode.min.js"></script>
-<script src="../static/js/jquery.min.js"></script>
-<script src="../static/js/bootstrap.bundle.min.js"></script>
-<script src="../static/js/owl.carousel.min.js"></script>
-<script src="../static/js/jquery.nice-select.min.js"></script>
-<script src="../static/js/jquery.magnific-popup.min.js"></script>
-<script src="../static/js/jquery.ajaxchimp.min.js"></script>
-<script src="../static/js/form-validator.min.js"></script>
-<script src="../static/js/contact-form-script.js"></script>
-<script src="../static/js/meanmenu.js"></script>
-<script src="../static/js/custom.js"></script>
-<script src="../static/js/sweetalert.min.js"></script>
-<script src="../static/web3.js/Self_Order.js"></script>
-<script src="../static/web3.js/succ_login.js"></script>
- 
 
+<script data-cfasync="false" src="../static/js/email-decode.min.js"></script><script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/bootstrap.bundle.min.js"></script>
+
+<script src="../static/js/owl.carousel.min.js"></script>
+
+<script src="../static/js/jquery.nice-select.min.js"></script>
+
+<script src="../static/js/jquery.magnific-popup.min.js"></script>
+
+<script src="../static/js/jquery.ajaxchimp.min.js"></script>
+
+<script src="../static/js/form-validator.min.js"></script>
+
+<script src="../static/js/contact-form-script.js"></script>
+
+<script src="../static/js/meanmenu.js"></script>
+
+<script src="../static/js/custom.js"></script>
+
+<script src="../static/web3.js/succ_login.js"></script>
+
+<script src="../static/web3.js/Shared_order.js"></script>
+
+<script src="../static/js/sweetalert.min.js"></script>
 </body>
 </html>

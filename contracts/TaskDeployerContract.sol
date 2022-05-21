@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.7.0 <0.9.0;
-import "github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v3.3/contracts/cryptography/ECDSA.sol";
+import "./ECDSA.sol";
 
-contract TaskDeployer {
+contract TaskDeployerContract {
      using ECDSA for bytes32;
      //创建任务的事件
      event Creat_Event(address add,string taskname,string taskcategory ,uint amount,uint timestamp);
