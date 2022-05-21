@@ -4,13 +4,14 @@ import (
 	contract "dapp/Connect"
 
 	"fmt"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/gin-gonic/gin"
 	"math/big"
+
+	"github.com/gin-gonic/gin"
 )
 
 func Cancel(c *gin.Context) {
-	add := common.HexToAddress(c.PostForm("account"))
+	// add := common.HexToAddress(c.PostForm("account"))
+	_, adress := contract.Getaccout()
 	ins := contract.Getsmartcontract()
 	Txopts := contract.GetTxopts()
 	times := c.PostForm("timestap")
@@ -20,6 +21,6 @@ func Cancel(c *gin.Context) {
 		fmt.Println("SetString: error")
 		return
 	}
-	contract.CancelEvent(ins, Txopts, n, add)
+	contract.CancelEvent(ins, Txopts, n, adress)
 	tohtml(c, "canceltrue")
 }
