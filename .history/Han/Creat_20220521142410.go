@@ -21,7 +21,11 @@ func Creat(c *gin.Context) {
 	taskname := c.PostForm("taskname")
 	tasktime := c.PostForm("tasktime")
 	taskmoney := c.PostForm("taskmoney")
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> eab9371837dc562cfe47d6be584787fc5b88026d
 	n := new(big.Int)
 	n, ok := n.SetString(taskmoney, 10)
 	if !ok {

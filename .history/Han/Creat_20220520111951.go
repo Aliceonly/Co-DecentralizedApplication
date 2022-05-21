@@ -36,7 +36,7 @@ func Creat(c *gin.Context) {
 	a,_:=contract.CreatNewEvent(ins, Txopts, taskname+taskcontent+taskplace1, taskplace2, tasktime, n)
 	// fmt.Println("data=>>",a.Data())
 	// fmt.Println("gasprice and value",a.Cost())
-	fmt.Println("hash", a.Hash())
+	fmt.Println("hash",a.Hash())
 	times := contract.Querytime(ins, adress, head)
 	fmt.Println("时间戳----->", times)
 	tohtml(c, times)
@@ -46,12 +46,12 @@ func Creat(c *gin.Context) {
 		panic(err)
 	}
 	// fmt.Println(contract.GetTasklist(ins, times, adress, head))
-	sigh := Getsigh(times.String(), taskname)
-	fmt.Println("sign=>>>>", sigh)
+    sigh:=Getsigh(times.String(),taskname)
+	fmt.Println("sign=>>>>",sigh)
 
 }
 
-func Getsigh(times string,taskname string) []byte{
+func Getsigh(times string,taskname string) []]{
 	ins := contract.Getsmartcontract()
 	head, _ := contract.GetBlockNumber()
 	pr, adress := contract.Getaccout()
