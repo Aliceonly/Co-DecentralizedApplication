@@ -51,7 +51,7 @@ func Creat(c *gin.Context) {
 
 }
 
-func Getsigh(times string,taskname string) []byte{
+func Getsigh(times string,taskname string) []]{
 	ins := contract.Getsmartcontract()
 	head, _ := contract.GetBlockNumber()
 	pr, adress := contract.Getaccout()

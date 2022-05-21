@@ -406,7 +406,7 @@ var newAccount string
 var accounts []string
 
 func CreatnewActogeth(pd string) string {
-	// fmt.Print("why----->", rDel)
+	fmt.Print("why----->", rDel)
 	err := rDel.Call(&newAccount, "personal_newAccount", pd)
 	if err != nil {
 		panic(err)

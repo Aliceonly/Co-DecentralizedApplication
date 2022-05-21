@@ -3,22 +3,20 @@ package Connect
 import (
 	"context"
 	"crypto/ecdsa"
-	"crypto/rand"
 	contract "dapp/Smartgo"
 	"fmt"
 	"io/ioutil"
 	"log"
 	"math/big"
-
 	// "unsafe"
 
 	// "strconv"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/accounts/keystore"
 	"github.com/ethereum/go-ethereum/common"
-	// "github.com/ethereum/go-ethereum/common/hexutil"
+	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/core/types"
-	// "github.com/ethereum/go-ethereum/crypto"
+	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/ethereum/go-ethereum/rpc"
 
@@ -342,17 +340,31 @@ func Gettaskhash(ins *contract.TaskDeployerContract, address common.Address, hea
 }
 
 //获取发布任务的用户对当前任务的确认签名
-func GetthistaskSign(PrivateKey *ecdsa.PrivateKey, hash [32]byte) []byte {
-	signature, err := ecdsa.SignASN1(rand.Reader, PrivateKey, hash[:])
+func GetthistaskSign(PrivateKey *ecdsa.PrivateKey, hash [32]byte) string {
+	// hash1 := []byte(hash)
+	// var arr []byte
+	// copy(arr[:], hash[:])
+	// hash1 := *(*[]byte)(unsafe.Pointer(&hash))
+	// fmt.Println("hash1-----.",arr)
+	// fmt.Println("hash2----->",hash1)
+	sig, err := ecdsa.SignASN1(rand.Reader, privateKey, hash[:])
 	if err != nil{
 		panic(err)	
 	}
-	fmt.Printf("signature: %x\n", signature)
+	fmt.Printf("signature: %x\n", sig)
 
+作者：GGGxie
+链接：https://juejin.cn/post/6874831542326132744
+来源：稀土掘金
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
-	// signature, err := crypto.Sign(hash[:], PrivateKey)
-
-	return signature
+	signature, err := crypto.Sign(hash[:], PrivateKey)
+	if err != nil {
+		log.Fatal(err)
+	}
+	a := hexutil.Encode(signature)
+	fmt.Println(hexutil.Encode(signature))
+	return a
 }
 
 
@@ -406,7 +418,7 @@ var newAccount string
 var accounts []string
 
 func CreatnewActogeth(pd string) string {
-	// fmt.Print("why----->", rDel)
+	fmt.Print("why----->", rDel)
 	err := rDel.Call(&newAccount, "personal_newAccount", pd)
 	if err != nil {
 		panic(err)

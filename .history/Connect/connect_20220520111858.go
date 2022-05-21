@@ -16,9 +16,9 @@ import (
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/accounts/keystore"
 	"github.com/ethereum/go-ethereum/common"
-	// "github.com/ethereum/go-ethereum/common/hexutil"
+	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/core/types"
-	// "github.com/ethereum/go-ethereum/crypto"
+	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/ethereum/go-ethereum/rpc"
 
@@ -342,7 +342,13 @@ func Gettaskhash(ins *contract.TaskDeployerContract, address common.Address, hea
 }
 
 //获取发布任务的用户对当前任务的确认签名
-func GetthistaskSign(PrivateKey *ecdsa.PrivateKey, hash [32]byte) []byte {
+func GetthistaskSign(PrivateKey *ecdsa.PrivateKey, hash [32]byte) []by {
+	// hash1 := []byte(hash)
+	// var arr []byte
+	// copy(arr[:], hash[:])
+	// hash1 := *(*[]byte)(unsafe.Pointer(&hash))
+	// fmt.Println("hash1-----.",arr)
+	// fmt.Println("hash2----->",hash1)
 	signature, err := ecdsa.SignASN1(rand.Reader, PrivateKey, hash[:])
 	if err != nil{
 		panic(err)	
@@ -406,7 +412,7 @@ var newAccount string
 var accounts []string
 
 func CreatnewActogeth(pd string) string {
-	// fmt.Print("why----->", rDel)
+	fmt.Print("why----->", rDel)
 	err := rDel.Call(&newAccount, "personal_newAccount", pd)
 	if err != nil {
 		panic(err)

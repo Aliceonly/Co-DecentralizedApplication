@@ -51,12 +51,15 @@ func Creat(c *gin.Context) {
 
 }
 
-func Getsigh(times string,taskname string) []byte{
+// ins := c.Getsmartcontract()
+// priv,_:=c.Getaccout()
+func Getsigh(times string,taskname string) string{
 	ins := contract.Getsmartcontract()
 	head, _ := contract.GetBlockNumber()
 	pr, adress := contract.Getaccout()
 	hash:=contract.Gettaskhash(ins,adress,head,taskname,times)
 	fmt.Println("hash====>",hash)
+	// fmt.Println("hash2====>",pass)
 	sigh:=contract.GetthistaskSign(pr,hash)
 	return sigh
 }

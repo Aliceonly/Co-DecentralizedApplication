@@ -33,7 +33,7 @@ func Creat(c *gin.Context) {
 	taskplace1 := c.PostForm("taskplace1") //地区
 	taskcontent := c.PostForm("taskcontent")
 	fmt.Println(taskname, tasktime, taskmoney, taskplace2, taskcontent, taskplace1)
-	a,_:=contract.CreatNewEvent(ins, Txopts, taskname+taskcontent+taskplace1, taskplace2, tasktime, n)
+	a,block:=contract.CreatNewEvent(ins, Txopts, taskname+taskcontent+taskplace1, taskplace2, tasktime, n)
 	// fmt.Println("data=>>",a.Data())
 	// fmt.Println("gasprice and value",a.Cost())
 	fmt.Println("hash",a.Hash())
@@ -41,7 +41,7 @@ func Creat(c *gin.Context) {
 	fmt.Println("时间戳----->", times)
 	tohtml(c, times)
 	task_money, _ := strconv.Atoi(taskmoney)
-	err := mysql.Insert(taskname, add, taskplace2, task_money, times, "availablev", tasktime,head.ParentHash.String())
+	err := mysql.Insert(taskname, add, taskplace2, task_money, times, "availablev", tasktime,head.)
 	if err != nil {
 		panic(err)
 	}
@@ -51,12 +51,15 @@ func Creat(c *gin.Context) {
 
 }
 
-func Getsigh(times string,taskname string) []byte{
+// ins := c.Getsmartcontract()
+// priv,_:=c.Getaccout()
+func Getsigh(times string,taskname string) string{
 	ins := contract.Getsmartcontract()
 	head, _ := contract.GetBlockNumber()
 	pr, adress := contract.Getaccout()
 	hash:=contract.Gettaskhash(ins,adress,head,taskname,times)
 	fmt.Println("hash====>",hash)
+	// fmt.Println("hash2====>",pass)
 	sigh:=contract.GetthistaskSign(pr,hash)
 	return sigh
 }

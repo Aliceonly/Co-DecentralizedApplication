@@ -25,7 +25,6 @@ func ClaimTrust(c *gin.Context){
 		fmt.Println("SetString: error")
 		return
 	}
-	
 	contract.ClaimTrust(ins,Txopts,n,data,hash,taskname)
 	tohtml(c,"ClaimOK")
   
