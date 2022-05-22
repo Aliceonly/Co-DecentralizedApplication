@@ -85,8 +85,8 @@ if (data == undefined) {
     <p>类型：${e.Category}</p>
     <p>接单状态：${e.State} </p>
     <p>时间戳：${e.Timestamp}</p>
-    <a onclick="Cancle_order(this)" class="blog-btn">
-    <button>取消</button>
+    <a onclick="Read_More(this)" class="blog-btn">
+    <button>查看更多</button>
     <i class='bx bx-plus bx-spin'></i>
     </a>
     </div>
@@ -100,9 +100,31 @@ if (data == undefined) {
     document.getElementById("release_order").innerHTML = result;
 }
 
- 
 
 
+function Read_More(e) {
+    // var Timestamp_new = $("#Timestamp").val();
+    var Timestamp_new = e.parentElement.children[5].innerText
+    Timestamp = Timestamp_new.slice(4, 14)
+    console.log(Timestamp_new);
+    console.log(Timestamp);
+    $.ajax({
+        method: "post",
+        url: "http://localhost:8080/dapp/Read_more",
+        data: { timestamp: Timestamp },
+        success: function (data) {
+            console.log("success data", data);
+            result = data.data
+            console.log("result=====>", result);
+            window.location.href = "/Read_More_detail?Taskname=" + result.Taskname + '&LaunchTime=' + result.LaunchTime + '&Amount=' + result.Amount + '&Category=' + result.Category + '&State=' + result.State + '&Add=' + result.Add + '&Timestamp='+ result.Timestamp+ '&Block=' + result.Block; //window.location.href跳转新页面
+        },
+        error: function (data) {
+            swal("OMG", "删除操作失败了!", "error");
+            console.log("error====>", error)
+            console.log("error data===>", data)
+        }
+    })
+}
 
 
 
