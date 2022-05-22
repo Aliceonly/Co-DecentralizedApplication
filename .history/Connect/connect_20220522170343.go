@@ -7,6 +7,7 @@ import (
 	contract "dapp/Smartgo"
 	"fmt"
 	"io/ioutil"
+	"math"
 	"math/big"
 
 	// "unsafe"
@@ -241,7 +242,7 @@ func CreatNewEvent(
 )  *types.Transaction{
 	c:=amount.String()+"00000000000000000"
 	n := new(big.Int)
-	n, ok := n.SetString(c, 10)
+	n, ok := n.SetString(a, 10)
 	if !ok {
 		fmt.Println("SetString: error")
 	}

@@ -4,12 +4,10 @@ import (
 	contract "dapp/Connect"
 	"math/big"
 	"strconv"
-	"time"
-
+    "time"
 	// "github.com/ethereum/go-ethereum/common"
 	mysql "dapp/utils"
 	"fmt"
-
 	"github.com/gin-gonic/gin"
 )
 
@@ -22,13 +20,14 @@ func Creat(c *gin.Context) {
 	taskname := c.PostForm("taskname")
 	tasktime := c.PostForm("tasktime")
 	taskmoney := c.PostForm("taskmoney")
-	// taskmoney2:=taskmoney+"000000000000000000"
+	taskmoney2:=taskmoney+"000000000000000000"
 	n := new(big.Int)
-	n, ok := n.SetString(taskmoney, 10)
+	n, ok := n.SetString(taskmoney2, 10)
 	if !ok {
 		fmt.Println("SetString: error")
 		return
 	}
+	fmt.Println("type:", reflect.TypeOf(x))
 
 	taskplace2 := c.PostForm("taskplace3") //工作类型
 	taskplace1 := c.PostForm("taskplace1") //地区

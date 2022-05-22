@@ -22,9 +22,9 @@ func Creat(c *gin.Context) {
 	taskname := c.PostForm("taskname")
 	tasktime := c.PostForm("tasktime")
 	taskmoney := c.PostForm("taskmoney")
-	// taskmoney2:=taskmoney+"000000000000000000"
+	taskmoney2:=taskmoney+"000000000000000000"
 	n := new(big.Int)
-	n, ok := n.SetString(taskmoney, 10)
+	n, ok := n.SetString(taskmoney2, 10)
 	if !ok {
 		fmt.Println("SetString: error")
 		return

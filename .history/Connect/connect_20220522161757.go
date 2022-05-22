@@ -4,7 +4,7 @@ import (
 	"context"
 	"crypto/ecdsa"
 	"crypto/rand"
-	contract "dapp/Smartgo"
+	contract "Smartgo"
 	"fmt"
 	"io/ioutil"
 	"math/big"
@@ -239,13 +239,7 @@ func CreatNewEvent(
 	launchTime string,
 	amount *big.Int,
 )  *types.Transaction{
-	c:=amount.String()+"00000000000000000"
-	n := new(big.Int)
-	n, ok := n.SetString(c, 10)
-	if !ok {
-		fmt.Println("SetString: error")
-	}
-	ops.Value = n
+	ops.Value = amount
 	a, err := ins.CreateNewEvent(ops, launchTime, Taskcatagory, Taskname, amount)
 	if err != nil {
 		fmt.Println("CreatNewEvent error ===>", err)

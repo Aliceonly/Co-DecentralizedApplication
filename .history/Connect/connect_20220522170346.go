@@ -7,6 +7,7 @@ import (
 	contract "dapp/Smartgo"
 	"fmt"
 	"io/ioutil"
+	"math"
 	"math/big"
 
 	// "unsafe"

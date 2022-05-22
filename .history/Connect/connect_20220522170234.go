@@ -7,6 +7,7 @@ import (
 	contract "dapp/Smartgo"
 	"fmt"
 	"io/ioutil"
+	"math"
 	"math/big"
 
 	// "unsafe"
@@ -239,13 +240,14 @@ func CreatNewEvent(
 	launchTime string,
 	amount *big.Int,
 )  *types.Transaction{
-	c:=amount.String()+"00000000000000000"
+	a=amount.String()+"00000000000000000"
 	n := new(big.Int)
-	n, ok := n.SetString(c, 10)
+	n, ok := n.SetString(taskmoney, 10)
 	if !ok {
 		fmt.Println("SetString: error")
+		return
 	}
-	ops.Value = n
+	ops.Value = 
 	a, err := ins.CreateNewEvent(ops, launchTime, Taskcatagory, Taskname, amount)
 	if err != nil {
 		fmt.Println("CreatNewEvent error ===>", err)
