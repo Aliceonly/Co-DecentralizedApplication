@@ -195,6 +195,7 @@ func DetailData(timestamp int) Tasklist {
 	fmt.Println("task=====================>>>>>>>>>>>>>>>>>>>>>>>>>>>>", task)
 	return task
 }
+
 func DeletTask(timestamp int) {
 	var sqlStr1 = "SELECT Taskid FROM tasklist WHERE tasklist.`Timestamp`=?"
 	rows, err := Db.Query(sqlStr1, timestamp)
@@ -389,4 +390,40 @@ func Shared_order(entry string) []Tasklist {
 		serach_task = append(serach_task, t)
 	}
 	return serach_task
+}
+
+//查看校园跑腿类型的订单更多的情况
+func Campus_order_Read_more(timestamp int) Tasklist {
+	var task Tasklist
+	err := Db.QueryRow("SELECT * FROM tasklist WHERE timestamp = ?", timestamp).Scan(&task.Taskid, &task.Taskname, &task.Add, &task.Beneficiary, &task.Category, &task.Amount, &task.Timestamp, &task.State, &task.LaunchTime, &task.Block)
+	if err != nil {
+		fmt.Println("校园跑腿类型的订单展示出错了")
+		fmt.Println("展示错误是====>>>>>>>>>>>>>>", err)
+	}
+	fmt.Println("task=====================>>>>>>>>>>>>>>>>>>>>>>>>>>>>", task)
+	return task
+}
+
+//查看校园兼职类型的订单更多的情况
+func CWork_order_Read_more(timestamp int) Tasklist {
+	var task Tasklist
+	err := Db.QueryRow("SELECT * FROM tasklist WHERE timestamp = ?", timestamp).Scan(&task.Taskid, &task.Taskname, &task.Add, &task.Beneficiary, &task.Category, &task.Amount, &task.Timestamp, &task.State, &task.LaunchTime, &task.Block)
+	if err != nil {
+		fmt.Println("校园兼职类型的订单展示出错了")
+		fmt.Println("展示错误是====>>>>>>>>>>>>>>", err)
+	}
+	fmt.Println("task=====================>>>>>>>>>>>>>>>>>>>>>>>>>>>>", task)
+	return task
+}
+
+//查看共享服务类型的订单更多的情况
+func Shared_order_Read_more(timestamp int) Tasklist {
+	var task Tasklist
+	err := Db.QueryRow("SELECT * FROM tasklist WHERE timestamp = ?", timestamp).Scan(&task.Taskid, &task.Taskname, &task.Add, &task.Beneficiary, &task.Category, &task.Amount, &task.Timestamp, &task.State, &task.LaunchTime, &task.Block)
+	if err != nil {
+		fmt.Println("共享服务类型的订单展示出错了")
+		fmt.Println("展示错误是====>>>>>>>>>>>>>>", err)
+	}
+	fmt.Println("task=====================>>>>>>>>>>>>>>>>>>>>>>>>>>>>", task)
+	return task
 }

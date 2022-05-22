@@ -123,7 +123,7 @@ function Cancle_order(e) {
             console.log("success data", data);
             result = data.data
             console.log("result=====>", result);
-            window.location.href = "/Read_More_detail?Taskname=" + result.Taskname + '&LaunchTime=' + result.LaunchTime+ '&Amount=' + result.Amount+ '&Category=' + result.Category+ '&State=' + result.State+ '&Add=' + result.Add+ '&Timestamp=' + result.Timestamp+ '&Block=' + result.Block; //window.location.href跳转新页面
+           
         },
         error: function (data) {
             swal("OMG", "删除操作失败了!", "error");

@@ -1,8 +1,12 @@
+const req = require("express/lib/request");
+const res = require("express/lib/response");
+
 function create_user(){
     var a=1
     var Sid=$("#Sid").val();
     var Telephone=$("#Telephone").val();
     var Password=$("#password").val();
+    var CPassword=$("#passwords").val();
     // var phonelength = $("#Telephone").val().length;
     reg = /^1(3\d|4\d|5\d|6\d|7\d|8\d|9\d)\d{8}$/g 
     var result = reg.test(Telephone);
@@ -43,7 +47,13 @@ function create_user(){
     }else{
         a=1
     }
-    console.log(Sid,Telephone,Password)
+    if (CPassword == Password) {
+        a=1
+    }else{
+        swal("Sorry!", "密码不一致，请重试！", "error");
+        a=0
+    }
+    console.log(Sid,Telephone,Password,CPassword)
     if (a==1){
         $.ajax({
             method:"post",

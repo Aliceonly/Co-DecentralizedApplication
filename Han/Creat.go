@@ -27,7 +27,7 @@ func Creat(c *gin.Context) {
 		fmt.Println("SetString: error")
 		return
 	}
-	
+
 	taskplace2 := c.PostForm("taskplace3") //工作类型
 	taskplace1 := c.PostForm("taskplace1") //地区
 	taskcontent := c.PostForm("taskcontent")
@@ -46,7 +46,7 @@ func Creat(c *gin.Context) {
 	fmt.Println("时间戳----->", times)
 	tohtml(c, times)
 	task_money, _ := strconv.Atoi(taskmoney)
-	err := mysql.Insert(taskname, add, taskplace2, task_money, times, "availablev", tasktime,head.ParentHash.String())
+	err := mysql.Insert(taskname, add, taskplace2, task_money, times, "availablev", tasktime, head.ParentHash.String())
 	if err != nil {
 		panic(err)
 	}
@@ -61,9 +61,9 @@ func Getsigh(times string,taskname string) []byte{
 	ins := contract.Getsmartcontract()
 	head, _ := contract.GetBlockNumber()
 	pr, adress := contract.Getaccout()
-	hash:=contract.Gettaskhash(ins,adress,head,taskname,times)
-	fmt.Println("hash====>",hash)
-	sigh:=contract.GetthistaskSign(pr,hash)
+	hash := contract.Gettaskhash(ins, adress, head, taskname, times)
+	fmt.Println("hash====>", hash)
+	sigh := contract.GetthistaskSign(pr, hash)
 	return sigh
 }
 

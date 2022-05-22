@@ -99,6 +99,9 @@
             <li class="nav-item">
                 <a href="self_order" class="nav-link">个人订单</a>
             </li>
+            <li class="nav-item">
+                <a href="Unaccept_order_show" class="nav-link">取消订单</a>
+            </li>
             </ul>
             </li>
             <li class="nav-item">
@@ -188,6 +191,10 @@
                         <div class="form-group">
                             <label>密码</label>
                             <input type="password" class="form-control" placeholder="请设置您的密码" name="password"  id="password" required="">
+                        </div>
+                        <div class="form-group">
+                            <label>确认密码</label>
+                            <input type="password" class="form-control" placeholder="请再次输入您的密码" name="passwords"  id="passwords" required="">
                         </div>
                         <div class="signup-btn text-center">
                             <button onclick="create_user()">注册</button>

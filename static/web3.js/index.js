@@ -11,6 +11,7 @@ function Login_status() {
         text: displayText.replace(/#1/, closeInSeconds),
         imageUrl: "../static/image/info1.png",
         timer: closeInSeconds * 1000,
+        showCancelButton: true,  
         showconfirmButton: true,
     }, function () {
         window.location.href = "/sign_in"
@@ -90,7 +91,7 @@ function CWork_order(){
             result = data.data
             console.log("result=====>", result);
             sessionStorage.setItem('Query_CWork_order_detail', JSON.stringify(result))
-            window.location.href="/detail_qukuilySend"
+            window.location.href="/detail_campus" 
         },
         error: function (data) {
             console.log("error====>", error)

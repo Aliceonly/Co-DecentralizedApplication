@@ -91,6 +91,9 @@
     <li class="nav-item">
         <a href="self_order" class="nav-link">个人订单</a>
     </li>
+    <li class="nav-item">
+        <a href="Unaccept_order_show" class="nav-link">取消订单</a>
+    </li>
     </ul>
     </li>
     <li class="nav-item">
@@ -255,7 +258,6 @@
     <h3>{{$value.Taskname}}</h3>
     <ul>
     <li id="Timestamp">
-    <!-- <i class='bx bx-briefcase'></i> -->
     <p>时间戳：{{$value.Timestamp}}</p>
     </li>
     <li>
@@ -274,8 +276,6 @@
     <div class="col-md-3">
     <div class="theme-btn text-end">
         <button onclick="detaildata(this)" class="default-btn">查看更多</button>
-                <!-- <button type="button" onclick="accept(this)" >接受订单</button>  -->
-                <!-- <button type="button" onclick="detaildata(this)" >接受订单</button> -->
     </div>
     </div>
     </div>
