@@ -122,9 +122,17 @@ func Shared_order_Read_more_handler(c *gin.Context) {
 	c.HTML(200, "Shared_order_Read_more.html", nil) //编辑资料
 }
 
-// func Campus_order_detail_handler(c *gin.Context) {
-// c.HTML(200, "Campus_order.html", nil) //编辑资料
-// }
+func Self_info_handler(c *gin.Context) {
+	c.HTML(200, "self_info.html", nil) //个人信息
+}
+
+func self_new_order_handler(c *gin.Context) {
+	c.HTML(200, "self_new_order.html", nil) //个人订单
+}
+
+func setting_handler(c *gin.Context) {
+	c.HTML(200, "setting.html", nil) //设置
+}
 
 func Start() error {
 	// 创建一个默认的路由引擎
@@ -165,7 +173,9 @@ func Start() error {
 	r.GET("/Unaccept_order_show", Unaccept_order_show_handler)       //展示个人未被接收的订单
 	r.GET("/Campus_order_Read_more", Campus_order_Read_more_handler) //校园跑腿订单查看更多详情
 	r.GET("/CWork_order_Read_more", CWork_order_Read_more_handler)   //校园兼职订单查看更多详情
-	r.GET("/Shared_order_Read_more", Shared_order_Read_more_handler) //共享服务订单查看更多详情
+	r.GET("/Self_info", Self_info_handler)                           //个人信息
+	r.GET("/self_new_order", self_new_order_handler)                 //个人订单
+	r.GET("/setting", setting_handler)                               //设置
 	r.GET("/succ_login", Succ_Login)                                 //成功登录
 	r.GET("/all_order", Self)
 	r.POST("/QueryByTime", QueryByTime)

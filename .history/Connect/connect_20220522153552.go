@@ -37,7 +37,7 @@ var (
 	//本地账户密码
 	password = ""
 	//合约地址
-	contractadress = "0xEe1C58053f725d537C99F50c528Dd8174D2842A7"
+	contractadress = "0x712F58c9D4cdcE1403D6E792E22210a9A18c2632"
 	//读取用户keystore文件地址
 	relativePath = "D:\\y\\geth\\node1\\nodedata\\keystore"
 	//本地链chainID交易:修改为本地的chainID
@@ -345,8 +345,13 @@ func GetthistaskSign(PrivateKey *ecdsa.PrivateKey, hash [32]byte) []byte {
 	if err != nil {
 		panic(err)
 	}
+<<<<<<< HEAD
 	// fmt.Printf("signature: %x\n", signature)
 	fmt.Println(signature)
+=======
+	fmt.Printf("signature: %x\n", signature)
+
+>>>>>>> b33f0d7e88460ce7bdff55c412e8f250b3ccd9f5
 	// signature, err := crypto.Sign(hash[:], PrivateKey)
 	return signature
 }

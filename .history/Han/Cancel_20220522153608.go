@@ -6,9 +6,15 @@ import (
 	// "github.com/ethereum/go-ethereum/common"
 	"github.com/gin-gonic/gin"
 	"math/big"
+
+	"github.com/gin-gonic/gin"
 )
 
 func Cancel(c *gin.Context) {
+<<<<<<< HEAD
+=======
+	// add := common.HexToAddress(c.PostForm("account"))
+>>>>>>> b33f0d7e88460ce7bdff55c412e8f250b3ccd9f5
 	_, adress := contract.Getaccout()
 	ins := contract.Getsmartcontract()
 	Txopts := contract.GetTxopts()

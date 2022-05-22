@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.7.0 <0.9.0;
-import "github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v3.3/contracts/cryptography/ECDSA.sol";
+import "./ECDSA.sol";
 
-contract TaskDeployer {
+contract TaskDeployerContract {
      using ECDSA for bytes32;
      //创建任务的事件
      event Creat_Event(address add,string taskname,string taskcategory ,uint amount,uint timestamp);
@@ -127,7 +127,7 @@ contract TaskDeployer {
      /*
      取消任务
      */
-    function cancelEvent(uint _timestamp)  public payable {
+    function cancelEvent(uint _timestamp) public {
        require(_tasklist[_timestamp].sponsor == msg.sender,"must be sponsor can cancel");
         uint amount = _tasklist[_timestamp].amount;
         // uint256 contractbalance=getBalanceOfContract();
@@ -140,7 +140,7 @@ contract TaskDeployer {
       /*
     发布任务者确认接受任务者完成任务
      */
-      function claimTrust(uint _timestamp,bytes memory _sigs,bytes32 _PHash,string memory _taskname)  public payable issponsoradress(_timestamp) {
+      function claimTrust(uint _timestamp,bytes memory _sigs,bytes32 _PHash,string memory _taskname) public issponsoradress(_timestamp) {
         require(stringsEquals(_tasklist[_timestamp].state,"invalid")!=true, "Task is invalid.");
         require(stringsEquals(_tasklist[_timestamp].state,"completed")!=true, "Task is completed.");
         require(_checkSigs(_timestamp, _sigs, _PHash,_taskname), "invalid sig");
@@ -216,5 +216,6 @@ contract TaskDeployer {
 
    fallback() external payable {}
    receive() external payable {}
-    
+     
+
 }
