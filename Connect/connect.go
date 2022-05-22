@@ -37,11 +37,11 @@ var (
 	//本地账户密码
 	password = ""
 	//合约地址
-	contractadress = "0xEe1C58053f725d537C99F50c528Dd8174D2842A7"
+	contractadress = "0x34B106bEbE9811A0E4022944dfAd2ef91B0a0689"
 	//读取用户keystore文件地址
-	relativePath = "D:\\y\\geth\\node1\\nodedata\\keystore"
+	relativePath = "E://Block_chain//data//keystore"
 	//本地链chainID交易:修改为本地的chainID
-	chainID = 10001
+	chainID = 833338833338
 )
 
 var client *ethclient.Client
@@ -61,7 +61,6 @@ func init() {
 
 	//fmt.Println(client)
 }
-
 
 /*
 实例化合约
@@ -121,20 +120,18 @@ func GetBlockNumber() (*types.Header, error) {
 }
 
 //获取区块的详细信息
-func Getblockmessage(headr int64) (*big.Int,uint64) {
+func Getblockmessage(headr int64) (*big.Int, uint64) {
 	blockNumber := big.NewInt(headr)
 	block, err := client.BlockByNumber(context.Background(), blockNumber)
 	if err != nil {
 		panic(err)
 	}
-	blockNow:=block.Number()
-	timestamp:=block.Time()
-	fmt.Println(block.Number().Uint64()) 
+	blockNow := block.Number()
+	timestamp := block.Time()
+	fmt.Println(block.Number().Uint64())
 	fmt.Println(block.Time())
-	return blockNow,timestamp
+	return blockNow, timestamp
 }
-
-
 
 //设置TransactOpts
 func setopts(privateKey *ecdsa.PrivateKey, address common.Address) *bind.TransactOpts {
@@ -238,7 +235,7 @@ func CreatNewEvent(
 	Taskcatagory string,
 	launchTime string,
 	amount *big.Int,
-)  *types.Transaction{
+) *types.Transaction {
 	ops.Value = amount
 	a, err := ins.CreateNewEvent(ops, launchTime, Taskcatagory, Taskname, amount)
 	if err != nil {
@@ -248,15 +245,16 @@ func CreatNewEvent(
 	return a
 	// a:=receipt.Status
 }
-func QueryStatus(txHash common.Hash)int{
-	rec,err:=client.TransactionReceipt(context.Background(),txHash)
-	if (err!=nil) {
+func QueryStatus(txHash common.Hash) int {
+	rec, err := client.TransactionReceipt(context.Background(), txHash)
+	if err != nil {
 		// panic(err)
-        return (-1)
-    }
-	
-    return (int(rec.Status))
+		return (-1)
+	}
+
+	return (int(rec.Status))
 }
+
 /*
 获取任务时间戳
 */
@@ -416,7 +414,6 @@ func CreatnewActogeth(pd string) string {
 
 //针对不同用户登入获取不同用户的信息来对交易签名
 func Changeuser(ad string, pw string) {
-	// relativePath := "d://Test_Block_chain//data//keystore"
 	var FileInfo []os.FileInfo
 	var err error
 
@@ -454,7 +451,7 @@ func Get() (string, string) {
 func Cancellation(ad string) string {
 	var FileInfo []os.FileInfo
 	var err error
-	relativePath := "D://Test_Block_chain//data//keystore"
+	relativePath := "E://Block_chain//data//keystore"
 
 	if FileInfo, err = ioutil.ReadDir(relativePath); err != nil {
 		fmt.Println("读取 keystore 文件夹出错")
@@ -489,17 +486,17 @@ func Cancellation(ad string) string {
 //         case err := <-sub.Err():
 //             panic(err)
 //         case header := <-headers:
-//             fmt.Println(header.Hash().Hex()) 
+//             fmt.Println(header.Hash().Hex())
 //             block, err := client.BlockByHash(context.Background(), header.Hash())
 //             if err != nil {
 //                 panic(err)
 //             }
 
-//             fmt.Println(block.Hash().Hex())        
-//             fmt.Println(block.Number().Uint64())   
-//             fmt.Println(block.Time())  
-//             fmt.Println(block.Nonce())             
-//             fmt.Println(len(block.Transactions())) 
+//             fmt.Println(block.Hash().Hex())
+//             fmt.Println(block.Number().Uint64())
+//             fmt.Println(block.Time())
+//             fmt.Println(block.Nonce())
+//             fmt.Println(len(block.Transactions()))
 //         }
 //     }
 // }

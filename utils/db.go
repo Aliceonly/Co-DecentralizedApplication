@@ -16,7 +16,7 @@ var (
 )
 
 func init() {
-	Db, err = sql.Open("mysql", "root:121@tcp(localhost:3306)/test?parseTime=true&charset=utf8")
+	Db, err = sql.Open("mysql", "root:123456@tcp(localhost:3306)/test?parseTime=true&charset=utf8")
 	if err != nil {
 		panic(err.Error())
 	}
@@ -426,4 +426,25 @@ func Shared_order_Read_more(timestamp int) Tasklist {
 	}
 	fmt.Println("task=====================>>>>>>>>>>>>>>>>>>>>>>>>>>>>", task)
 	return task
+}
+
+//查询共享服务类型的订单
+func Query_selfacceptOrder(add string) []Tasklist {
+	var serach_task []Tasklist
+	sql_serach_task := "select * from tasklist where Beneficiary = ?"
+	rows, err := Db.Query(sql_serach_task, add)
+	if err != nil {
+		fmt.Println("显示共享服务类型订单出错", err)
+	}
+	fmt.Println("rows------------------------------------===", rows)
+	for rows.Next() {
+		var t Tasklist
+		err := rows.Scan(&t.Taskid, &t.Taskname, &t.Add, &t.Beneficiary, &t.Category, &t.Amount, &t.Timestamp, &t.State, &t.LaunchTime, &t.Block)
+		if err != nil {
+			fmt.Println("tasklist error================================>>>>>>>>>", err)
+			return nil
+		}
+		serach_task = append(serach_task, t)
+	}
+	return serach_task
 }

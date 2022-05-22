@@ -9,19 +9,26 @@ function CreatTask() {
   var taskcontent = $('#exampleFormControlTextarea1').val();
   console.log(taskname, tasktime, taskmoney, tasktime2);
   console.log(taskplace1, taskplace2, taskplace3, taskcontent);
-  var account=window.sessionStorage.getItem("Global_Account");
+  var account = window.sessionStorage.getItem("Global_Account");
 
   $.ajax({
     method: "post",
     url: "http://localhost:8080/dapp/creatTask",
     data: { taskname: taskname, tasktime: tasktime + ":" + tasktime2, account: account, taskmoney: taskmoney, taskplace1: taskplace1 + taskplace2, taskplace3: taskplace3, taskcontent: taskcontent },
+    beforeSend: function () {
+      swal({
+        title: "正在发布中，请稍等几秒......",
+        imageUrl: "../static/image/wait.png",
+        showconfirmButton: true,
+      })
+    },
     success: function (data) {
       console.log("success data", data);
       console.log("成功");
       //  window.location.href ="http://localhost:8080/create_succ"
       swal({
         title: "发布成功",
-        text:'您的订单时间戳是：<span style="color:red">'+ data.data +'（时间戳可用于订单查询）</span><br/><a style="color:#3b3bf4" href="/"> 点击返回首页查看</a><br/>10秒后自动关闭。',
+        text: '您的订单时间戳是：<span style="color:red">' + data.data + '（时间戳可用于订单查询）</span><br/><a style="color:#3b3bf4" href="/"> 点击返回首页查看</a><br/>10秒后自动关闭。',
         imageUrl: "../static/image/check.png",
         html: true,
         timer: 5000,
