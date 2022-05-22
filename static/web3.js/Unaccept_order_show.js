@@ -100,6 +100,39 @@ if (data == undefined) {
     document.getElementById("release_order").innerHTML = result;
 }
 
+
+
+function demo7() {
+    var
+        closeInSeconds = 5,
+        displayText = ' #1 秒后将自动返回上一级',
+        timer;
+
+    swal({
+        title: "取消成功!",
+        text: displayText.replace(/#1/, closeInSeconds),
+        imageUrl: "../static/image/check.png",
+        timer: closeInSeconds * 1000,
+        showCancelButton: true, //有这个就有取消按钮
+        showconfirmButton: true,
+    }, function () {
+            window.location.href = "/self_resume_order"
+        }
+    );
+
+    timer = setInterval(function () {
+        closeInSeconds--;
+        if (closeInSeconds < 0) {
+            clearInterval(timer);
+        }
+
+        $('.sweet-alert > p').text(displayText.replace(/#1/, closeInSeconds));
+
+    }, 1000);
+}
+
+
+
  
  
 
@@ -119,11 +152,18 @@ function Cancle_order(e) {
         method: "post",
         url: "http://localhost:8080/dapp/canceltask",
         data: { account: account, timestap: a},
+        beforeSend: function () {
+            swal({
+              title: "正在取消中，请稍等几秒......",
+              imageUrl: "../static/image/wait.png",
+              showconfirmButton: true,
+            })
+        },
         success: function (data){
             console.log("success data", data);
             result = data.data
             console.log("result=====>", result);
-           
+            demo7()
         },
         error: function (data) {
             swal("OMG", "删除操作失败了!", "error");

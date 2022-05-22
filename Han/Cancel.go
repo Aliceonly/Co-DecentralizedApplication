@@ -4,11 +4,13 @@ import (
 	contract "dapp/Connect"
 	"fmt"
 	// "github.com/ethereum/go-ethereum/common"
+	mysql "dapp/utils"
 	"github.com/gin-gonic/gin"
 	"math/big"
 )
 
 func Cancel(c *gin.Context) {
+	state := "invalid"
 	_, adress := contract.Getaccout()
 	ins := contract.Getsmartcontract()
 	Txopts := contract.GetTxopts()
@@ -21,4 +23,5 @@ func Cancel(c *gin.Context) {
 	}
 	contract.CancelEvent(ins, Txopts, n, adress)
 	tohtml(c, "canceltrue")
+	mysql.Update_state(state, times)
 }

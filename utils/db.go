@@ -448,3 +448,12 @@ func Query_selfacceptOrder(add string) []Tasklist {
 	}
 	return serach_task
 }
+
+//取消订单时更新状态
+func Update_state(state string,timestamp string) {
+	var sql = "UPDATE tasklist SET state=? WHERE timestamp = ?"
+	_, err := Db.Exec(sql, state, timestamp)
+	if err != nil {
+		panic(err)
+	}
+}

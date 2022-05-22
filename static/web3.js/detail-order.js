@@ -151,7 +151,7 @@ function Confirmtask() {
                 data: { account: Account, timestap: a },
                 beforeSend: function () {
                     swal({
-                      title: "订单正在接收中，请稍等几秒......",
+                      title: "订单接收中，请稍等几秒.....",
                       imageUrl: "../static/image/wait.png",
                       showconfirmButton: true,
                     })
