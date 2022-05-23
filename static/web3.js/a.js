@@ -88,6 +88,8 @@ function demo71() {
 function demo7(){
     swal({
         title: "正在发布中，请稍等几秒.....",
+        text:'<span style="color:red">请不要离开此页面、直至下一个弹框出现</br>否则交易可能失败!</sapn>',
+        html:true,
         imageUrl: "../static/image/wait.png",
         showconfirmButton: true,
       })

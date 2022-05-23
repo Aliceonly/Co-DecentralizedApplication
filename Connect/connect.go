@@ -37,7 +37,7 @@ var (
 	//本地账户密码
 	password = ""
 	//合约地址
-	contractadress = "0x62eDf4F91ac6De8Af3d3080c9348Fe41d44d79C2"
+	contractadress = "0xE5a0dd153786d2D888A6aEF5080ff989f99D26E6"
 	//读取用户keystore文件地址
 	relativePath = "E://Block_chain//data//keystore"
 	//本地链chainID交易:修改为本地的chainID

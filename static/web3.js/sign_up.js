@@ -61,8 +61,16 @@ function create_user(){
             method:"post",
             url: "http://localhost:8080/dapp/creatUser",
             data: { Sid:Sid, Telephone:Telephone, Password: Password },
+            beforeSend: function () {
+            swal({
+                title: "正在注册中，请稍等几秒.....",
+                text:'<span style="color:red">请不要离开此页面、直至下一个弹框出现</br>否则注册可能失败!</sapn>',
+                html:true,
+                imageUrl: "../static/image/wait.png",
+                showconfirmButton: true,
+              })
+            },
             success: function (data) {
-                // swal("注册成功!", "您的账户是: " + data.data, "success");
                 swal({
                     title: "注册成功",
                     text: '<span>您的账户是：</span><br/><span style="color:red">'+ data.data +'</span><br/><span style="color:red">请务必记住，一旦丢失无法找回<span><br/><a style="color:#3b3bf4" href="/sign_in">点击进行登录</a><br/>10秒后自动关闭。',

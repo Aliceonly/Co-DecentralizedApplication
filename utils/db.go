@@ -122,6 +122,20 @@ type Tasklist struct {
 	Block       string
 }
 
+type CollectTasklist struct {
+	Taskid      int    // 结果集，参数名需大写
+	Taskname    string //名字
+	Add         string
+	Beneficiary string
+	Category    string //分类
+	Amount      int    //佣金
+	Timestamp   string
+	State       string
+	LaunchTime  string //任务时间
+	Block       string
+	Account     string
+}
+
 type User struct {
 	Sid       int
 	Telephone string
@@ -450,10 +464,59 @@ func Query_selfacceptOrder(add string) []Tasklist {
 }
 
 //取消订单时更新状态
-func Update_state(state string,timestamp string) {
+func Update_state(state string, timestamp string) {
 	var sql = "UPDATE tasklist SET state=? WHERE timestamp = ?"
 	_, err := Db.Exec(sql, state, timestamp)
 	if err != nil {
 		panic(err)
 	}
 }
+
+//注册
+
+func CreateCollectOrder(Account string, Timestamp string) []CollectTasklist {
+	var task Tasklist
+	err := Db.QueryRow("SELECT * FROM tasklist WHERE timestamp = ?", Timestamp).Scan(&task.Taskid, &task.Taskname, &task.Add, &task.Beneficiary, &task.Category, &task.Amount, &task.Timestamp, &task.State, &task.LaunchTime, &task.Block)
+	if err != nil {
+		fmt.Println("共享服务类型的订单展示出错了")
+		fmt.Println("展示错误是====>>>>>>>>>>>>>>", err)
+	}
+	fmt.Println("task=====================>>>>>>>>>>>>>>>>>>>>>>>>>>>>", task)
+
+	var sql = `INSERT INTO CollectOrder  VALUES(?,?,?,?,?,?,?,?,?,?,?)`
+	_, err = Db.Exec(sql, task.Taskid, task.Taskname, task.Add, task.Beneficiary, task.Category, task.Amount, Timestamp, task.State, task.LaunchTime, task.Block, Account)
+	if err != nil {
+		panic(err)
+
+	}
+
+	var serach_task []CollectTasklist
+	sql_serach_task := "select * from CollectOrder where account = ?"
+	rows, err := Db.Query(sql_serach_task, Account)
+	if err != nil {
+		fmt.Println("显示个人收藏订单出错", err)
+	}
+	fmt.Println("rows------------------------------------===", rows)
+	for rows.Next() {
+		var t CollectTasklist
+		err := rows.Scan(&t.Taskid, &t.Taskname, &t.Add, &t.Beneficiary, &t.Category, &t.Amount, &t.Timestamp, &t.State, &t.LaunchTime, &t.Block, &t.Account)
+		if err != nil {
+			fmt.Println("tasklist error================================>>>>>>>>>", err)
+			return nil
+		}
+		serach_task = append(serach_task, t)
+	}
+	return serach_task
+}
+
+//查看共享服务类型的订单更多的情况
+// func Shared_order_Read_more(timestamp int)  {
+// var task Tasklist
+// err := Db.QueryRow("SELECT * FROM tasklist WHERE timestamp = ?", timestamp).Scan(&task.Taskid, &task.Taskname, &task.Add, &task.Beneficiary, &task.Category, &task.Amount, &task.Timestamp, &task.State, &task.LaunchTime, &task.Block)
+// if err != nil {
+// fmt.Println("共享服务类型的订单展示出错了")
+// fmt.Println("展示错误是====>>>>>>>>>>>>>>", err)
+// }
+// fmt.Println("task=====================>>>>>>>>>>>>>>>>>>>>>>>>>>>>", task)
+
+// }
