@@ -239,6 +239,7 @@ func Start() error {
 		dapp.POST("/collectOrder", CollectOrder)
 		dapp.POST("/queryCollectOrder", QueryCollectOrder)
 		dapp.POST("/Cancle_CollectOrder", CancleCollectOrder)
+		dapp.POST("/Query_dim_Order", Query_Dim_order)
 	}
 
 	err := r.Run()

@@ -22,8 +22,8 @@ func main() {
 	// a:="0xc69c51337ca843b19648226e3626d0851c8b9b394201f25c61b3985a13d39811"
 	// c:=c.QueryStatus(common.HexToHash(a))
 	// fmt.Println(c)
-// c.GetBlockNumber()
-// c.Getblockmessage()
+	// c.GetBlockNumber()
+	// c.Getblockmessage()
 	// c.Getblockmessage()
 	// a:="0x5e9ed07526dd85415af6a2f367a66efb02637ba0"
 	// fmt.Println(a[2:])
@@ -41,4 +41,3 @@ func main() {
 	// fmt.Println(mysql.Select("0xxx"))
 	// fmt.Print(mysql.Selectaccept("0xxx000"))
 }
-
