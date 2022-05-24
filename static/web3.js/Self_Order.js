@@ -87,3 +87,21 @@ function quertselfaccept(){
         }
     })
 }
+
+function Comfirm_order(){
+    let status="已接单";
+    $.ajax({
+        method: "post",
+        url: "http://localhost:8080/dapp/Query_hadAcceptOrder",
+        data: {account : Account, status: status },
+        success: function (data) {
+            sessionStorage.setItem('Query_hadAcceptOrder', JSON.stringify(data.data))
+            console.log(data.data)
+            window.location.href = "/result_hadAcceptOrder"
+        },
+        error: function (data) {
+            console.log("error====>", error)
+            console.log("error data===>", data)
+        }
+    })
+}

@@ -10,17 +10,17 @@ function demo7() {
         timer: closeInSeconds * 1000,
         showconfirmButton: true,
     }, function () {
-            window.location.href = "/"
-        }
+        window.location.href = "/"
+    }
     );
     timer = setInterval(function () {
         closeInSeconds--;
         if (closeInSeconds < 0) {
             clearInterval(timer);
         }
-                
+
         $('.sweet-alert > p').text(displayText.replace(/#1/, closeInSeconds));
-                
+
     }, 1000);
 }
 function Cancle_succ() {
@@ -35,17 +35,17 @@ function Cancle_succ() {
         timer: closeInSeconds * 1000,
         showconfirmButton: true,
     }, function () {
-            window.location.href = "/"
-        }
+        window.location.href = "/"
+    }
     );
     timer = setInterval(function () {
         closeInSeconds--;
         if (closeInSeconds < 0) {
             clearInterval(timer);
         }
-                
+
         $('.sweet-alert > p').text(displayText.replace(/#1/, closeInSeconds));
-                
+
     }, 1000);
 }
 
@@ -55,11 +55,11 @@ function resume() {
     $.ajax({
         method: "post",
         url: "http://localhost:8080/dapp/user_info",
-        data: { Account: Account},
+        data: { Account: Account },
         success: function (data) {
-            sessionStorage.setItem('QueryUser',JSON.stringify(data.data))
+            sessionStorage.setItem('QueryUser', JSON.stringify(data.data))
             console.log(data.data)
-            window.location.href="/resume"
+            window.location.href = "/resume"
         },
         error: function (data) {
             console.log("error====>", error)
@@ -73,7 +73,7 @@ function CancleUser() {
     $.ajax({
         method: "post",
         url: "http://localhost:8080/dapp/CancelUser",
-        data: { account: Account},
+        data: { account: Account },
         success: function (data) {
             console.log(data.data)
             Cancle_succ()
@@ -81,14 +81,14 @@ function CancleUser() {
                 method: "get",
                 url: "/exit_account",
                 success: function (data) {
-                    console.log("目前账户情况：",data)
+                    console.log("目前账户情况：", data)
                 },
                 error: function (data) {
                     console.log("error====>", error)
                     console.log("error data===>", data)
                 }
             })
-            
+
         },
         error: function (data) {
             console.log("error====>", error)
@@ -98,13 +98,13 @@ function CancleUser() {
 }
 
 
-function exit_login(){
+function exit_login() {
     console.log("exit");
     $.ajax({
         method: "get",
         url: "/exit_account",
         success: function (data) {
-            console.log("目前账户情况：",data)
+            console.log("目前账户情况：", data)
             demo7()
         },
         error: function (data) {
@@ -112,7 +112,24 @@ function exit_login(){
             console.log("error data===>", data)
         }
     })
-    
+
+}
+
+
+function GetBalcnce() {
+    $.ajax({
+        method: "get",
+        url: "/GetBlance",
+        success: function (data) {
+            console.log("目前账户情况：", data.data)
+            window.location.href="GetBalance_show";
+            sessionStorage.setItem("balance",data.data);
+        },
+        error: function (data) {
+            console.log("error====>", error)
+            console.log("error data===>", data)
+        }
+    })
 }
 
 

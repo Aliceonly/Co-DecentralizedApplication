@@ -39,22 +39,27 @@ function demo_5() {
 };
 function demo_6() {
     swal({
-        title: "输入框来了",
-        text: "这里可以输入并确认:",
+        title: "请输入您的签名",
+        text: "确保您的签名无误，否则无法进行确认操作:",
         type: "input",
         showCancelButton: true,
         closeOnConfirm: false,
         animation: "slide-from-top",
-        inputPlaceholder: "填点东西到这里面吧"
+        inputPlaceholder: "签名"
     }, function (inputValue) {
         if (inputValue === false) return false;
         if (inputValue === "") {
             swal.showInputError("请输入!");
             return false
         }
-        swal("棒极了!", "您填写的是: " + inputValue, "success");
+       
+        console.log("test======>",inputValue);
+          swal("Good!", "确认成功", "success");
     });
+    
 };
+ 
+ 
 
 function demo71() {
     var

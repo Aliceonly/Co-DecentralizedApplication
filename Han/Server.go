@@ -154,6 +154,14 @@ func Collect_order_more_Handler(c *gin.Context) {
 	c.HTML(200, "collect_order_more.html", nil) //查看个人收藏订单更多情况
 }
 
+func GetBalance_show_Handler(c *gin.Context) {
+	c.HTML(200, "GetBalance.html", nil) //查看余额
+}
+
+func result_hadAcceptOrder_Handler(c *gin.Context) {
+	c.HTML(200, "HadAcceptOrder.html", nil) //查看个人已接单订单
+}
+
 func Start() error {
 	// 创建一个默认的路由引擎
 	r := gin.Default()
@@ -201,12 +209,15 @@ func Start() error {
 	r.GET("/queryselfaccept_order", quertselfaccept_handler)         //查看个人接收订单
 	r.GET("/collect_order", collect_order_handler)                   //查看个人收藏订单
 	r.GET("/collect_order_more", Collect_order_more_Handler)         //读取更多信息
+	r.GET("/GetBalance_show", GetBalance_show_Handler)               //展示个人余额
+	r.GET("/result_hadAcceptOrder", result_hadAcceptOrder_Handler)   //展示个人已接单订单结果
 	r.GET("/succ_login", Succ_Login)                                 //成功登录
 	r.GET("/all_order", Self)
 	r.POST("/QueryByTime", QueryByTime)
 	r.GET("/delete_succ", delete_succ)
 	r.GET("/create_succ", create_succ)
-	r.GET("/exit_account", Exit_account) //退出账户
+	r.GET("/exit_account", Exit_account)  //退出账户
+	r.GET("/GetBlance", GetBalanceOfUser) //退出账户
 
 	// 启动HTTP服务，默认在0.0.0.0:8080启动服务
 
@@ -240,6 +251,8 @@ func Start() error {
 		dapp.POST("/queryCollectOrder", QueryCollectOrder)
 		dapp.POST("/Cancle_CollectOrder", CancleCollectOrder)
 		dapp.POST("/Query_dim_Order", Query_Dim_order)
+		dapp.POST("/Query_hadAcceptOrder", Query_hadAcceptOrder)
+		dapp.POST("/ClaimTrust", ClaimTrust)
 	}
 
 	err := r.Run()

@@ -26,14 +26,17 @@ function CreatTask() {
     success: function (data) {
       console.log("success data", data);
       console.log("成功");
-      //  window.location.href ="http://localhost:8080/create_succ"
+      console.log(data.data);
+      //截取逗号前的字符串
+      let result = data.data
+      console.log(result.split(',')[0]);
       swal({
         title: "发布成功",
-        text: '您的订单时间戳是：<span style="color:red">' + data.data + '<br/>（时间戳可用于订单查询）</span><br/><a style="color:#3b3bf4" href="/"> 点击返回首页查看</a><br/>10秒后自动关闭。',
+        text: '该订单签名是：<span style="color:red"><br/>' + result + '<br/>（签名将应用于后期确认订单操作，请务必复制牢记）</span>',
         imageUrl: "../static/image/check.png",
         html: true,
-        timer: 5000,
-        showConfirmButton: false
+        showCancelButton: true, 
+        showconfirmButton: true,
       });
     },
     error: function (data) {

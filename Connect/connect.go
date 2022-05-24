@@ -5,10 +5,10 @@ import (
 	"crypto/ecdsa"
 	contract "dapp/Smartgo"
 	// "encoding"
+	"bytes"
 	"fmt"
 	"io/ioutil"
 	"math/big"
-	"bytes"
 	// "unsafe"
 
 	// "strconv"
@@ -34,13 +34,13 @@ var (
 	//本地geth地址
 	adress = "http://localhost:8545"
 	//本地账户地址
-	privatekeyfile = "D:\\y\\geth\\node1\\nodedata\\keystore\\UTC--2021-09-12T17-06-06.881126000Z--00dc6e8b60fa02a5d83e525bbef3240e8ea54dc5"
+	privatekeyfile = ""
 	//本地账户密码
-	password = "1111"
+	password = ""
 	//合约地址
-	contractadress = "0x8a9c8B27B44bdAf972bd22d7AA94B7540fd0A604"
+	contractadress = "0xE35fB277399423a669A1ABf57bd6f55349946D45"
 	//读取用户keystore文件地址
-	relativePath = "D:\\y\\geth\\node1\\nodedata\\keystore"
+	relativePath = "E://Block_chain//data//keystore"
 	//本地链chainID交易:修改为本地的chainID
 	chainID = 833338833338
 )
@@ -236,8 +236,8 @@ func CreatNewEvent(
 	Taskcatagory string,
 	launchTime string,
 	amount *big.Int,
-)  *types.Transaction{
-	c:=amount.String()+"000000000000000000"
+) *types.Transaction {
+	c := amount.String() + "000000000000000000"
 	n := new(big.Int)
 	n, ok := n.SetString(c, 10)
 	if !ok {
@@ -262,8 +262,6 @@ func QueryStatus(txHash common.Hash) int {
 	return (int(rec.Status))
 }
 
-
-
 /*
 获取任务时间戳
 */
@@ -286,19 +284,20 @@ func Querytime(ins *contract.TaskDeployerContract,
 //获取用户余额
 func GetuserBanlance(ins *contract.TaskDeployerContract,
 	address common.Address,
-	header *types.Header,)*big.Int{
+	header *types.Header) *big.Int {
 	opts := bind.CallOpts{
-			Pending:     true,
-			From:        address,
-			BlockNumber: header.Number,
-			Context:     context.Background(),
-		}
-	balance,err:=ins.GetBalanceOfUser(&opts)
-	if err!=nil {
+		Pending:     true,
+		From:        address,
+		BlockNumber: header.Number,
+		Context:     context.Background(),
+	}
+	balance, err := ins.GetBalanceOfUser(&opts)
+	if err != nil {
 		panic(err)
 	}
 	return balance
 }
+
 /*
 取消任务函数
 */
@@ -338,7 +337,7 @@ func ClaimTrust(
 	ins *contract.TaskDeployerContract,
 	ops *bind.TransactOpts,
 	timestamp *big.Int,
-	) (int){
+) int {
 	_, err := ins.ClaimTrust(ops, timestamp)
 	if err != nil {
 		panic(err)
@@ -358,16 +357,17 @@ func Gettaskhash(ins *contract.TaskDeployerContract, address common.Address, hea
 	if err != nil {
 		panic(hash)
 	}
-	fmt.Println("hash==>",hexutil.Encode(hash[:]))
+	fmt.Println("hash==>", hexutil.Encode(hash[:]))
 	return hash
 }
 
 //获取发布任务的用户对当前任务的确认签名
 func GetthistaskSign(PrivateKey *ecdsa.PrivateKey, hash [32]byte) []byte {
 	signature, _ := crypto.Sign(hash[:], PrivateKey)
-	fmt.Println("signature",hexutil.Encode(signature))
+	fmt.Println("signature", hexutil.Encode(signature))
 	return signature
 }
+
 /*
 创建用户信息
 */
@@ -493,13 +493,13 @@ func Cancellation(ad string) string {
 
 }
 
-func Validation(hash []byte,signature []byte,publicKeyBytes []byte) bool{
+func Validation(hash []byte, signature []byte, publicKeyBytes []byte) bool {
 	sigPublicKey, err := crypto.Ecrecover(hash, signature)
-    if err != nil {
-        panic(err)
-    } 
-	fmt.Println("sigPublick",sigPublicKey)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println("sigPublick", sigPublicKey)
 	matches := bytes.Equal(sigPublicKey, publicKeyBytes)
-    fmt.Println(matches) // true
-	return(matches)
+	fmt.Println(matches) // true
+	return (matches)
 }

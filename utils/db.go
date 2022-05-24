@@ -539,3 +539,24 @@ func Query_Dim_Order(name string) []Tasklist {
 	return serach_task
 
 }
+
+//查询已接单的订单
+func Query_hadAcceptOrder(account string, state string) []Tasklist {
+	var serach_task []Tasklist
+	sql_serach_task := "select * from tasklist where Sponsor = ?  and state = ? "
+	rows, err := Db.Query(sql_serach_task, account, state)
+	if err != nil {
+		fmt.Println("查询已接单的订单出错", err)
+	}
+	fmt.Println("rows------------------------------------===", rows)
+	for rows.Next() {
+		var t Tasklist
+		err := rows.Scan(&t.Taskid, &t.Taskname, &t.Add, &t.Beneficiary, &t.Category, &t.Amount, &t.Timestamp, &t.State, &t.LaunchTime, &t.Block)
+		if err != nil {
+			fmt.Println("tasklist error================================>>>>>>>>>", err)
+			return nil
+		}
+		serach_task = append(serach_task, t)
+	}
+	return serach_task
+}

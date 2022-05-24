@@ -1,4 +1,5 @@
 package Han
+
 import (
 	contract "dapp/Connect"
 	"fmt"
@@ -6,11 +7,12 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func GetBalanceOfUser(c *gin.Context){
+//获取余额
+func GetBalanceOfUser(c *gin.Context) {
 	ins := contract.Getsmartcontract()
 	head, _ := contract.GetBlockNumber()
 	_, adress := contract.Getaccout()
-	a:=contract.GetuserBanlance(ins,adress,head)
-	fmt.Println("userbalance:",a)
-	tohtml(c,a)
+	a := contract.GetuserBanlance(ins, adress, head)
+	fmt.Println("userbalance:", a)
+	tohtml(c, a)
 }
