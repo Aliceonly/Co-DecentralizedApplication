@@ -474,7 +474,7 @@ func Update_state(state string, timestamp string) {
 
 //注册
 
-func CreateCollectOrder(Account string, Timestamp string) []CollectTasklist {
+func CreateCollectOrder(Account string, Timestamp string) int {
 	var task Tasklist
 	err := Db.QueryRow("SELECT * FROM tasklist WHERE timestamp = ?", Timestamp).Scan(&task.Taskid, &task.Taskname, &task.Add, &task.Beneficiary, &task.Category, &task.Amount, &task.Timestamp, &task.State, &task.LaunchTime, &task.Block)
 	if err != nil {
@@ -487,9 +487,11 @@ func CreateCollectOrder(Account string, Timestamp string) []CollectTasklist {
 	_, err = Db.Exec(sql, task.Taskid, task.Taskname, task.Add, task.Beneficiary, task.Category, task.Amount, Timestamp, task.State, task.LaunchTime, task.Block, Account)
 	if err != nil {
 		panic(err)
-
 	}
+	return 1
+}
 
+func Query_collect_order(Account string) []CollectTasklist {
 	var serach_task []CollectTasklist
 	sql_serach_task := "select * from CollectOrder where account = ?"
 	rows, err := Db.Query(sql_serach_task, Account)
@@ -509,14 +511,13 @@ func CreateCollectOrder(Account string, Timestamp string) []CollectTasklist {
 	return serach_task
 }
 
-//查看共享服务类型的订单更多的情况
-// func Shared_order_Read_more(timestamp int)  {
-// var task Tasklist
-// err := Db.QueryRow("SELECT * FROM tasklist WHERE timestamp = ?", timestamp).Scan(&task.Taskid, &task.Taskname, &task.Add, &task.Beneficiary, &task.Category, &task.Amount, &task.Timestamp, &task.State, &task.LaunchTime, &task.Block)
-// if err != nil {
-// fmt.Println("共享服务类型的订单展示出错了")
-// fmt.Println("展示错误是====>>>>>>>>>>>>>>", err)
-// }
-// fmt.Println("task=====================>>>>>>>>>>>>>>>>>>>>>>>>>>>>", task)
+func Cancle_CollectOrder(Timestamp string) {
+	var sqlStr = "DELETE FROM collectorder  WHERE collectorder.`Timestamp`=?"
+	_, err = Db.Exec(sqlStr, Timestamp)
+	if err != nil {
+		// print(err)
+		fmt.Print("delete err---->", err)
+	}
 
-// }
+	fmt.Print("删除任务成功")
+}

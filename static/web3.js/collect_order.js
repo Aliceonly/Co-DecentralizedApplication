@@ -85,7 +85,11 @@ if (data == undefined) {
     <p>类型：${e.Category}</p>
     <p id="Timestamp_new">时间戳：${e.Timestamp}</p>
     <a onclick="Read_more(this)" class="blog-btn">
-    <button>Read More</button>
+    <button>查看更多</button>
+    <i class='bx bx-plus bx-spin'></i>
+    </a>
+    <a onclick="Cancle_collect(this)" class="blog-btn">
+    <button>取消收藏</button>
     <i class='bx bx-plus bx-spin'></i>
     </a>
     </div>
@@ -116,7 +120,7 @@ function Read_more(e) {
             console.log("success data", data);
             result = data.data
             console.log("result=====>", result);
-            window.location.href = "/Read_More_detail?Taskname=" + result.Taskname + '&LaunchTime=' + result.LaunchTime+ '&Amount=' + result.Amount+ '&Category=' + result.Category+ '&State=' + result.State+ '&Add=' + result.Add+ '&Timestamp=' + result.Timestamp+ '&Block=' + result.Block; //window.location.href跳转新页面
+            window.location.href = "/collect_order_more?Taskname=" + result.Taskname + '&LaunchTime=' + result.LaunchTime+ '&Amount=' + result.Amount+ '&Category=' + result.Category+ '&State=' + result.State+ '&Add=' + result.Add+ '&Timestamp=' + result.Timestamp+ '&Block=' + result.Block; //window.location.href跳转新页面
         },
         error: function (data) {
             swal("OMG", "删除操作失败了!", "error");
@@ -125,6 +129,29 @@ function Read_more(e) {
         }
     })
 }
+
+function Cancle_collect(e) {
+    // var Timestamp_new = $("#Timestamp").val();
+    var Timestamp_new = e.parentElement.children[4].innerText
+    Timestamp = Timestamp_new.slice(4,14)
+    console.log(Timestamp_new);
+    console.log(Timestamp);
+    $.ajax({
+        method: "post",
+        url: "http://localhost:8080/dapp/Cancle_CollectOrder",
+        data: { timestamp: Timestamp },
+        success: function (data){
+            console.log("success data", data);
+            result = data.data
+            console.log("result=====>", result);
+        },
+        error: function (data) {
+            console.log("error====>", error)
+            console.log("error data===>", data)
+        }
+    })
+}
+
 
 
 

@@ -136,10 +136,10 @@ function collectOrder(e) {
                 console.log("success data", data);
                 result = data.data
                 console.log("result=====>", result);
-                sessionStorage.setItem('collect_signal_Order',JSON.stringify(result))
                 swal("Good!", "收藏成功", "success");
             },
             error: function (data) {
+                swal("OMG!", "收藏失败，请勿重复收藏", "error");
                 console.log("error====>", error)
                 console.log("error data===>", data)
             }

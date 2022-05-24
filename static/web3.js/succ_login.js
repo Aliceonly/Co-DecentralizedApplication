@@ -8,6 +8,7 @@ $.ajax({
         if(data.data == ""){
             console.log("未登录",data.data)
             self_info.style.display = "none";
+            
         }else{
             console.log("已登录",data.data)
             sign_in_up.style.display = "none";
