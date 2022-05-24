@@ -134,6 +134,26 @@ func setting_handler(c *gin.Context) {
 	c.HTML(200, "setting.html", nil) //设置
 }
 
+func self_accept_order_handler(c *gin.Context) {
+	c.HTML(200, "self_accept_order.html", nil) //设置
+}
+
+func self_resume_order_handler(c *gin.Context) {
+	c.HTML(200, "self_resume_order.html", nil) //设置
+}
+
+func quertselfaccept_handler(c *gin.Context) {
+	c.HTML(200, "quertselfaccept.html", nil) //查看个人接收订单
+}
+
+func collect_order_handler(c *gin.Context) {
+	c.HTML(200, "collect_order.html", nil) //查看个人收藏订单
+}
+
+func Collect_order_more_Handler(c *gin.Context) {
+	c.HTML(200, "collect_order_more.html", nil) //查看个人收藏订单更多情况
+}
+
 func Start() error {
 	// 创建一个默认的路由引擎
 	r := gin.Default()
@@ -176,6 +196,11 @@ func Start() error {
 	r.GET("/Self_info", Self_info_handler)                           //个人信息
 	r.GET("/self_new_order", self_new_order_handler)                 //个人订单
 	r.GET("/setting", setting_handler)                               //设置
+	r.GET("/self_accept_order", self_accept_order_handler)           //个人接收订单
+	r.GET("/self_resume_order", self_resume_order_handler)           //个人发布订单
+	r.GET("/queryselfaccept_order", quertselfaccept_handler)         //查看个人接收订单
+	r.GET("/collect_order", collect_order_handler)                   //查看个人收藏订单
+	r.GET("/collect_order_more", Collect_order_more_Handler)         //读取更多信息
 	r.GET("/succ_login", Succ_Login)                                 //成功登录
 	r.GET("/all_order", Self)
 	r.POST("/QueryByTime", QueryByTime)
@@ -211,6 +236,10 @@ func Start() error {
 		dapp.POST("/Campus_order_Read_more", Campus_order_Read_more)
 		dapp.POST("/CWork_order_Read_more", CWork_order_Read_more)
 		dapp.POST("/Shared_order_Read_more", Shared_order_Read_more)
+		dapp.POST("/collectOrder", CollectOrder)
+		dapp.POST("/queryCollectOrder", QueryCollectOrder)
+		dapp.POST("/Cancle_CollectOrder", CancleCollectOrder)
+		dapp.POST("/Query_dim_Order", Query_Dim_order)
 	}
 
 	err := r.Run()

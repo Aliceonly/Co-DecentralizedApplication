@@ -120,3 +120,32 @@ function Shared_order(){
         }
     })
 }
+let Account = window.sessionStorage.getItem("Global_Account");
+function collectOrder(e) {
+    if (Account_status == "") {
+        Login_status()
+    } else {
+        Timestamp = e.parentElement.parentElement.parentElement.children[1].children[0].children[1].children[0].innerText
+        var Timestamp1 = Timestamp.replace(/[^0-9]/ig, "");
+        console.log(Timestamp1);
+        $.ajax({
+            method: "post",
+            url: "http://localhost:8080/dapp/collectOrder",
+            data: { timestamp: Timestamp1 ,account:Account},
+            success: function (data) {
+                console.log("success data", data);
+                result = data.data
+                console.log("result=====>", result);
+                swal("Good!", "收藏成功", "success");
+            },
+            error: function (data) {
+                swal("OMG!", "收藏失败，请勿重复收藏", "error");
+                console.log("error====>", error)
+                console.log("error data===>", data)
+            }
+        })
+        
+    }
+}
+
+

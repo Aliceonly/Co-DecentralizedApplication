@@ -56,7 +56,7 @@ function demo_6() {
     });
 };
 
-function demo7() {
+function demo71() {
     var
         closeInSeconds = 5,
         displayText = ' #1 秒后将自动跳转登录页面',
@@ -85,7 +85,15 @@ function demo7() {
     }, 1000);
 }
 
-
+function demo7(){
+    swal({
+        title: "正在发布中，请稍等几秒.....",
+        text:'<span style="color:red">请不要离开此页面、直至下一个弹框出现</br>否则交易可能失败!</sapn>',
+        html:true,
+        imageUrl: "../static/image/wait.png",
+        showconfirmButton: true,
+      })
+}
 // swal({
     // title: "您确定要删除吗？",
     // text: "您确定要删除这条数据？",

@@ -36,13 +36,13 @@ func Creat(c *gin.Context) {
 	taskplace1 := c.PostForm("taskplace1") //地区
 	taskcontent := c.PostForm("taskcontent")
 	fmt.Println(taskname, tasktime, taskmoney, taskplace2, taskcontent, taskplace1)
-	a:=contract.CreatNewEvent(ins, Txopts, taskname+taskcontent+taskplace1, taskplace2, tasktime, n)
+	a := contract.CreatNewEvent(ins, Txopts, taskname+taskcontent+taskplace1, taskplace2, tasktime, n)
 	fmt.Println(a.Hash())
-	time.Sleep(time.Duration(5)*time.Second)
-	for{
-		status:=contract.QueryStatus(a.Hash())
+	time.Sleep(time.Duration(5) * time.Second)
+	for {
+		status := contract.QueryStatus(a.Hash())
 		fmt.Println(status)
-	   if status == 1{
+		if status == 1 {
 			break
 		}
 	}

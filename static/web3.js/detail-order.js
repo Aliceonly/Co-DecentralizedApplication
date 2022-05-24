@@ -149,6 +149,15 @@ function Confirmtask() {
                 method: "post",
                 url: "http://localhost:8080/dapp/confirmtask",
                 data: { account: Account, timestap: a },
+                beforeSend: function () {
+                    swal({
+                        title: "订单接收中，请稍等几秒.....", 
+                        text:'<span style="color:red">请不要离开此页面、直至下一个弹框出现</br>否则交易可能失败!</sapn>',
+                        html:true,
+                        imageUrl: "../static/image/wait.png",
+                        showconfirmButton: true,
+                      })
+                  },
                 success: function (data) {
                     console.log(data.data)
                     if (data.data == "confirmtrue") {

@@ -92,7 +92,7 @@
         <a href="post_job" class="nav-link">发布订单</a>
         </li>
         <li class="nav-item">
-            <a href="self_order" class="nav-link">个人订单</a>
+            <a href="self_new_order" class="nav-link">个人订单</a>
         </li>
         <li class="nav-item">
             <a href="Unaccept_order_show" class="nav-link">取消订单</a>
@@ -165,29 +165,28 @@
 </div>
 </div>
 
-
 <div class="find-section pb-100">
 <div class="container">
-<form class="find-form">
 <div class="row">
-<div class="col-lg-3">
+<div style="position: relative;top: 25px;" class="col-lg-3">
 <div class="form-group">
-<input type="text" class="form-control"  placeholder="关键词">
-<i class="bx bx-search-alt"></i>
+<input style="font-size: 14px;font-weight: 500;color: #8e8d8d;opacity: 1;height: 50px;padding: 7px 20px 10px;border-radius: 10px;display: block;width: 100%;font-size: 1rem;
+font-weight: 400;line-height: 1.5;color: #212529;background-color: #fff;background-clip: padding-box;border: 1px solid #ced4da;appearance: none;
+transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;text-align: left;--bs-gutter-x: 1.5rem;--bs-gutter-y: 0;" 
+type="text" class="form-control"  placeholder="关键词">
 </div>
 </div>
 </div>
-<div class="col-lg-3">
-<button type="submit" class="find-btn">
-搜索
+<div style="position: relative;top: 45px;" class="col-lg-3">
+<button style="padding: 10px 20px;background: #fd1616;font-size: 16px;text-transform: uppercase;font-weight: 600;width: 100%;color: #fff;border-radius: 10px;transition: .5s;"  
+onclick="Query_dim_Order()" >搜索
 <i class='bx bx-search'></i>
 </button>
 </div>
 </div>
-</form>
 </div>
 </div>
-
+    
 
 
 
@@ -243,10 +242,14 @@
 
 <script src="../static/js/custom.js"></script>
 
+<script src="../static/js/sweetalert.min.js"></script>
+
 <script src="../static/web3.js/succ_login.js"></script>
 
 <script src="../static/web3.js/CWork_order.js"></script>
 
-<script src="../static/js/sweetalert.min.js"></script>
+<script src="../static/web3.js/Query_Dim_Order.js"></script>
+ 
+ 
 </body>
 </html>

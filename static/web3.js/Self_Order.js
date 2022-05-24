@@ -69,3 +69,21 @@ function Cancle_order(){
         }
     })
 }
+
+function quertselfaccept(){
+    console.log(Account);
+    $.ajax({
+        method: "post",
+        url: "http://localhost:8080/dapp/quertselfaccept",
+        data: { account: Account },
+        success: function (data) {
+            sessionStorage.setItem('quertselfaccept', JSON.stringify(data.data))
+            console.log(data.data)
+            window.location.href = "/queryselfaccept_order"
+        },
+        error: function (data) {
+            console.log("error====>", error)
+            console.log("error data===>", data)
+        }
+    })
+}

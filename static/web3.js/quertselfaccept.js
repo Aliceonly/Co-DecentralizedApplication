@@ -23,7 +23,7 @@ function sorry_info() {
 
     }, 1000);
 }
-data = JSON.parse(sessionStorage.getItem('Query_Unaccept_order'))
+data = JSON.parse(sessionStorage.getItem('quertselfaccept'))
 console.log(data);
 if (data == undefined) {
     var result = "";
@@ -85,8 +85,8 @@ if (data == undefined) {
     <p>类型：${e.Category}</p>
     <p>接单状态：${e.State} </p>
     <p>时间戳：${e.Timestamp}</p>
-    <a onclick="Cancle_order(this)" class="blog-btn">
-    <button>取消</button>
+    <a onclick="Read_More(this)" class="blog-btn">
+    <button>查看更多</button>
     <i class='bx bx-plus bx-spin'></i>
     </a>
     </div>
@@ -102,70 +102,21 @@ if (data == undefined) {
 
 
 
-function demo7() {
-    var
-        closeInSeconds = 5,
-        displayText = ' #1 秒后将自动返回上一级',
-        timer;
-
-    swal({
-        title: "取消成功!",
-        text: displayText.replace(/#1/, closeInSeconds),
-        imageUrl: "../static/image/check.png",
-        timer: closeInSeconds * 1000,
-        showCancelButton: true, //有这个就有取消按钮
-        showconfirmButton: true,
-    }, function () {
-            window.location.href = "/self_resume_order"
-        }
-    );
-
-    timer = setInterval(function () {
-        closeInSeconds--;
-        if (closeInSeconds < 0) {
-            clearInterval(timer);
-        }
-
-        $('.sweet-alert > p').text(displayText.replace(/#1/, closeInSeconds));
-
-    }, 1000);
-}
-
-
-
- 
- 
-
-function Cancle_order(e) {
+function Read_More(e) {
+    // var Timestamp_new = $("#Timestamp").val();
     var Timestamp_new = e.parentElement.children[5].innerText
-    Timestamp = Timestamp_new.slice(4,14)
+    Timestamp = Timestamp_new.slice(4, 14)
+    console.log(Timestamp_new);
     console.log(Timestamp);
-    var account = e.parentElement.children[0].innerText
-    console.log(account);
-    console.log(account.slice(3,43));
-
-    console.log(parseInt(Timestamp))
-    var a=parseInt(Timestamp)
-    // var b = a.slice(2,)
-
     $.ajax({
         method: "post",
-        url: "http://localhost:8080/dapp/canceltask",
-        data: { account: account, timestap: a},
-        beforeSend: function () {
-            swal({
-                title: "正在取消中，请稍等几秒.....",
-                text:'<span style="color:red">请不要离开此页面、直至下一个弹框出现</br>否则交易可能失败!</sapn>',
-                html:true,
-                imageUrl: "../static/image/wait.png",
-                showconfirmButton: true,
-              })
-        },
-        success: function (data){
+        url: "http://localhost:8080/dapp/Read_more",
+        data: { timestamp: Timestamp },
+        success: function (data) {
             console.log("success data", data);
             result = data.data
             console.log("result=====>", result);
-            demo7()
+            window.location.href = "/Read_More_detail?Taskname=" + result.Taskname + '&LaunchTime=' + result.LaunchTime + '&Amount=' + result.Amount + '&Category=' + result.Category + '&State=' + result.State + '&Add=' + result.Add + '&Timestamp='+ result.Timestamp+ '&Block=' + result.Block; //window.location.href跳转新页面
         },
         error: function (data) {
             swal("OMG", "删除操作失败了!", "error");
@@ -174,8 +125,6 @@ function Cancle_order(e) {
         }
     })
 }
-
-
 
 
 

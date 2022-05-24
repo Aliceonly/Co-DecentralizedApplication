@@ -85,7 +85,7 @@
         <a href="post_job" class="nav-link">发布订单</a>
         </li>
         <li class="nav-item">
-            <a href="self_order" class="nav-link">个人订单</a>
+            <a href="self_new_order" class="nav-link">个人订单</a>
         </li>
         <li class="nav-item">
             <a href="Unaccept_order_show" class="nav-link">取消订单</a>
@@ -145,12 +145,12 @@
         <section style="padding-bottom: 30px;" class="page-title title-bg12">
             <div style="position: relative;top: -50px;" class="d-table">
                 <div class="d-table-cell">
-                    <h2>我的</h2>
+                    <h2>个人订单</h2>
                     <ul>
                         <li>
-                            <a href="/">首页</a>
+                            <a href="/account">返回</a>
                         </li>
-                        <li>我的</li>
+                        <li>个人订单</li>
                     </ul>
                 </div>
             </div>
@@ -173,19 +173,19 @@
 </div>
 <ul>
 <li>
-<a href="change_user">
+<a href="/self_resume_order">
 <i class='bx bx-briefcase'></i>
 <button>个人发布订单</button> 
 </a>
 </li>
 <li>
-<a href="#">
+<a href="/self_accept_order">
 <i class='bx bx-envelope'></i>
 <button>个人接收订单</button> 
 </a>
 </li>
 <li>
-<a href="/self_order">
+<a onclick="collect_order()">
 <i class='bx bx-heart'></i>
 <button>个人收藏订单</button> 
 </a>
@@ -219,9 +219,12 @@
 <script src="../static/js/contact-form-script.js"></script>
 <script src="../static/js/meanmenu.js"></script>
 <script src="../static/js/custom.js"></script>
-<script src="../static/web3.js/account.js"></script>
 <script src="../static/js/sweetalert.min.js"></script>
+<script src="../static/web3.js/account.js"></script>
+<script src="../static/web3.js/self_new_order.js"></script>
+<script src="../static/web3.js/login_status.js"></script>
 <script src="../static/web3.js/succ_login.js"></script>
-
+ 
+ 
 </body>
 </html>

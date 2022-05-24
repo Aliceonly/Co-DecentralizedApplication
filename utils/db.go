@@ -16,7 +16,7 @@ var (
 )
 
 func init() {
-	Db, err = sql.Open("mysql", "root:121@tcp(localhost:3306)/test?parseTime=true&charset=utf8")
+	Db, err = sql.Open("mysql", "root:123456@tcp(localhost:3306)/test?parseTime=true&charset=utf8")
 	if err != nil {
 		panic(err.Error())
 	}
@@ -120,6 +120,20 @@ type Tasklist struct {
 	State       string
 	LaunchTime  string //任务时间
 	Block       string
+}
+
+type CollectTasklist struct {
+	Taskid      int    // 结果集，参数名需大写
+	Taskname    string //名字
+	Add         string
+	Beneficiary string
+	Category    string //分类
+	Amount      int    //佣金
+	Timestamp   string
+	State       string
+	LaunchTime  string //任务时间
+	Block       string
+	Account     string
 }
 
 type User struct {
@@ -426,4 +440,102 @@ func Shared_order_Read_more(timestamp int) Tasklist {
 	}
 	fmt.Println("task=====================>>>>>>>>>>>>>>>>>>>>>>>>>>>>", task)
 	return task
+}
+
+func Query_selfacceptOrder(add string) []Tasklist {
+	var serach_task []Tasklist
+	sql_serach_task := "select * from tasklist where Beneficiary = ?"
+	rows, err := Db.Query(sql_serach_task, add)
+	if err != nil {
+		fmt.Println("显示共享服务类型订单出错", err)
+	}
+	fmt.Println("rows------------------------------------===", rows)
+	for rows.Next() {
+		var t Tasklist
+		err := rows.Scan(&t.Taskid, &t.Taskname, &t.Add, &t.Beneficiary, &t.Category, &t.Amount, &t.Timestamp, &t.State, &t.LaunchTime, &t.Block)
+		if err != nil {
+			fmt.Println("tasklist error================================>>>>>>>>>", err)
+			return nil
+		}
+		serach_task = append(serach_task, t)
+	}
+	return serach_task
+}
+
+//取消订单时更新状态
+func Update_state(state string, timestamp string) {
+	var sql = "UPDATE tasklist SET state=? WHERE timestamp = ?"
+	_, err := Db.Exec(sql, state, timestamp)
+	if err != nil {
+		panic(err)
+	}
+}
+
+func CreateCollectOrder(Account string, Timestamp string) int {
+	var task Tasklist
+	err := Db.QueryRow("SELECT * FROM tasklist WHERE timestamp = ?", Timestamp).Scan(&task.Taskid, &task.Taskname, &task.Add, &task.Beneficiary, &task.Category, &task.Amount, &task.Timestamp, &task.State, &task.LaunchTime, &task.Block)
+	if err != nil {
+		fmt.Println("共享服务类型的订单展示出错了")
+		fmt.Println("展示错误是====>>>>>>>>>>>>>>", err)
+	}
+	fmt.Println("task=====================>>>>>>>>>>>>>>>>>>>>>>>>>>>>", task)
+
+	var sql = `INSERT INTO CollectOrder  VALUES(?,?,?,?,?,?,?,?,?,?,?)`
+	_, err = Db.Exec(sql, task.Taskid, task.Taskname, task.Add, task.Beneficiary, task.Category, task.Amount, Timestamp, task.State, task.LaunchTime, task.Block, Account)
+	if err != nil {
+		panic(err)
+	}
+	return 1
+}
+
+func Query_collect_order(Account string) []CollectTasklist {
+	var serach_task []CollectTasklist
+	sql_serach_task := "select * from CollectOrder where account = ?"
+	rows, err := Db.Query(sql_serach_task, Account)
+	if err != nil {
+		fmt.Println("显示个人收藏订单出错", err)
+	}
+	fmt.Println("rows------------------------------------===", rows)
+	for rows.Next() {
+		var t CollectTasklist
+		err := rows.Scan(&t.Taskid, &t.Taskname, &t.Add, &t.Beneficiary, &t.Category, &t.Amount, &t.Timestamp, &t.State, &t.LaunchTime, &t.Block, &t.Account)
+		if err != nil {
+			fmt.Println("tasklist error================================>>>>>>>>>", err)
+			return nil
+		}
+		serach_task = append(serach_task, t)
+	}
+	return serach_task
+}
+
+func Cancle_CollectOrder(Timestamp string) {
+	var sqlStr = "DELETE FROM collectorder  WHERE collectorder.`Timestamp`=?"
+	_, err = Db.Exec(sqlStr, Timestamp)
+	if err != nil {
+		// print(err)
+		fmt.Print("delete err---->", err)
+	}
+
+	fmt.Print("删除任务成功")
+}
+
+func Query_Dim_Order(name string) []Tasklist {
+	var serach_task []Tasklist
+	sql_serach_task := "select * from tasklist where taskname like ?"
+	rows, err := Db.Query(sql_serach_task, name)
+	if err != nil {
+		fmt.Println("显示个人收藏订单出错", err)
+	}
+	fmt.Println("rows------------------------------------===", rows)
+	for rows.Next() {
+		var t Tasklist
+		err := rows.Scan(&t.Taskid, &t.Taskname, &t.Add, &t.Beneficiary, &t.Category, &t.Amount, &t.Timestamp, &t.State, &t.LaunchTime, &t.Block)
+		if err != nil {
+			fmt.Println("tasklist error================================>>>>>>>>>", err)
+			return nil
+		}
+		serach_task = append(serach_task, t)
+	}
+	return serach_task
+
 }

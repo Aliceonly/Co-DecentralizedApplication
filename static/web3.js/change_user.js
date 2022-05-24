@@ -12,7 +12,7 @@ function demo7() {
         showCancelButton: true, //有这个就有取消按钮
         showconfirmButton: true,
     }, function () {
-            window.location.href = "/account"
+            window.location.href = "/Self_info"
         }
     );
 
