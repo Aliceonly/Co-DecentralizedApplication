@@ -298,6 +298,7 @@ func GetuserBanlance(ins *contract.TaskDeployerContract,
 		panic(err)
 	}
 	return balance
+
 }
 /*
 取消任务函数

@@ -38,7 +38,7 @@ var (
 	//本地账户密码
 	password = "1111"
 	//合约地址
-	contractadress = "0x8a9c8B27B44bdAf972bd22d7AA94B7540fd0A604"
+	contractadress = "0x1042cD057814Fab77E0460Cd3d47D87529A88778"
 	//读取用户keystore文件地址
 	relativePath = "D:\\y\\geth\\node1\\nodedata\\keystore"
 	//本地链chainID交易:修改为本地的chainID
@@ -262,8 +262,6 @@ func QueryStatus(txHash common.Hash) int {
 	return (int(rec.Status))
 }
 
-
-
 /*
 获取任务时间戳
 */
@@ -283,22 +281,6 @@ func Querytime(ins *contract.TaskDeployerContract,
 	return timestamp
 }
 
-//获取用户余额
-func GetuserBanlance(ins *contract.TaskDeployerContract,
-	address common.Address,
-	header *types.Header,)*big.Int{
-	opts := bind.CallOpts{
-			Pending:     true,
-			From:        address,
-			BlockNumber: header.Number,
-			Context:     context.Background(),
-		}
-	balance,err:=ins.GetBalanceOfUser(&opts)
-	if err!=nil {
-		panic(err)
-	}
-	return balance
-}
 /*
 取消任务函数
 */
@@ -502,4 +484,12 @@ func Validation(hash []byte,signature []byte,publicKeyBytes []byte) bool{
 	matches := bytes.Equal(sigPublicKey, publicKeyBytes)
     fmt.Println(matches) // true
 	return(matches)
+}
+func GetuserBanlance(address string)big.Int{
+	var balance big.Int
+	err:=rDel.Call(&balance,"eth_getBalance",address,"latest")
+	if  err!=nil {
+		panic(err)
+	}
+	return balance
 }

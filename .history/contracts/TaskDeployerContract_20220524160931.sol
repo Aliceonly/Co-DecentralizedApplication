@@ -213,10 +213,12 @@ contract TaskDeployer {
           revert("false");
         }
     }
-
-    function getBalanceOfUser() public view returns(uint){
+    
+ function getBalanceOfUser() public view returns(uint){
          return msg.sender.balance/10**18;
     }
    fallback() external payable {}
    receive() external payable {}
+     
+
 }

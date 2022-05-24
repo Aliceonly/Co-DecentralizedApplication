@@ -1,0 +1,1 @@
+func GetBalanceOfUser(c gin)

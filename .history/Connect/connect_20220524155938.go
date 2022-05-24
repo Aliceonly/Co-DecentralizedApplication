@@ -284,20 +284,9 @@ func Querytime(ins *contract.TaskDeployerContract,
 }
 
 //获取用户余额
-func GetuserBanlance(ins *contract.TaskDeployerContract,
-	address common.Address,
-	header *types.Header,)*big.Int{
-	opts := bind.CallOpts{
-			Pending:     true,
-			From:        address,
-			BlockNumber: header.Number,
-			Context:     context.Background(),
-		}
-	balance,err:=ins.GetBalanceOfUser(&opts)
-	if err!=nil {
-		panic(err)
-	}
-	return balance
+func GetuserBanlance(ins *contract.TaskDeployerContract,address string){
+	ins.GetBalanceOfUser()
+
 }
 /*
 取消任务函数
