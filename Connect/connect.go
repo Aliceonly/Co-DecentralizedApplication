@@ -40,7 +40,7 @@ var (
 	//合约地址
 	contractadress = "0xE35fB277399423a669A1ABf57bd6f55349946D45"
 	//读取用户keystore文件地址
-	relativePath = "E://Block_chain//data//keystore"
+	relativePath = "D://GethMultNode//node1//nodedata//keystore"
 	//本地链chainID交易:修改为本地的chainID
 	chainID = 833338833338
 )
@@ -469,7 +469,7 @@ func Get() (string, string) {
 func Cancellation(ad string) string {
 	var FileInfo []os.FileInfo
 	var err error
-	relativePath := "E://Block_chain//data//keystore"
+	relativePath := "D://GethMultNode//node1//nodedata//keystore"
 
 	if FileInfo, err = ioutil.ReadDir(relativePath); err != nil {
 		fmt.Println("读取 keystore 文件夹出错")

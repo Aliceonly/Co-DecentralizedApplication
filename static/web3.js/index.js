@@ -149,3 +149,75 @@ function collectOrder(e) {
 }
 
 
+
+
+function CancleUser() {
+    alert(45)
+    console.log("CancleUser")
+    $.ajax({
+        method: "post",
+        url: "http://localhost:8080/dapp/CancelUser",
+        data: { account: Account },
+        success: function (data) {
+            console.log(data.data)
+            Cancle_succ()
+            $.ajax({
+                method: "get",
+                url: "/exit_account",
+                success: function (data) {
+                    console.log("目前账户情况：", data)
+                },
+                error: function (data) {
+                    console.log("error====>", error)
+                    console.log("error data===>", data)
+                }
+            })
+
+        },
+        error: function (data) {
+            console.log("error====>", error)
+            console.log("error data===>", data)
+        }
+    })
+}
+
+
+function exit_login() {
+    alert("iui")
+    console.log("exit");
+    $.ajax({
+        method: "get",
+        url: "/exit_account",
+        success: function (data) {
+            console.log("目前账户情况：", data)
+            demo7()
+        },
+        error: function (data) {
+            console.log("error====>", error)
+            console.log("error data===>", data)
+        }
+    })
+
+}
+
+
+function GetBalcnce() {
+    alert(2)
+    $.ajax({
+        method: "get",
+        url: "/GetBlance",
+        success: function (data) {
+            console.log("目前账户情况：", data.data)
+            window.location.href="GetBalance_show";
+            sessionStorage.setItem("balance",data.data);
+        },
+        error: function (data) {
+            console.log("error====>", error)
+            console.log("error data===>", data)
+        }
+    })
+}
+
+
+
+
