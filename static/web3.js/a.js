@@ -43,6 +43,8 @@ function demo_6() {
         text: "确保您的签名无误，否则无法进行确认操作:",
         type: "input",
         showCancelButton: true,
+        confirmButtonColor:"#3085d6",
+        confirmButtonColor:true,
         closeOnConfirm: false,
         animation: "slide-from-top",
         inputPlaceholder: "签名"
