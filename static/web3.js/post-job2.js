@@ -43,17 +43,18 @@ function CreatTask() {
         //截取逗号前的字符串
         let result = data.data
         let result_new = result.split(',')[0]
+        let time = result.split(',')[1]
         console.log(result_new);
+        console.log(time);
         sessionStorage.setItem('self_sign', result_new)
         swal({
           title: "发布成功",
-          text: '该订单签名是：<span style="color:red"><br/>' + result_new + '<br/>（签名将应用于后期确认订单操作，请务必复制牢记）</span>',
+          text: '该订单签名是：<span style="color:red"><br/>' + result_new + '<br/>（签名将应用于后期确认订单操作，请务必复制牢记）</span><br><span style="color:red">时间戳为：' + time + '<br/>',
           imageUrl: "../static/image/check.png",
           html: true,
           showCancelButton: true,
           showconfirmButton: true,
         });
-        copyUrl2()
       },
       error: function (data) {
         console.log("error====>", error)
