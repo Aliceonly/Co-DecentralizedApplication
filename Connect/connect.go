@@ -38,11 +38,11 @@ var (
 	//本地账户密码
 	password = ""
 	//合约地址
-	contractadress = "0xE35fB277399423a669A1ABf57bd6f55349946D45"
+	contractadress = "0x64AEEC667C31061fDc02A1B48849a6e030374780"
 	//读取用户keystore文件地址
-	relativePath = "D://GethMultNode//node1//nodedata//keystore"
+	relativePath = "E://Block_chain//data//keystore"
 	//本地链chainID交易:修改为本地的chainID
-	chainID = 833338833338
+	chainID = 9876678900
 )
 
 var client *ethclient.Client
@@ -469,7 +469,7 @@ func Get() (string, string) {
 func Cancellation(ad string) string {
 	var FileInfo []os.FileInfo
 	var err error
-	relativePath := "D://GethMultNode//node1//nodedata//keystore"
+	relativePath := "E://Block_chain//data//keystore"
 
 	if FileInfo, err = ioutil.ReadDir(relativePath); err != nil {
 		fmt.Println("读取 keystore 文件夹出错")

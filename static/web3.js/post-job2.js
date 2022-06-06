@@ -12,7 +12,8 @@ function CreatTask() {
   var account = window.sessionStorage.getItem("Global_Account");
   let balance = window.sessionStorage.getItem("balance");
   let residue = balance - taskmoney;
-  if (balance < taskmoney) {
+  console.log(balance,taskmoney)
+  if (residue<0) {
     swal({
       title: "余额不足",
       text: '<span style="color:red">当前余额：</span>' + balance + '<br/><span style="color:red">发布订单后的余额：</span>' + residue + ' <br/>',
@@ -21,7 +22,7 @@ function CreatTask() {
       showCancelButton: true,
       showconfirmButton: true,
     })
-  } else {
+  } else{
     $.ajax({
       method: "post",
       url: "http://localhost:8080/dapp/creatTask",
@@ -41,15 +42,18 @@ function CreatTask() {
         console.log(data.data);
         //截取逗号前的字符串
         let result = data.data
-        console.log(result.split(',')[0]);
+        let result_new = result.split(',')[0]
+        console.log(result_new);
+        sessionStorage.setItem('self_sign', result_new)
         swal({
           title: "发布成功",
-          text: '该订单签名是：<span style="color:red"><br/>' + result + '<br/>（签名将应用于后期确认订单操作，请务必复制牢记）</span>',
+          text: '该订单签名是：<span style="color:red"><br/>' + result_new + '<br/>（签名将应用于后期确认订单操作，请务必复制牢记）</span>',
           imageUrl: "../static/image/check.png",
           html: true,
           showCancelButton: true,
           showconfirmButton: true,
         });
+        copyUrl2()
       },
       error: function (data) {
         console.log("error====>", error)

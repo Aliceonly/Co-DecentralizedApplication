@@ -202,7 +202,6 @@ function exit_login() {
 
 
 function GetBalcnce() {
-    alert(2)
     $.ajax({
         method: "get",
         url: "/GetBlance",
