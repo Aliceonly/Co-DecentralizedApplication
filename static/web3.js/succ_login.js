@@ -1,5 +1,6 @@
 var sign_in_up = document.querySelector("#sign_in_up");
 var self_info = document.querySelector("#self_info");
+var account_setting = document.querySelector("#account_setting");
 $.ajax({
     method: "get",
     url: "/succ_login",
@@ -7,6 +8,7 @@ $.ajax({
         window.sessionStorage.setItem("Account_status",data.data); //设置登录状态,私钥内容
         if(data.data == ""){
             console.log("未登录",data.data)
+            account_setting.style.display = "none";
             self_info.style.display = "none";
             
         }else{

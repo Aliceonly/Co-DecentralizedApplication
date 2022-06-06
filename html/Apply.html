@@ -25,9 +25,7 @@
 
 <link rel="stylesheet" href="../static/css/responsive.css">
 
-<link rel="stylesheet" href="../static/css/sweetalert.css">
-
-<title></title>
+<title>Jovie - Job Board & Portal HTML Template</title>
 
 </head>
 <body>
@@ -54,18 +52,26 @@
 </div>
 
 <div class="navbar-area">
+
+    <!-- 放logo的地方 -->
     <div class="mobile-nav">
-        <a href="/" class="logo">
-        </a>
+    <a href="" class="logo">
+    <img src="static/picture/logo.png" alt="logo">
+    </a>
     </div>
     <div class="main-nav">
         <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand" href="/">
+        <img src="static/picture/logo.png" alt="logo">
         </a>
         <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
         <ul    class="navbar-nav m-auto">
+            <!-- style="position: relative;left: -430px;"  -->
+            <!-- 标记！！！！！！！！！！！！！！！！！！！！！！！！！！！ -->
+        
         <li class="nav-item">
+        <!-- <a href="#" class="nav-link dropdown-toggle active">Home</a> -->
         <li class="nav-item">
             <a href="/" class="nav-link">首页</a>
         </li>
@@ -91,7 +97,6 @@
         </li>
         </ul>
         </li>
-
         <li class="nav-item">
             <a href="#" class="nav-link dropdown-toggle">订单类型</a>
             <ul class="dropdown-menu">
@@ -144,7 +149,6 @@
         </ul>
     </li>
         
-        
         </ul>
         
         
@@ -158,61 +162,41 @@
         </div>
         </div>
 
-        <section style="padding-bottom: 30px;" class="page-title title-bg12">
-            <div style="position: relative;top: -50px;" class="d-table">
-                <div class="d-table-cell">
-                    <h2>个人发布订单</h2>
-                    <ul>
-                        <li>
-                            <a href="/self_new_order">返回</a>
-                        </li>
-                        <li>个人发布订单</li>
-                    </ul>
-                </div>
-            </div>
-            <div   class="lines">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-            </div>
-        </section>
 
-
-<section style="padding-top: 100px;" class="account-section ptb-100">
-<div class="container">
-<div class="row">
-<div class="col-md-4">
-<div class="account-information">
-<div class="profile-thumb">
-<img src="../static/picture/account.jpg" alt="account holder image">
-<span style="font-size: small;font-weight: bold;color: black;position: relative;" id="Self_account"></span>
-</div>
+<section class="page-title title-bg10">
+<div class="d-table">
+<div class="d-table-cell">
+<h2>申请代币</h2>
 <ul>
-    <li>
-    <a>
-    <i class='bx bx-coffee-togo'></i>
-    <button onclick="release_order()">查看订单</button> 
-    </a>
-    </li>
-    <li>
-    <a href="/post_job">
-    <i class='bx bx-envelope'></i>
-     <button>发布订单</button> 
-    </a>
-    </li>
-    <li>
-    <a >
-    <i class='bx bx-heart'></i>
-    <button onclick="Cancle_order()">取消订单</button> 
-    </a>
-    </li>
-    <li>
-    <a >
-    <i class='bx bx-heart'></i>
-    <button onclick="Comfirm_order()">确认订单</button> 
-    </a>
-    </li>
+<li>
+<a href="/GetBalance_show">返回</a>
+</li>
+<li>申请代币</li>
 </ul>
+</div>
+</div>
+<div class="lines">
+<div class="line"></div>
+<div class="line"></div>
+<div class="line"></div>
+</div>
+</section>
+
+
+<section class="pricing-section pt-100 pb-70">
+<div class="container">
+<div class="col-lg-4 col-sm-6 offset-lg-0 offset-sm-3">
+<div class="price-card">
+<div class="price-top">
+<i class='bx bx-user'></i>
+<h2 style="font-size: 35px;">申请次数：<span id="apply_time"></span> <sub>次</sub></h2>
+<h5 id="time_out" style="color:rgb(237, 63, 63)">你的申请次数已用光</h5>
+</div>
+<div class="price-feature">
+</div>
+<div class="price-btn">
+<a id="apply_button" onclick="apply()">申请</a>
+</div>
 </div>
 </div>
 </div>
@@ -230,22 +214,28 @@
 <i class='bx bx-chevrons-up bx-fade-up'></i>
 </div>
 
-<script data-cfasync="false" src="../static/js/email-decode.min.js"></script>
-<script src="../static/js/jquery.min.js"></script>
-<script src="../static/js/bootstrap.bundle.min.js"></script>
-<script src="../static/js/owl.carousel.min.js"></script>
-<script src="../static/js/jquery.nice-select.min.js"></script>
-<script src="../static/js/jquery.magnific-popup.min.js"></script>
-<script src="../static/js/jquery.ajaxchimp.min.js"></script>
-<script src="../static/js/form-validator.min.js"></script>
-<script src="../static/js/contact-form-script.js"></script>
-<script src="../static/js/meanmenu.js"></script>
-<script src="../static/js/custom.js"></script>
-<script src="../static/js/sweetalert.min.js"></script>
-<script src="../static/web3.js/Self_Order.js"></script>
-<script src="../static/web3.js/succ_login.js"></script>
-<script src="../static/web3.js/order_classify.js"></script>
- 
 
+<script data-cfasync="false" src="../static/js/email-decode.min.js"></script><script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/bootstrap.bundle.min.js"></script>
+
+<script src="../static/js/owl.carousel.min.js"></script>
+
+<script src="../static/js/jquery.nice-select.min.js"></script>
+
+<script src="../static/js/jquery.magnific-popup.min.js"></script>
+
+<script src="../static/js/jquery.ajaxchimp.min.js"></script>
+
+<script src="../static/js/form-validator.min.js"></script>
+
+<script src="../static/js/contact-form-script.js"></script>
+
+<script src="../static/js/meanmenu.js"></script>
+
+<script src="../static/js/custom.js"></script>
+
+<script src="../static/web3.js/Apply.js"></script>
+
+<script src="../static/web3.js/order_classify.js"></script>
 </body>
 </html>

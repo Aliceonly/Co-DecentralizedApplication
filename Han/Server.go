@@ -162,6 +162,10 @@ func result_hadAcceptOrder_Handler(c *gin.Context) {
 	c.HTML(200, "HadAcceptOrder.html", nil) //查看个人已接单订单
 }
 
+func Apply_Handler(c *gin.Context) {
+	c.HTML(200, "Apply.html", nil) //查看个人已接单订单
+}
+
 func Start() error {
 	// 创建一个默认的路由引擎
 	r := gin.Default()
@@ -201,6 +205,7 @@ func Start() error {
 	r.GET("/Unaccept_order_show", Unaccept_order_show_handler)       //展示个人未被接收的订单
 	r.GET("/Campus_order_Read_more", Campus_order_Read_more_handler) //校园跑腿订单查看更多详情
 	r.GET("/CWork_order_Read_more", CWork_order_Read_more_handler)   //校园兼职订单查看更多详情
+	r.GET("/Shared_order_Read_more", Shared_order_Read_more_handler) //共享订单查看更多详情
 	r.GET("/Self_info", Self_info_handler)                           //个人信息
 	r.GET("/self_new_order", self_new_order_handler)                 //个人订单
 	r.GET("/setting", setting_handler)                               //设置
@@ -211,6 +216,9 @@ func Start() error {
 	r.GET("/collect_order_more", Collect_order_more_Handler)         //读取更多信息
 	r.GET("/GetBalance_show", GetBalance_show_Handler)               //展示个人余额
 	r.GET("/result_hadAcceptOrder", result_hadAcceptOrder_Handler)   //展示个人已接单订单结果
+	r.GET("/Apply", Apply_Handler)                                   //跳转申请测试代币
+	r.GET("/Frequency", Frequency)                                   //申请次数
+	r.GET("/Apply_5", Apply)                                         //申请代币
 	r.GET("/succ_login", Succ_Login)                                 //成功登录
 	r.GET("/all_order", Self)
 	r.POST("/QueryByTime", QueryByTime)

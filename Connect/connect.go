@@ -3,12 +3,15 @@ package Connect
 import (
 	"context"
 	"crypto/ecdsa"
+	contract2 "dapp/Smart2"
 	contract "dapp/Smartgo"
+
 	// "encoding"
 	"bytes"
 	"fmt"
 	"io/ioutil"
 	"math/big"
+
 	// "unsafe"
 
 	// "strconv"
@@ -19,6 +22,7 @@ import (
 
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/core/types"
+
 	// "github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/ethereum/go-ethereum/rpc"
@@ -38,7 +42,8 @@ var (
 	//本地账户密码
 	password = ""
 	//合约地址
-	contractadress = "0x64AEEC667C31061fDc02A1B48849a6e030374780"
+	contractadress  = "0x9fF3FF6451A9E0C1A426c733397123910ADEe320"
+	contractadress2 = "0xD6Ab8c8881AD9D502315C645Dc3b87E3b54EDec4"
 	//读取用户keystore文件地址
 	relativePath = "E://Block_chain//data//keystore"
 	//本地链chainID交易:修改为本地的chainID
@@ -73,7 +78,13 @@ func Getsmartcontract() *contract.TaskDeployerContract {
 	}
 	return ins
 }
-
+func Getsmartcontract2() *contract2.Faucet {
+	ins2, err := contract2.NewFaucet(common.HexToAddress(contractadress2), client)
+	if err != nil {
+		panic(err)
+	}
+	return ins2
+}
 func Getaccout() (*ecdsa.PrivateKey, common.Address) {
 	file := privatekeyfile
 	account, err := ioutil.ReadFile(file)
@@ -383,6 +394,32 @@ func Creatuser(
 		panic(err)
 	}
 	return true
+}
+
+/*
+申请代币
+*/
+func Dotrasfer(ins2 *contract2.Faucet, opts *bind.TransactOpts, address common.Address) *types.Transaction {
+	Trasfermessage, err := ins2.Dotransfer(opts, address)
+	if err != nil {
+		panic(err)
+	}
+	return Trasfermessage
+}
+
+//申请代币次数
+func Getfrequency(ins2 *contract2.Faucet, address common.Address, header *types.Header) *big.Int {
+	opts := bind.CallOpts{
+		Pending:     true,
+		From:        address,
+		BlockNumber: header.Number,
+		Context:     context.Background(),
+	}
+	f, err := ins2.Gettransfercount(&opts, address)
+	if err != nil {
+		panic(err)
+	}
+	return f
 }
 
 /*
