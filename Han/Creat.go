@@ -6,7 +6,6 @@ import (
 	"strconv"
 	"time"
 
-	// "github.com/ethereum/go-ethereum/common"
 	mysql "dapp/utils"
 	"fmt"
 	"github.com/ethereum/go-ethereum/common/hexutil"
